@@ -11,42 +11,33 @@ document.addEventListener('mousemove', (e) => {
     mouseY = e.clientY;
 
     // Blob movement
-    const blobs = document.querySelectorAll('.blob');
-    blobs.forEach((blob, index) => {
-        const speed = (index + 1) * 0.05;
-        const bx = (window.innerWidth / 2 - e.clientX) * speed;
-        const by = (window.innerHeight / 2 - e.clientY) * speed;
-        blob.style.transform = `translate(${bx}px, ${by}px)`;
-    });
+    if (window.innerWidth > 768) {
+        const blobs = document.querySelectorAll('.blob');
+        blobs.forEach((blob, index) => {
+            const speed = (index + 1) * 0.05;
+            const bx = (window.innerWidth / 2 - e.clientX) * speed;
+            const by = (window.innerHeight / 2 - e.clientY) * speed;
+            blob.style.transform = `translate(${bx}px, ${by}px)`;
+        });
 
-    // Hero Name Parallax
-    const title = document.querySelector('.hero-content h1');
-    const tx = (window.innerWidth / 2 - e.clientX) * 0.01;
-    const ty = (window.innerHeight / 2 - e.clientY) * 0.01;
-    if (title) title.style.transform = `perspective(1000px) rotateY(${tx}deg) rotateX(${-ty}deg)`;
+        // Hero Name Parallax
+        const title = document.querySelector('.hero-content h1');
+        const tx = (window.innerWidth / 2 - e.clientX) * 0.01;
+        const ty = (window.innerHeight / 2 - e.clientY) * 0.01;
+        if (title) title.style.transform = `perspective(1000px) rotateY(${tx}deg) rotateX(${-ty}deg)`;
 
-    // Hero Media Movement
-    const media = document.querySelector('.hero-image-glitch');
-    if (media) {
-        const mx = (window.innerWidth / 2 - e.clientX) * 0.02;
-        const my = (window.innerHeight / 2 - e.clientY) * 0.02;
-        media.style.transform = `translate(${mx}px, ${my}px)`;
-    }
-
-    // Project List Image Follow (Removed as per request to appear stationary)
-    /*
-    const projectItems = document.querySelectorAll('.project-item');
-    projectItems.forEach(item => {
-        const image = item.querySelector('.project-hover-image');
-        if (image) {
-            image.style.left = `${e.clientX}px`;
-            image.style.top = `${e.clientY}px`;
+        // Hero Media Movement
+        const media = document.querySelector('.hero-image-glitch');
+        if (media) {
+            const mx = (window.innerWidth / 2 - e.clientX) * 0.02;
+            const my = (window.innerHeight / 2 - e.clientY) * 0.02;
+            media.style.transform = `translate(${mx}px, ${my}px)`;
         }
-    });
-    */
+    }
 });
 
 function animateCursor() {
+    if (window.innerWidth <= 768) return; // Disable cursor loop on mobile
     // Lerp for smooth following
     cursorX += (mouseX - cursorX) * 0.2;
     cursorY += (mouseY - cursorY) * 0.2;
@@ -222,15 +213,18 @@ window.addEventListener('scroll', () => {
         navbar.classList.remove('nav-scrolled');
     }
 
-    // Skew on scroll
-    const skew = (currentScroll - lastScroll) * 0.1;
-    const maxSkew = 5;
-    const clampedSkew = Math.max(-maxSkew, Math.min(maxSkew, skew));
-    
-    document.querySelectorAll('section').forEach(section => {
-        section.style.transform = `skewY(${clampedSkew}deg)`;
-        section.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-    });
+    // Skew on scroll - Disable on Mobile for performance
+    if (window.innerWidth > 768) {
+        const skewFactor = 0.1;
+        const maxSkew = 5;
+        const skew = (currentScroll - lastScroll) * skewFactor;
+        const clampedSkew = Math.max(-maxSkew, Math.min(maxSkew, skew));
+        
+        document.querySelectorAll('section').forEach(section => {
+            section.style.transform = `skewY(${clampedSkew}deg)`;
+            section.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        });
+    }
 
     lastScroll = currentScroll;
 });
@@ -280,7 +274,8 @@ const canvas = document.getElementById('particles-canvas');
 const ctx = canvas.getContext('2d');
 
 let particles = [];
-const particleCount = 100;
+const isMobile = window.innerWidth < 768;
+const particleCount = isMobile ? 20 : 100; // Even fewer particles on mobile
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -356,7 +351,7 @@ document.querySelectorAll('.submit-btn, .nav-links a, .logo').forEach(btn => {
 // --- I18N TRANSLATIONS ---
 const translations = {
     en: {
-        "nav.start": "Start",
+        "nav.start": "Home",
         "nav.about": "About",
         "nav.skills": "Skills",
         "nav.work": "Work",
@@ -371,20 +366,20 @@ const translations = {
         "about.exp": "Years Exp",
         "about.projects": "Projects",
         "about.awards": "Awards",
-        "nav.credentials": "Credentials",
+        "nav.credentials": "Certificates & Charters",
         "credentials.title": "03 // CREDENTIALS",
         "project1.desc": "SIPS is a school complaint information system that makes it easier for students to report complaints to the school.",
         "project2.desc": "HIGH-FIDELITY RENDERING ENGINE ARCHITECTURE BUILT IN BLENDER.",
         "project3.desc": "A unified IoT dashboard architecture engineered for real-time monitoring and seamless automation of modern smart home ecosystems.",
         "skills.iot": "IOT & EMBEDDED",
-        "contact.marquee": "LET'S WORK TOGETHER — ",
+        "contact.marquee": " LET'S WORK TOGETHER —",
         "contact.name": "NAME",
         "contact.email": "EMAIL",
         "contact.message": "MESSAGE",
         "contact.btn": "SEND INQUIRY"
     },
     id: {
-        "nav.start": "Mulai",
+        "nav.start": "Home",
         "nav.about": "Tentang",
         "nav.skills": "Keahlian",
         "nav.work": "Karya",
@@ -405,7 +400,7 @@ const translations = {
         "project2.desc": "ARSITEKTUR ENGINE RENDERING BERESOLUSI TINGGI YANG DIBANGUN DI BLENDER.",
         "project3.desc": "Arsitektur dashboard IoT terpusat yang dirancang untuk pemantauan real-time dan otomatisasi ekosistem hunian pintar masa depan.",
         "skills.iot": "IOT & SISTEM TERTANAM",
-        "contact.marquee": "LET'S WORK TOGETHER — ",
+        "contact.marquee": " LET'S WORK TOGETHER — ",
         "contact.name": "NAMA",
         "contact.email": "EMAIL",
         "contact.message": "PESAN",
@@ -457,8 +452,33 @@ function updateHUDTime() {
     const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
                        now.getMinutes().toString().padStart(2, '0') + ':' + 
                        now.getSeconds().toString().padStart(2, '0');
+    
+    // Update desktop HUD
     const hudTime = document.getElementById('hud-time');
     if (hudTime) hudTime.innerText = timeString;
+
+    // Update mobile HUD
+    const mobileTime = document.getElementById('mobile-time');
+    if (mobileTime) mobileTime.innerText = timeString;
 }
 setInterval(updateHUDTime, 1000);
 updateHUDTime();
+
+// --- HAMBURGER MOBILE MENU ---
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+
+hamburger?.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+});
+
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+    });
+});
