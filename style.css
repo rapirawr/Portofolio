@@ -19,6 +19,24 @@
     --grid-color: rgba(107, 63, 160, 0.05);
 }
 
+.scroll-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: transparent;
+    z-index: 10001;
+}
+
+.scroll-progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, var(--accent-secondary), var(--accent-primary));
+    width: 0%;
+    box-shadow: 0 0 15px var(--accent-primary);
+    transition: width 0.1s ease-out;
+}
+
 .bg-grid {
     position: fixed;
     top: 0;

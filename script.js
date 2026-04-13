@@ -222,6 +222,15 @@ window.addEventListener('scroll', () => {
         navbar.classList.remove('nav-scrolled');
     }
 
+    // Update scroll progress bar
+    const scrollBar = document.getElementById('scroll-bar');
+    if (scrollBar) {
+        const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        scrollBar.style.width = scrolled + "%";
+    }
+
     // Skew on scroll
     const isMobile = window.innerWidth <= 768;
     const skewFactor = isMobile ? 0.03 : 0.1;
