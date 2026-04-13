@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="loading">
+    <div class="noise-overlay"></div>
+    <div class="bg-grid"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <canvas id="particles-canvas"></canvas>
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursor-follower"></div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">PORTFOLIO</div>
+            <ul class="nav-links">
+                <li><a href="#hero" data-i18n="nav.start">Start</a></li>
+                <li><a href="#about" data-i18n="nav.about">About</a></li>
+                <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="#projects" data-i18n="nav.work">Work</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+            </ul>
+            <div class="lang-switcher mono">
+                <span class="lang-btn active" data-lang="en">EN</span>
+                <span class="divider">/</span>
+                <span class="lang-btn" data-lang="id">ID</span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="hero" class="section">
+            <div class="hero-header-labels mono">
+                <span data-aos="fade-down" data-aos-delay="100" data-i18n="hero.est">EST 2026</span>
+                <span data-aos="fade-down" data-aos-delay="200" data-i18n="hero.base">BASED IN INDONESIA</span>
+                <span data-aos="fade-down" data-aos-delay="300" data-i18n="hero.status">OPEN FOR WORK</span>
+            </div>
+            <div class="hero-content">
+                <div class="hero-main-text">
+                    <div class="label-wrapper" data-aos="fade-right">
+                        <span class="label mono" data-i18n="hero.label">00 // WEBSITE DEVELOPER</span>
+                    </div>
+                    <h1 id="hero-name" class="scramble" data-aos="fade-up" data-aos-delay="400">RAFI ABDILLAH FAIRUZ</h1>
+                    <div class="hero-tagline-container" data-aos="fade-up" data-aos-delay="600">
+                        <p class="tagline clip-reveal" data-i18n="hero.tagline">BEYOND INTERFACES — CRAFTING THE NEXT GENERATION OF DIGITAL LANDSCAPES.</p>
+                    </div>
+                </div>
+                <div class="hero-media-wrap" data-aos="zoom-in" data-aos-delay="800">
+                    <div class="hero-image-glitch">
+                        <img src="IMG-20260214-WA0129.jpg" alt="Profile" class="hero-profile">
+                        <div class="image-mask"></div>
+                    </div>
+                    <div class="media-details mono" data-aos="fade-left" data-aos-delay="1000">
+                        <span>PORTRAIT V.2026</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-wrapper">
+                <div class="scroll-text mono" data-i18n="hero.scroll">SCROLL TO DISCOVER</div>
+                <div class="scroll-line"></div>
+            </div>
+            <div class="glow-focal"></div>
+        </section>
+
+        <section id="about" class="section reveal-section" data-aos="fade-up">
+            <div class="container about-layout">
+                <div class="about-text">
+                    <h2 class="label mono" data-aos="fade-right">01 // ABOUT</h2>
+                    <p class="display-text" data-i18n="about.text" data-aos="fade-right" data-aos-delay="200">I build high-performance interfaces with a focus on editorial design and smooth interactions.</p>
+                    <div class="stats">
+                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+                            <span class="stat-num" data-target="3">0</span>
+                            <span class="stat-label mono" data-i18n="about.exp">Years Exp</span>
+                        </div>
+                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="500">
+                            <span class="stat-num" data-target="10">0</span>
+                            <span class="stat-label mono" data-i18n="about.projects">Projects</span>
+                        </div>
+                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="700">
+                            <span class="stat-num" data-target="5">0</span>
+                            <span class="stat-label mono" data-i18n="about.awards">Awards</span>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="zoom-in" class="about-visual">
+                    <div class="rotating-geo">
+                        <svg viewBox="0 0 100 100" class="geo-svg">
+                            <!-- Outer Hexagon -->
+                            <path d="M50 5 L90 27.5 L90 72.5 L50 95 L10 72.5 L10 27.5 Z" class="draw-path" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                            <!-- Inner Square Rotation -->
+                            <rect x="25" y="25" width="50" height="50" class="draw-path" fill="none" stroke="currentColor" stroke-width="0.3" transform="rotate(45 50 50)"/>
+                            <!-- Concentric Circles -->
+                            <circle cx="50" cy="50" r="35" class="draw-path" fill="none" stroke="currentColor" stroke-width="0.2" stroke-dasharray="1 3"/>
+                            <circle cx="50" cy="50" r="10" class="draw-path" fill="none" stroke="currentColor" stroke-width="0.8"/>
+                            <!-- Data Lines -->
+                            <line x1="50" y1="5" x2="50" y2="95" class="draw-path" stroke="currentColor" stroke-width="0.2"/>
+                            <line x1="10" y1="50" x2="90" y2="50" class="draw-path" stroke="currentColor" stroke-width="0.2"/>
+                            <!-- Small Points -->
+                            <circle cx="50" cy="5" r="1" fill="currentColor"/>
+                            <circle cx="50" cy="95" r="1" fill="currentColor"/>
+                            <circle cx="90" cy="27.5" r="1" fill="currentColor"/>
+                            <circle cx="10" cy="72.5" r="1" fill="currentColor"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section reveal-section" data-aos="fade-up">
+            <div class="container">
+                <h2 class="label mono">02 // MASTERY</h2>
+                <div class="skills-visual-grid">
+                    <div class="skill-box" data-aos="flip-up" data-aos-delay="100">
+                        <div class="skill-img-icon" data-aos="flip-down" data-aos-delay="300">
+                            <img src="https://cdn.simpleicons.org/html5/6B3FA0" alt="HTML5">
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-aos="fade-left">FRONTEND CORE</h3>
+                            <p class="mono">Semantic HTML / CSS / JavaScript</p>
+                        </div>
+                        <div class="skill-progress"><div class="bar" style="width: 98%;"></div></div>
+                    </div>
+                    <div class="skill-box alternate" data-aos="flip-up" data-aos-delay="200">
+                        <div class="skill-img-icon" data-aos="flip-down" data-aos-delay="400">
+                            <img src="https://cdn.simpleicons.org/laravel/6B3FA0" alt="Laravel">
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-aos="fade-right">LARAVEL ENGINE</h3>
+                            <p class="mono">MVC / Eloquent / API Development</p>
+                        </div>
+                        <div class="skill-progress"><div class="bar" style="width: 90%;"></div></div>
+                    </div>
+                    <div class="skill-box" data-aos="flip-up" data-aos-delay="300">
+                        <div class="skill-img-icon" data-aos="flip-down" data-aos-delay="500">
+                            <img src="https://cdn.simpleicons.org/figma/6B3FA0" alt="Figma">
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-aos="fade-left">FIGMA MASTERY</h3>
+                            <p class="mono">Prototyping / Design Systems / UX</p>
+                        </div>
+                        <div class="skill-progress"><div class="bar" style="width: 95%;"></div></div>
+                    </div>
+                    <div class="skill-box alternate" data-aos="flip-up" data-aos-delay="400">
+                        <div class="skill-img-icon" data-aos="flip-down" data-aos-delay="600">
+                            <img src="https://cdn.simpleicons.org/blender/6B3FA0" alt="Blender">
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-aos="fade-right">BLENDER DESIGN</h3>
+                            <p class="mono">Modeling / Texturing / Rendering</p>
+                        </div>
+                        <div class="skill-progress"><div class="bar" style="width: 85%;"></div></div>
+                    </div>
+                    <div class="skill-box" data-aos="flip-up" data-aos-delay="500">
+                        <div class="skill-img-icon" data-aos="flip-down" data-aos-delay="700">
+                            <img src="https://cdn.simpleicons.org/mysql/6B3FA0" alt="MySQL">
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-aos="fade-left">MYSQL DATABASE</h3>
+                            <p class="mono">Relational Design / SQL / Optimization</p>
+                        </div>
+                        <div class="skill-progress"><div class="bar" style="width: 88%;"></div></div>
+                    </div>
+                    <div class="skill-box alternate" data-aos="flip-up" data-aos-delay="600">
+                        <div class="skill-img-icon" data-aos="flip-down" data-aos-delay="800">
+                            <img src="https://cdn.simpleicons.org/espressif/6B3FA0" alt="ESP32">
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-aos="fade-right" data-i18n="skills.iot">IOT & EMBEDDED</h3>
+                            <p class="mono">ESP32 / Sensors / Systems Integration</p>
+                        </div>
+                        <div class="skill-progress"><div class="bar" style="width: 82%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificates" class="section reveal-section" data-aos="fade-up">
+            <div class="container">
+                <h2 class="label mono" data-aos="fade-right" data-i18n="credentials.title">03 // CREDENTIALS</h2>
+                <div class="cert-grid">
+                    <!-- Certificate 1: Innotech (Piagam) -->
+                    <div class="cert-card" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="cert-inner">
+                            <div class="cert-front">
+                                <div class="cert-status mono">PIAGAM PENGHARGAAN</div>
+                                <div class="cert-content">
+                                    <span class="cert-issuer mono">INNOTECH COMPETITION</span>
+                                    <h3>Innovation & Technology Award</h3>
+                                    <p class="mono">ACHIEVEMENT // 2025</p>
+                                </div>
+                                <div class="cert-glow"></div>
+                            </div>
+                            <div class="cert-back">
+                                <img src="asset/img/piagam + sertif/Innotech.jpeg" alt="Piagam Innotech">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certificate 2: UI/UX ISAC -->
+                    <div class="cert-card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="cert-inner">
+                            <div class="cert-front">
+                                <div class="cert-status mono">COMPETITION</div>
+                                <div class="cert-content">
+                                    <span class="cert-issuer mono">ISAC COMMUNITY</span>
+                                    <h3>UI/UX Design Excellence</h3>
+                                    <p class="mono">VERIFIED // 2025</p>
+                                </div>
+                                <div class="cert-glow"></div>
+                            </div>
+                            <div class="cert-back">
+                                <img src="asset/img/piagam + sertif/UIIX ISAC.jpg" alt="Sertifikat ISAC">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certificate 3: SIC6 -->
+                    <div class="cert-card" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="cert-inner">
+                            <div class="cert-front">
+                                <div class="cert-status mono">PROGRAM</div>
+                                <div class="cert-content">
+                                    <span class="cert-issuer mono">SAMSUNG INNOVATION CAMPUS</span>
+                                    <h3>SIC Batch 6 Completion</h3>
+                                    <p class="mono">CERTIFIED // 2024</p>
+                                </div>
+                                <div class="cert-glow"></div>
+                            </div>
+                            <div class="cert-back">
+                                <img src="asset/img/piagam + sertif/SIC6.jpg" alt="Sertifikat SIC">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certificate 4: Latika Python -->
+                    <div class="cert-card" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="cert-inner">
+                            <div class="cert-front">
+                                <div class="cert-status mono">TECHNICAL</div>
+                                <div class="cert-content">
+                                    <span class="cert-issuer mono">LATIKA ACADEMY</span>
+                                    <h3>Python Programming Mastery</h3>
+                                    <p class="mono">ISSUED // 2025</p>
+                                </div>
+                                <div class="cert-glow"></div>
+                            </div>
+                            <div class="cert-back">
+                                <img src="asset/img/piagam + sertif/Latika Python.jpg" alt="Sertifikat Latika Python">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certificate 5: Latika -->
+                    <div class="cert-card" data-aos="zoom-in" data-aos-delay="500">
+                        <div class="cert-inner">
+                            <div class="cert-front">
+                                <div class="cert-status mono">VERIFIED</div>
+                                <div class="cert-content">
+                                    <span class="cert-issuer mono">LATIKA COMPETITION</span>
+                                    <h3>Core Tech Fundamentals</h3>
+                                    <p class="mono">VERIFIED // 2025</p>
+                                </div>
+                                <div class="cert-glow"></div>
+                            </div>
+                            <div class="cert-back">
+                                <img src="asset/img/piagam + sertif/Latika.jpg" alt="Sertifikat Latika">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section reveal-section" data-aos="fade-up">
+            <div class="container">
+                <h2 class="label mono">04 // SELECTED WORKS</h2>
+                <div class="project-list">
+                    <div class="project-item" data-aos="fade-left" data-aos-delay="100">
+                        <div class="project-info">
+                            <span class="mono">01 // FULLSTACK</span>
+                            <h3 class="display-title">SIPS (Sistem Informasi Pengaduan Sekolah)</h3>
+                            <p data-i18n="project1.desc">SIPS is a school complaint information system that makes it easier for students to report complaints to the school.</p>
+                        </div>
+                        <div class="project-meta mono">
+                            <span>LARAVEL</span>
+                            <span>MYSQL</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="project-hover-image">
+                            <img src="asset/img/project/sips.webp" alt="Work 01">
+                        </div>
+                    </div>
+                    
+                    <div class="project-item" data-aos="fade-left" data-aos-delay="200">
+                        <div class="project-info">
+                            <span class="mono">02 // 3D DESIGN</span>
+                            <h3 class="display-title">THE VOID ENGINE</h3>
+                            <p data-i18n="project2.desc">HIGH-FIDELITY RENDERING ENGINE ARCHITECTURE BUILT IN BLENDER.</p>
+                        </div>
+                        <div class="project-meta mono">
+                            <span>BLENDER</span>
+                            <span>UI/UX</span>
+                            <span>2023</span>
+                        </div>
+                        <div class="project-hover-image">
+                            <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=1000" alt="Work 02">
+                        </div>
+                    </div>
+
+                    <div class="project-item" data-aos="fade-left" data-aos-delay="300">
+                        <div class="project-info">
+                            <span class="mono">03 // INTERFACE</span>
+                            <h3 class="display-title">CASIVO</h3>
+                            <p data-i18n="project3.desc">A unified IoT dashboard architecture engineered for real-time monitoring and seamless automation of modern smart home ecosystems.</p>
+                        </div>
+                        <div class="project-meta mono">
+                            <span>FIGMA</span>
+                            <span>HTML/CSS</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="project-hover-image">
+                            <img src="asset/img/project/casivo.png" alt="Work 03">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section reveal-section" data-aos="fade-up">
+            <div class="marquee">
+                <div class="marquee-inner">
+                    <span data-i18n="contact.marquee">LET'S WORK TOGETHER — LET'S WORK TOGETHER — LET'S WORK TOGETHER — LET'S WORK TOGETHER — </span>
+                    <span data-i18n="contact.marquee">LET'S WORK TOGETHER — LET'S WORK TOGETHER — LET'S WORK TOGETHER — LET'S WORK TOGETHER — </span>
+                </div>
+            </div>
+            <div class="container contact-container">
+                <form class="contact-form">
+                    <div class="input-group" data-aos="fade-up" data-aos-delay="100">
+                        <input type="text" id="name" required>
+                        <label for="name" class="mono" data-i18n="contact.name">NAME</label>
+                    </div>
+                    <div class="input-group" data-aos="fade-up" data-aos-delay="200">
+                        <input type="email" id="email" required>
+                        <label for="email" class="mono" data-i18n="contact.email">EMAIL</label>
+                    </div>
+                    <div class="input-group" data-aos="fade-up" data-aos-delay="300">
+                        <textarea id="message" rows="4" required></textarea>
+                        <label for="message" class="mono" data-i18n="contact.message">MESSAGE</label>
+                    </div>
+                    <button type="submit" class="submit-btn mono" data-aos="zoom-in" data-aos-delay="400" data-i18n="contact.btn">SEND INQUIRY</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content mono">
+            <span>© 2026 RAFI ABDILLAH F</span>
+            <div class="socials">
+                <a href="#">TWITTER</a>
+                <a href="#">GITHUB</a>
+                <a href="#">DRIBBBLE</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="hud-overlay mono">
+        <div class="hud-item">SYS: ACTIVE</div>
+        <div class="hud-item" id="hud-time">00:00:00</div>
+        <div class="hud-item">LOC: INDONESIA</div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
