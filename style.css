@@ -1155,10 +1155,11 @@ footer {
 
 /* Stagger heights */
 .mobile-menu.open .mobile-nav-links li:nth-child(1) a { transition-delay: 0.1s; }
-.mobile-menu.open .mobile-nav-links li:nth-child(2) a { transition-delay: 0.2s; }
-.mobile-menu.open .mobile-nav-links li:nth-child(3) a { transition-delay: 0.3s; }
-.mobile-menu.open .mobile-nav-links li:nth-child(4) a { transition-delay: 0.4s; }
-.mobile-menu.open .mobile-nav-links li:nth-child(5) a { transition-delay: 0.5s; }
+.mobile-menu.open .mobile-nav-links li:nth-child(2) a { transition-delay: 0.15s; }
+.mobile-menu.open .mobile-nav-links li:nth-child(3) a { transition-delay: 0.2s; }
+.mobile-menu.open .mobile-nav-links li:nth-child(4) a { transition-delay: 0.25s; }
+.mobile-menu.open .mobile-nav-links li:nth-child(5) a { transition-delay: 0.3s; }
+.mobile-menu.open .mobile-nav-links li:nth-child(6) a { transition-delay: 0.35s; }
 
 .mobile-nav-links a:active {
     color: var(--accent-primary);
