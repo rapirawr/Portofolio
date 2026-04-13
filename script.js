@@ -11,33 +11,42 @@ document.addEventListener('mousemove', (e) => {
     mouseY = e.clientY;
 
     // Blob movement
-    if (window.innerWidth > 768) {
-        const blobs = document.querySelectorAll('.blob');
-        blobs.forEach((blob, index) => {
-            const speed = (index + 1) * 0.05;
-            const bx = (window.innerWidth / 2 - e.clientX) * speed;
-            const by = (window.innerHeight / 2 - e.clientY) * speed;
-            blob.style.transform = `translate(${bx}px, ${by}px)`;
-        });
+    const blobs = document.querySelectorAll('.blob');
+    blobs.forEach((blob, index) => {
+        const speed = (index + 1) * 0.05;
+        const bx = (window.innerWidth / 2 - e.clientX) * speed;
+        const by = (window.innerHeight / 2 - e.clientY) * speed;
+        blob.style.transform = `translate(${bx}px, ${by}px)`;
+    });
 
-        // Hero Name Parallax
-        const title = document.querySelector('.hero-content h1');
-        const tx = (window.innerWidth / 2 - e.clientX) * 0.01;
-        const ty = (window.innerHeight / 2 - e.clientY) * 0.01;
-        if (title) title.style.transform = `perspective(1000px) rotateY(${tx}deg) rotateX(${-ty}deg)`;
+    // Hero Name Parallax
+    const title = document.querySelector('.hero-content h1');
+    const tx = (window.innerWidth / 2 - e.clientX) * 0.01;
+    const ty = (window.innerHeight / 2 - e.clientY) * 0.01;
+    if (title) title.style.transform = `perspective(1000px) rotateY(${tx}deg) rotateX(${-ty}deg)`;
 
-        // Hero Media Movement
-        const media = document.querySelector('.hero-image-glitch');
-        if (media) {
-            const mx = (window.innerWidth / 2 - e.clientX) * 0.02;
-            const my = (window.innerHeight / 2 - e.clientY) * 0.02;
-            media.style.transform = `translate(${mx}px, ${my}px)`;
-        }
+    // Hero Media Movement
+    const media = document.querySelector('.hero-image-glitch');
+    if (media) {
+        const mx = (window.innerWidth / 2 - e.clientX) * 0.02;
+        const my = (window.innerHeight / 2 - e.clientY) * 0.02;
+        media.style.transform = `translate(${mx}px, ${my}px)`;
     }
+
+    // Project List Image Follow (Removed as per request to appear stationary)
+    /*
+    const projectItems = document.querySelectorAll('.project-item');
+    projectItems.forEach(item => {
+        const image = item.querySelector('.project-hover-image');
+        if (image) {
+            image.style.left = `${e.clientX}px`;
+            image.style.top = `${e.clientY}px`;
+        }
+    });
+    */
 });
 
 function animateCursor() {
-    if (window.innerWidth <= 768) return; // Disable cursor loop on mobile
     // Lerp for smooth following
     cursorX += (mouseX - cursorX) * 0.2;
     cursorY += (mouseY - cursorY) * 0.2;
@@ -213,18 +222,18 @@ window.addEventListener('scroll', () => {
         navbar.classList.remove('nav-scrolled');
     }
 
-    // Skew on scroll - Disable on Mobile for performance
-    if (window.innerWidth > 768) {
-        const skewFactor = 0.1;
-        const maxSkew = 5;
-        const skew = (currentScroll - lastScroll) * skewFactor;
-        const clampedSkew = Math.max(-maxSkew, Math.min(maxSkew, skew));
-        
-        document.querySelectorAll('section').forEach(section => {
-            section.style.transform = `skewY(${clampedSkew}deg)`;
-            section.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
-        });
-    }
+    // Skew on scroll
+    const isMobile = window.innerWidth <= 768;
+    const skewFactor = isMobile ? 0.03 : 0.1;
+    const maxSkew = isMobile ? 2 : 5;
+    
+    const skew = (currentScroll - lastScroll) * skewFactor;
+    const clampedSkew = Math.max(-maxSkew, Math.min(maxSkew, skew));
+    
+    document.querySelectorAll('section').forEach(section => {
+        section.style.transform = `skewY(${clampedSkew}deg)`;
+        section.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+    });
 
     lastScroll = currentScroll;
 });
@@ -274,8 +283,7 @@ const canvas = document.getElementById('particles-canvas');
 const ctx = canvas.getContext('2d');
 
 let particles = [];
-const isMobile = window.innerWidth < 768;
-const particleCount = isMobile ? 20 : 100; // Even fewer particles on mobile
+const particleCount = window.innerWidth < 768 ? 40 : 100;
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
