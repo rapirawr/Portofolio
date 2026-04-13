@@ -603,7 +603,7 @@ body.loading {
 
 .cert-card {
     height: 420px;
-    perspective: 1500px;
+    perspective: 2000px;
     background: transparent;
     border: none;
     padding: 0;
@@ -632,14 +632,32 @@ body.loading {
     border: 1px solid var(--glass-border);
     display: flex;
     flex-direction: column;
+    /* Folder Shape */
+    border-radius: 0 15px 5px 5px;
+    clip-path: polygon(0% 0%, 35% 0%, 40% 10%, 100% 10%, 100% 100%, 0% 100%);
+}
+
+/* Folder Tab Text */
+.cert-front::before {
+    content: 'FILE_ID: ' attr(data-id);
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    font-family: var(--mono-font);
+    font-size: 0.5rem;
+    color: var(--accent-primary);
+    opacity: 0.8;
 }
 
 .cert-back {
     transform: rotateY(180deg);
-    padding: 15px;
+    padding: 20px;
     justify-content: center;
     align-items: center;
-    background: var(--glass);
+}
+
+.cert-front .cert-content {
+    margin-top: 30px; /* Adjust for folder tab */
 }
 
 .cert-back img {
@@ -662,6 +680,7 @@ body.loading {
     color: var(--accent-primary);
     margin-bottom: 2rem;
     opacity: 0.7;
+    margin-top:5%;
 }
 
 .cert-issuer {
