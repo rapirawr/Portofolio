@@ -399,7 +399,7 @@ const translations = {
         "about.exp": "Tahun Pengalaman",
         "about.projects": "Proyek",
         "about.awards": "Penghargaan",
-        "nav.credentials": "Sertifikat",
+        "nav.credentials": "Sertifikat dan Piagam",
         "credentials.title": "03 // SERTIFIKAT",
         "project1.desc": "SIPS adalah sistem informasi pengaduan sekolah yang memudahkan siswa untuk melaporkan pengaduan ke sekolah.",
         "project2.desc": "ARSITEKTUR ENGINE RENDERING BERESOLUSI TINGGI YANG DIBANGUN DI BLENDER.",
