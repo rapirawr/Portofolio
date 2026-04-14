@@ -306,7 +306,7 @@ const canvas = document.getElementById('particles-canvas');
 const ctx = canvas.getContext('2d');
 
 let particles = [];
-const particleCount = window.innerWidth < 768 ? 40 : 100;
+const particleCount = window.innerWidth < 768 ? 30 : 60;
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -380,7 +380,7 @@ class ParticleSphere {
     init() {
         this.canvas.width = 350;
         this.canvas.height = 350;
-        const count = window.innerWidth < 768 ? 800 : 1500; // Reduced from 3000
+        const count = window.innerWidth < 768 ? 500 : 1000; // Reduced further for lightness
         for (let i = 0; i < count; i++) {
             const phi = Math.acos(-1 + (2 * i) / count);
             const theta = Math.sqrt(count * Math.PI) * phi;
@@ -596,10 +596,10 @@ const savedLang = localStorage.getItem('preferred-lang') || 'en';
 setLanguage(savedLang);
 
 AOS.init({
-    duration: 1000,
+    duration: 800,
     easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-    once: false,
-    mirror: true
+    once: true, // Only animate once to save resources
+    mirror: false
 });
 
 function updateHUDTime() {
