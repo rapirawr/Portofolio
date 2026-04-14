@@ -461,60 +461,74 @@ const translations = {
     en: {
         "nav.start": "Home",
         "nav.about": "About",
-        "nav.skills": "Skills",
-        "nav.work": "Work",
+        "nav.experience": "Experience",
+        "nav.skills": "Mastery",
+        "nav.work": "Projects",
         "nav.contact": "Contact",
         "hero.est": "EST 2026",
         "hero.base": "BASED IN INDONESIA",
-        "hero.status": "OPEN FOR WORK",
-        "hero.label": "00 // WEBSITE DEVELOPER",
-        "hero.tagline": "BEYOND INTERFACES — CRAFTING THE NEXT GENERATION OF DIGITAL LANDSCAPES.",
+        "hero.status": "AVAILABLE FOR HIRE",
+        "hero.label": "00 // DIGITAL ARCHITECT & FULLSTACK DEVELOPER",
+        "hero.tagline": "ENGINEERING HIGH-FIDELITY DIGITAL EXPERIENCES THROUGH CODE AND DESIGN.",
+        "hero.cta.work": "VIEW PROJECTS",
+        "hero.cta.cv": "DOWNLOAD CV",
         "hero.scroll": "SCROLL TO DISCOVER",
-        "about.text": "I build high-performance interfaces with a focus on editorial design and smooth interactions.",
+        "about.text": "I am a Fullstack Developer dedicated to building scalable, high-performance web applications with refined aesthetics.",
         "about.exp": "Years Exp",
-        "about.projects": "Projects",
-        "about.awards": "Awards",
+        "about.projects": "Completed Projects",
+        "about.awards": "Credentials",
+        "exp.title": "02 // EXP & EDU",
+        "exp1.date": "2024 — PRESENT",
+        "exp1.title": "Software Engineering",
+        "exp1.desc": "Focusing on software development, modern web architecture, and advanced programming logic.",
         "nav.credentials": "Certificates & Charters",
         "credentials.title": "03 // CREDENTIALS",
-        "project1.desc": "SIPS is a school complaint information system that makes it easier for students to report complaints to the school.",
-        "project2.desc": "A modern food order landing page designed for school bazaars, featuring real-time stock updates and a seamless mobile-first user experience.",
-        "project3.desc": "A unified IoT dashboard architecture engineered for real-time monitoring and seamless automation of modern smart home ecosystems.",
-        "skills.iot": "IOT",
-        "skills.linux": "LINUX SYSTEM",
-        "contact.marquee": " LET'S WORK TOGETHER —",
-        "contact.name": "NAME",
-        "contact.email": "EMAIL",
-        "contact.message": "MESSAGE",
-        "contact.btn": "SEND INQUIRY"
+        "project1.desc": "A secure, enterprise-grade school complaint infrastructure designed for high-traffic environments and seamless data management.",
+        "project2.desc": "High-performance food procurement platform featuring real-time inventory synchronization and a responsive mobile architecture.",
+        "project3.desc": "A unified digital twin dashboard for smart home automation, integrating various sensor arrays into a cohesive visual interface.",
+        "skills.iot": "SYSTEMS & IOT",
+        "skills.linux": "INFRASTRUCTURE",
+        "contact.marquee": " LET'S START A CONVERSATION —",
+        "contact.name": "FULL NAME",
+        "contact.email": "EMAIL ADDRESS",
+        "contact.message": "INQUIRY DETAILS",
+        "contact.btn": "TRANSMIT MESSAGE"
     },
     id: {
-        "nav.start": "Home",
-        "nav.about": "Tentang",
+        "nav.start": "Beranda",
+        "nav.about": "Profil",
+        "nav.experience": "Pengalaman",
         "nav.skills": "Keahlian",
-        "nav.work": "Karya",
-        "nav.contact": "Kontak",
+        "nav.work": "Proyek",
+        "nav.contact": "Hubungi",
         "hero.est": "SEJAK 2026",
-        "hero.base": "BASE IN INDONESIA",
-        "hero.status": "OPEN TO WORK",
-        "hero.label": "00 // WEBSITE DEVELOPER",
-        "hero.tagline": "MELAMPAUI ANTARMUKA — MEMBENTUK GENERASI MASA DEPAN DUNIA DIGITAL.",
+        "hero.base": "BERBASIS DI INDONESIA",
+        "hero.status": "TERSEDIA UNTUK PEKERJAAN",
+        "hero.label": "00 // ARSITEK DIGITAL & FULLSTACK DEVELOPER",
+        "hero.tagline": "MENGEMBANGKAN PENGALAMAN DIGITAL BERKUALITAS TINGGI MELALUI KODE DAN DESAIN.",
+        "hero.cta.work": "LIHAT KARYA",
+        "hero.cta.cv": "UNDUH CV",
         "hero.scroll": "GULIR UNTUK MENJELAJAHI",
-        "about.text": "Saya membangun antarmuka berperforma tinggi dengan fokus pada desain editorial dan interaksi yang halus.",
+        "about.text": "Saya adalah Fullstack Developer yang berdedikasi untuk membangun aplikasi web berperforma tinggi dan skalabel dengan estetika yang halus.",
         "about.exp": "Tahun Pengalaman",
-        "about.projects": "Proyek",
-        "about.awards": "Penghargaan",
-        "nav.credentials": "Sertifikat dan Piagam",
-        "credentials.title": "03 // SERTIFIKAT",
-        "project1.desc": "SIPS adalah sistem informasi pengaduan sekolah yang memudahkan siswa untuk melaporkan pengaduan ke sekolah.",
-        "project2.desc": "Landing page pemesanan makanan modern yang dirancang untuk bazar sekolah, menampilkan pembaruan stok real-time dan pengalaman pengguna mobile-first yang mulus.",
-        "project3.desc": "Arsitektur dashboard IoT terpusat yang dirancang untuk pemantauan real-time dan otomatisasi ekosistem hunian pintar masa depan.",
-        "skills.iot": "IOT",
-        "skills.linux": "SISTEM LINUX",
-        "contact.marquee": " LET'S WORK TOGETHER — ",
-        "contact.name": "NAMA",
-        "contact.email": "EMAIL",
-        "contact.message": "PESAN",
-        "contact.btn": "KIRIM PERTANYAAN"
+        "about.projects": "Proyek Selesai",
+        "about.awards": "Sertifikasi",
+        "exp.title": "02 // PENGALAMAN",
+        "exp1.date": "2024 — SEKARANG",
+        "exp1.title": "Rekayasa Perangkat Lunak",
+        "exp1.desc": "Fokus dalam pengembangan perangkat lunak, arsitektur web modern, dan logika pemrograman tingkat lanjut.",
+        "nav.credentials": "Sertifikat & Penghargaan",
+        "credentials.title": "03 // SERTIFIKASI",
+        "project1.desc": "Infrastruktur pengaduan sekolah tingkat enterprise yang aman, dirancang untuk traffic tinggi dan manajemen data yang mulus.",
+        "project2.desc": "Platform pengadaan makanan berperforma tinggi dengan sinkronisasi inventaris real-time dan arsitektur mobile yang responsif.",
+        "project3.desc": "Dashboard digital twin terpadu untuk otomasi rumah pintar, mengintegrasikan berbagai array sensor ke dalam antarmuka visual yang kohesif.",
+        "skills.iot": "SISTEM & IOT",
+        "skills.linux": "INFRASTRUKTUR",
+        "contact.marquee": " MARI MULAI PERCAKAPAN — ",
+        "contact.name": "NAMA LENGKAP",
+        "contact.email": "ALAMAT EMAIL",
+        "contact.message": "DETAIL PERTANYAAN",
+        "contact.btn": "KIRIM PESAN"
     }
 };
 
@@ -544,25 +558,7 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
     });
 });
 
-const themeToggle = document.getElementById('theme-toggle');
-const themeBtns = document.querySelectorAll('.theme-btn');
 
-function updateTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    themeBtns.forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-theme') === theme);
-    });
-    localStorage.setItem('preferred-theme', theme);
-}
-
-themeBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        updateTheme(btn.getAttribute('data-theme'));
-    });
-});
-
-const savedTheme = localStorage.getItem('preferred-theme') || 'dark';
-updateTheme(savedTheme);
 
 const savedLang = localStorage.getItem('preferred-lang') || 'en';
 setLanguage(savedLang);
