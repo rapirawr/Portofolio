@@ -565,96 +565,36 @@ body.loading {
     position: relative;
 }
 
-.rotating-geo {
-    width: 300px;
-    height: 300px;
+.particle-sphere-wrap {
+    width: 350px;
+    height: 350px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    perspective: 1000px;
 }
 
-.sphere-3d {
+#about-particle-canvas {
     width: 100%;
     height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    animation: masterRotate 20s linear infinite;
+    filter: drop-shadow(0 0 15px rgba(107, 63, 160, 0.4));
 }
 
-.ring {
+.sphere-scanner {
     position: absolute;
-    top: 50%;
-    left: 50%;
     width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 1px solid var(--accent-primary);
-    transform: translate(-50%, -50%);
-    opacity: 0.4;
-    box-shadow: 0 0 15px rgba(107, 63, 160, 0.2);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    z-index: 5;
+    pointer-events: none;
+    animation: scanner3D 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    box-shadow: 0 0 10px var(--accent-primary);
 }
 
-.ring-x { transform: translate(-50%, -50%) rotateX(90deg); }
-.ring-y { transform: translate(-50%, -50%) rotateY(90deg); }
-.ring-z { transform: translate(-50%, -50%) rotateZ(90deg); }
-.ring-a { transform: translate(-50%, -50%) rotateX(45deg) rotateY(45deg); }
-.ring-b { transform: translate(-50%, -50%) rotateX(-45deg) rotateY(45deg); }
-
-.sphere-core {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle, var(--accent-primary), transparent);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 40px var(--accent-primary);
-    animation: corePulse 2s ease-in-out infinite;
-}
-
-.core-inner {
-    width: 100%;
-    height: 100%;
-    border: 2px solid white;
-    border-radius: 50%;
-    opacity: 0.5;
-    animation: coreFlicker 1s infinite;
-}
-
-.sphere-scan {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border-top: 2px solid white;
-    transform-style: preserve-3d;
-    animation: scan3D 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-@keyframes masterRotate {
-    0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
-    100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(0deg); }
-}
-
-@keyframes scan3D {
-    0% { transform: scale(1.1) rotateX(90deg) translateZ(-150px); opacity: 0; }
-    50% { transform: scale(1.1) rotateX(90deg) translateZ(0px); opacity: 0.8; }
-    100% { transform: scale(1.1) rotateX(90deg) translateZ(150px); opacity: 0; }
-}
-
-@keyframes corePulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
-    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
-}
-
-@keyframes coreFlicker {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 0.2; transform: scale(0.9); }
+@keyframes scanner3D {
+    0% { transform: translateY(-150px); opacity: 0; }
+    50% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(150px); opacity: 0; }
 }
 
 .draw-path {

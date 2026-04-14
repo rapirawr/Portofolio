@@ -337,6 +337,94 @@ function animateParticles() {
 initParticles();
 animateParticles();
 
+class ParticleSphere {
+    constructor(canvasId) {
+        this.canvas = document.getElementById(canvasId);
+        if (!this.canvas) return;
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.count = 8000;
+        this.radius = 120;
+        this.rotationX = 0;
+        this.rotationY = 0;
+
+        this.init();
+        this.animate();
+    }
+
+    init() {
+        this.canvas.width = 350;
+        this.canvas.height = 350;
+        for (let i = 0; i < this.count; i++) {
+            const phi = Math.acos(-1 + (2 * i) / this.count);
+            const theta = Math.sqrt(this.count * Math.PI) * phi;
+            const noise = 1 + (Math.random() - 0.5) * 0.15; // 15% noise
+            this.particles.push({
+                x: this.radius * noise * Math.cos(theta) * Math.sin(phi) + (Math.random() - 0.5) * 10,
+                y: this.radius * noise * Math.sin(theta) * Math.sin(phi) + (Math.random() - 0.5) * 10,
+                z: this.radius * noise * Math.cos(phi) + (Math.random() - 0.5) * 10,
+                size: Math.random() * 0.8 + 0.2
+            });
+        }
+    }
+
+    rotateX(angle) {
+        const cos = Math.cos(angle);
+        const sin = Math.sin(angle);
+        this.particles.forEach(p => {
+            const y = p.y * cos - p.z * sin;
+            const z = p.y * sin + p.z * cos;
+            p.y = y;
+            p.z = z;
+        });
+    }
+
+    rotateY(angle) {
+        const cos = Math.cos(angle);
+        const sin = Math.sin(angle);
+        this.particles.forEach(p => {
+            const x = p.x * cos - p.z * sin;
+            const z = p.x * sin + p.z * cos;
+            p.x = x;
+            p.z = z;
+        });
+    }
+
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.rotateX(0.005);
+        this.rotateY(0.005);
+
+        const centerX = this.canvas.width / 2;
+        const centerY = this.canvas.height / 2;
+
+        this.particles.sort((a, b) => b.z - a.z);
+
+        this.particles.forEach(p => {
+            const scale = (p.z + this.radius) / (2 * this.radius);
+            const alpha = 0.2 + 0.8 * scale;
+            const size = p.size * (0.5 + 0.5 * scale);
+
+            this.ctx.fillStyle = `rgba(107, 63, 160, ${alpha})`;
+            this.ctx.beginPath();
+            this.ctx.arc(centerX + p.x, centerY + p.y, size, 0, Math.PI * 2);
+            this.ctx.fill();
+
+            if (p.z > 0 && Math.random() > 0.99) {
+                this.ctx.strokeStyle = `rgba(107, 63, 160, ${alpha * 0.3})`;
+                this.ctx.beginPath();
+                this.ctx.moveTo(centerX + p.x, centerY + p.y);
+                this.ctx.lineTo(centerX, centerY);
+                this.ctx.stroke();
+            }
+        });
+
+        requestAnimationFrame(() => this.animate());
+    }
+}
+
+new ParticleSphere('about-particle-canvas');
+
 document.querySelectorAll('.submit-btn, .nav-links a, .logo').forEach(btn => {
     btn.addEventListener('mousemove', (e) => {
         const rect = btn.getBoundingClientRect();
