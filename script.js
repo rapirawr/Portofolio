@@ -471,7 +471,7 @@ const translations = {
         "hero.label": "00 // DIGITAL ARCHITECT & FULLSTACK DEVELOPER",
         "hero.tagline": "ENGINEERING HIGH-FIDELITY DIGITAL EXPERIENCES THROUGH CODE AND DESIGN.",
         "hero.cta.work": "VIEW PROJECTS",
-        "hero.cta.cv": "DOWNLOAD CV",
+        "hero.cta.cv": "VIEW CV",
         "hero.scroll": "SCROLL TO DISCOVER",
         "about.text": "I am a Fullstack Developer dedicated to building scalable, high-performance web applications with refined aesthetics.",
         "about.exp": "Years Exp",
@@ -507,8 +507,8 @@ const translations = {
         "hero.label": "00 // ARSITEK DIGITAL & FULLSTACK DEVELOPER",
         "hero.tagline": "MENGEMBANGKAN PENGALAMAN DIGITAL BERKUALITAS TINGGI MELALUI KODE DAN DESAIN.",
         "hero.cta.work": "LIHAT KARYA",
-        "hero.cta.cv": "UNDUH CV",
-        "hero.scroll": "GULIR UNTUK MENJELAJAHI",
+        "hero.cta.cv": "LIHAT CV",
+        "hero.scroll": "SCROLL UNTUK MENJELAJAHI",
         "about.text": "Saya adalah Fullstack Developer yang berdedikasi untuk membangun aplikasi web berperforma tinggi dan skalabel dengan estetika yang halus.",
         "about.exp": "Tahun Pengalaman",
         "about.projects": "Proyek Selesai",
@@ -648,5 +648,14 @@ if (contactForm) {
                 submitBtn.disabled = false;
                 submitBtn.style.opacity = "1";
             });
+    });
+}
+
+// PWA Service Worker Registration
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('Service Worker Registered'))
+            .catch(err => console.log('Service Worker Registration Failed:', err));
     });
 }
