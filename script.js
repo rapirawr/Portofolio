@@ -122,6 +122,13 @@ const el = document.querySelector('.scramble');
 const fx = new TextScramble(el);
 let originalText = el.innerText;
 
+const loaderWaitText = document.getElementById('loader-wait-text');
+setTimeout(() => {
+    if (document.body.classList.contains('loading')) {
+        loaderWaitText.classList.add('visible');
+    }
+}, 3000)
+
 window.addEventListener('load', () => {
     setTimeout(() => {
         document.body.classList.remove('loading');
