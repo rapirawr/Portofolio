@@ -5,34 +5,41 @@ let mouseX = 0, mouseY = 0;
 let cursorX = 0, cursorY = 0;
 let followerX = 0, followerY = 0;
 
+let lastMouseMove = 0;
 document.addEventListener('mousemove', (e) => {
+    const now = performance.now();
+    if (now - lastMouseMove < 16) return; // ~60fps throttle
+    lastMouseMove = now;
+
     mouseX = e.clientX;
     mouseY = e.clientY;
 
     const blobs = document.querySelectorAll('.blob');
     blobs.forEach((blob, index) => {
-        const speed = (index + 1) * 0.05;
+        const speed = (index + 1) * 0.03;
         const bx = (window.innerWidth / 2 - e.clientX) * speed;
         const by = (window.innerHeight / 2 - e.clientY) * speed;
-        blob.style.transform = `translate(${bx}px, ${by}px)`;
+        blob.style.transform = `translate3d(${bx}px, ${by}px, 0)`; // Use translate3d
     });
 
     const title = document.querySelector('.hero-content h1');
-    const tx = (window.innerWidth / 2 - e.clientX) * 0.01;
-    const ty = (window.innerHeight / 2 - e.clientY) * 0.01;
-    if (title) title.style.transform = `perspective(1000px) rotateY(${tx}deg) rotateX(${-ty}deg)`;
+    if (title) {
+        const tx = (window.innerWidth / 2 - e.clientX) * 0.005;
+        const ty = (window.innerHeight / 2 - e.clientY) * 0.005;
+        title.style.transform = `perspective(1000px) rotateY(${tx}deg) rotateX(${-ty}deg)`;
+    }
 
     const media = document.querySelector('.hero-image-glitch');
     if (media) {
-        const mx = (window.innerWidth / 2 - e.clientX) * 0.02;
-        const my = (window.innerHeight / 2 - e.clientY) * 0.02;
-        media.style.transform = `translate(${mx}px, ${my}px)`;
+        const mx = (window.innerWidth / 2 - e.clientX) * 0.01;
+        const my = (window.innerHeight / 2 - e.clientY) * 0.01;
+        media.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
     }
 
     const grid = document.querySelector('.bg-grid');
     if (grid) {
-        const gx = (window.innerWidth / 2 - e.clientX) * 0.005;
-        const gy = (window.innerHeight / 2 - e.clientY) * 0.005;
+        const gx = (window.innerWidth / 2 - e.clientX) * 0.002;
+        const gy = (window.innerHeight / 2 - e.clientY) * 0.002;
         grid.style.transform = `perspective(1000px) rotateX(${20 + gy}deg) rotateY(${gx}deg)`;
     }
 });
@@ -202,41 +209,50 @@ function resetCountUp() {
 let lastScroll = 0;
 const navbar = document.getElementById('navbar');
 
+let scrollTicking = false;
 window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 50) {
-        navbar.classList.add('nav-scrolled');
-    } else {
-        navbar.classList.remove('nav-scrolled');
+    if (!scrollTicking) {
+        window.requestAnimationFrame(() => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+
+            const scrollBar = document.getElementById('scroll-bar');
+            if (scrollBar) {
+                const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                scrollBar.style.width = scrolled + "%";
+                
+                const scrollStatus = document.querySelector('.scroll-status');
+                if (scrollStatus) {
+                    scrollStatus.innerText = Math.round(scrolled) + "%";
+                }
+            }
+
+            const isMobile = window.innerWidth <= 768;
+            if (!isMobile) { // Disable skew on mobile for perf
+                const skewFactor = 0.05;
+                const maxSkew = 3;
+                const skew = (currentScroll - lastScroll) * skewFactor;
+                const clampedSkew = Math.max(-maxSkew, Math.min(maxSkew, skew));
+                
+                // Only skew the main container to avoid multiple layout shifts
+                const main = document.querySelector('main');
+                if (main) {
+                    main.style.transform = `skewY(${clampedSkew}deg)`;
+                }
+            }
+
+            lastScroll = currentScroll;
+            scrollTicking = false;
+        });
+        scrollTicking = true;
     }
-
-    const scrollBar = document.getElementById('scroll-bar');
-    if (scrollBar) {
-        const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        scrollBar.style.width = scrolled + "%";
-        
-        const scrollStatus = document.querySelector('.scroll-status');
-        if (scrollStatus) {
-            scrollStatus.innerText = Math.round(scrolled) + "%";
-        }
-    }
-
-    const isMobile = window.innerWidth <= 768;
-    const skewFactor = isMobile ? 0.03 : 0.1;
-    const maxSkew = isMobile ? 2 : 5;
-    
-    const skew = (currentScroll - lastScroll) * skewFactor;
-    const clampedSkew = Math.max(-maxSkew, Math.min(maxSkew, skew));
-    
-    document.querySelectorAll('section').forEach(section => {
-        section.style.transform = `skewY(${clampedSkew}deg)`;
-        section.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
-    });
-
-    lastScroll = currentScroll;
 });
 
 const cards = document.querySelectorAll('.tilt');
@@ -355,88 +371,95 @@ class ParticleSphere {
     init() {
         this.canvas.width = 350;
         this.canvas.height = 350;
-        for (let i = 0; i < this.count; i++) {
-            const phi = Math.acos(-1 + (2 * i) / this.count);
-            const theta = Math.sqrt(this.count * Math.PI) * phi;
-            const noise = 1 + (Math.random() - 0.5) * 0.15; // 15% noise
+        const count = window.innerWidth < 768 ? 800 : 1500; // Reduced from 3000
+        for (let i = 0; i < count; i++) {
+            const phi = Math.acos(-1 + (2 * i) / count);
+            const theta = Math.sqrt(count * Math.PI) * phi;
+            const noise = 1 + (Math.random() - 0.5) * 0.1; 
             this.particles.push({
-                x: this.radius * noise * Math.cos(theta) * Math.sin(phi) + (Math.random() - 0.5) * 10,
-                y: this.radius * noise * Math.sin(theta) * Math.sin(phi) + (Math.random() - 0.5) * 10,
-                z: this.radius * noise * Math.cos(phi) + (Math.random() - 0.5) * 10,
+                x: this.radius * noise * Math.cos(theta) * Math.sin(phi),
+                y: this.radius * noise * Math.sin(theta) * Math.sin(phi),
+                z: this.radius * noise * Math.cos(phi),
                 size: Math.random() * 0.8 + 0.2
             });
         }
+        // Cache the color
+        this.accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary').trim();
+        this.rgbColor = hexToRgb(this.accentColor);
     }
 
     rotateX(angle) {
         const cos = Math.cos(angle);
         const sin = Math.sin(angle);
-        this.particles.forEach(p => {
+        for (let i = 0; i < this.particles.length; i++) {
+            const p = this.particles[i];
             const y = p.y * cos - p.z * sin;
             const z = p.y * sin + p.z * cos;
             p.y = y;
             p.z = z;
-        });
+        }
     }
 
     rotateY(angle) {
         const cos = Math.cos(angle);
         const sin = Math.sin(angle);
-        this.particles.forEach(p => {
+        for (let i = 0; i < this.particles.length; i++) {
+            const p = this.particles[i];
             const x = p.x * cos - p.z * sin;
             const z = p.x * sin + p.z * cos;
             p.x = x;
             p.z = z;
-        });
+        }
     }
 
     animate() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.rotateX(0.005);
-        this.rotateY(0.005);
+        this.rotateX(0.003);
+        this.rotateY(0.003);
 
         const centerX = this.canvas.width / 2;
         const centerY = this.canvas.height / 2;
-
-        const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary').trim();
         
-        this.particles.sort((a, b) => b.z - a.z);
+        // Removed sorting for performance
 
-        this.particles.forEach(p => {
+        for (let i = 0; i < this.particles.length; i++) {
+            const p = this.particles[i];
             const scale = (p.z + this.radius) / (2 * this.radius);
-            const alpha = 0.2 + 0.8 * scale;
+            const alpha = (0.1 + 0.7 * scale).toFixed(2);
             const size = p.size * (0.5 + 0.5 * scale);
 
-            this.ctx.fillStyle = accentColor.includes('#') ? hexToRgbA(accentColor, alpha) : accentColor;
+            this.ctx.fillStyle = `rgba(${this.rgbColor.r},${this.rgbColor.g},${this.rgbColor.b},${alpha})`;
             this.ctx.beginPath();
             this.ctx.arc(centerX + p.x, centerY + p.y, size, 0, Math.PI * 2);
             this.ctx.fill();
 
-            if (p.z > 0 && Math.random() > 0.99) {
-                this.ctx.strokeStyle = accentColor.includes('#') ? hexToRgbA(accentColor, alpha * 0.3) : accentColor;
+            // Reduced lines frequency
+            if (p.z > 80 && Math.random() > 0.995) {
+                this.ctx.strokeStyle = `rgba(${this.rgbColor.r},${this.rgbColor.g},${this.rgbColor.b},0.1)`;
                 this.ctx.beginPath();
                 this.ctx.moveTo(centerX + p.x, centerY + p.y);
                 this.ctx.lineTo(centerX, centerY);
                 this.ctx.stroke();
             }
-        });
+        }
 
         requestAnimationFrame(() => this.animate());
     }
 }
 
-function hexToRgbA(hex, alpha) {
+function hexToRgb(hex) {
     let r = 0, g = 0, b = 0;
-    if (hex.length == 4) {
-        r = "0x" + hex[1] + hex[1];
-        g = "0x" + hex[2] + hex[2];
-        b = "0x" + hex[3] + hex[3];
-    } else if (hex.length == 7) {
-        r = "0x" + hex[1] + hex[2];
-        g = "0x" + hex[3] + hex[4];
-        b = "0x" + hex[5] + hex[6];
+    hex = hex.replace('#', '');
+    if (hex.length === 3) {
+        r = parseInt(hex[0] + hex[0], 16);
+        g = parseInt(hex[1] + hex[1], 16);
+        b = parseInt(hex[2] + hex[2], 16);
+    } else {
+        r = parseInt(hex.substring(0, 2), 16);
+        g = parseInt(hex.substring(2, 4), 16);
+        b = parseInt(hex.substring(4, 6), 16);
     }
-    return `rgba(${+r},${+g},${+b},${alpha})`;
+    return { r, g, b };
 }
 
 new ParticleSphere('about-particle-canvas');
