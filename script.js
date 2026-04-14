@@ -28,6 +28,13 @@ document.addEventListener('mousemove', (e) => {
         const my = (window.innerHeight / 2 - e.clientY) * 0.02;
         media.style.transform = `translate(${mx}px, ${my}px)`;
     }
+
+    const grid = document.querySelector('.bg-grid');
+    if (grid) {
+        const gx = (window.innerWidth / 2 - e.clientX) * 0.005;
+        const gy = (window.innerHeight / 2 - e.clientY) * 0.005;
+        grid.style.transform = `perspective(1000px) rotateX(${20 + gy}deg) rotateY(${gx}deg)`;
+    }
 });
 
 function animateCursor() {
@@ -210,6 +217,11 @@ window.addEventListener('scroll', () => {
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
         scrollBar.style.width = scrolled + "%";
+        
+        const scrollStatus = document.querySelector('.scroll-status');
+        if (scrollStatus) {
+            scrollStatus.innerText = Math.round(scrolled) + "%";
+        }
     }
 
     const isMobile = window.innerWidth <= 768;
