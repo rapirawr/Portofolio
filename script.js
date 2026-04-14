@@ -1,4 +1,3 @@
-// --- CUSTOM CURSOR WITH LERP ---
 const cursor = document.getElementById('cursor');
 const follower = document.getElementById('cursor-follower');
 
@@ -10,7 +9,6 @@ document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
 
-    // Blob movement
     const blobs = document.querySelectorAll('.blob');
     blobs.forEach((blob, index) => {
         const speed = (index + 1) * 0.05;
@@ -19,13 +17,11 @@ document.addEventListener('mousemove', (e) => {
         blob.style.transform = `translate(${bx}px, ${by}px)`;
     });
 
-    // Hero Name Parallax
     const title = document.querySelector('.hero-content h1');
     const tx = (window.innerWidth / 2 - e.clientX) * 0.01;
     const ty = (window.innerHeight / 2 - e.clientY) * 0.01;
     if (title) title.style.transform = `perspective(1000px) rotateY(${tx}deg) rotateX(${-ty}deg)`;
 
-    // Hero Media Movement
     const media = document.querySelector('.hero-image-glitch');
     if (media) {
         const mx = (window.innerWidth / 2 - e.clientX) * 0.02;
@@ -35,7 +31,6 @@ document.addEventListener('mousemove', (e) => {
 });
 
 function animateCursor() {
-    // Lerp for smooth following
     cursorX += (mouseX - cursorX) * 0.2;
     cursorY += (mouseY - cursorY) * 0.2;
     followerX += (mouseX - followerX) * 0.1;
@@ -50,7 +45,6 @@ function animateCursor() {
 }
 animateCursor();
 
-// Cursor scaling on hover
 const interactives = document.querySelectorAll('a, button, .project-card, .tag, input, textarea, .skill-box');
 interactives.forEach(el => {
     el.addEventListener('mouseenter', () => {
@@ -70,7 +64,6 @@ interactives.forEach(el => {
     });
 });
 
-// --- TEXT SCRAMBLE EFFECT ---
 class TextScramble {
     constructor(el) {
         this.el = el;
@@ -129,7 +122,6 @@ const el = document.querySelector('.scramble');
 const fx = new TextScramble(el);
 let originalText = el.innerText;
 
-// --- PAGE LOAD ---
 window.addEventListener('load', () => {
     setTimeout(() => {
         document.body.classList.remove('loading');
@@ -138,7 +130,6 @@ window.addEventListener('load', () => {
     }, 500);
 });
 
-// --- INTERSECTION OBSERVER (Reveal & Count Up) ---
 const observerOptions = {
     threshold: 0.2
 };
@@ -148,15 +139,12 @@ const observer = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
             
-            // Trigger count up if it's the about section
             if (entry.target.id === 'about') {
                 startCountUp();
             }
         } else {
-            // Remove visible class when leaving viewport for "looping" effect
             entry.target.classList.remove('visible');
             
-            // Reset count up if it's the about section
             if (entry.target.id === 'about') {
                 resetCountUp();
             }
@@ -197,7 +185,6 @@ function resetCountUp() {
     });
 }
 
-// --- NAVBAR SCROLL BEHAVIOR ---
 let lastScroll = 0;
 const navbar = document.getElementById('navbar');
 
@@ -210,7 +197,6 @@ window.addEventListener('scroll', () => {
         navbar.classList.remove('nav-scrolled');
     }
 
-    // Update scroll progress bar
     const scrollBar = document.getElementById('scroll-bar');
     if (scrollBar) {
         const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
@@ -219,7 +205,6 @@ window.addEventListener('scroll', () => {
         scrollBar.style.width = scrolled + "%";
     }
 
-    // Skew on scroll
     const isMobile = window.innerWidth <= 768;
     const skewFactor = isMobile ? 0.03 : 0.1;
     const maxSkew = isMobile ? 2 : 5;
@@ -235,7 +220,6 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// --- 3D TILT EFFECT ---
 const cards = document.querySelectorAll('.tilt');
 cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
@@ -257,7 +241,6 @@ cards.forEach(card => {
     });
 });
 
-// --- RIPPLE EFFECT ON BUTTONS ---
 document.querySelectorAll('.submit-btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
         let x = e.clientX - e.target.getBoundingClientRect().left;
@@ -275,7 +258,6 @@ document.querySelectorAll('.submit-btn').forEach(btn => {
     });
 });
 
-// --- BACKGROUND PARTICLES ---
 const canvas = document.getElementById('particles-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -336,7 +318,6 @@ function animateParticles() {
 initParticles();
 animateParticles();
 
-// --- MAGNETIC BUTTONS ---
 document.querySelectorAll('.submit-btn, .nav-links a, .logo').forEach(btn => {
     btn.addEventListener('mousemove', (e) => {
         const rect = btn.getBoundingClientRect();
@@ -353,7 +334,6 @@ document.querySelectorAll('.submit-btn, .nav-links a, .logo').forEach(btn => {
     });
 });
 
-// --- I18N TRANSLATIONS ---
 const translations = {
     en: {
         "nav.start": "Home",
@@ -376,7 +356,7 @@ const translations = {
         "project1.desc": "SIPS is a school complaint information system that makes it easier for students to report complaints to the school.",
         "project2.desc": "A modern food order landing page designed for school bazaars, featuring real-time stock updates and a seamless mobile-first user experience.",
         "project3.desc": "A unified IoT dashboard architecture engineered for real-time monitoring and seamless automation of modern smart home ecosystems.",
-        "skills.iot": "IOT & EMBEDDED",
+        "skills.iot": "IOT",
         "contact.marquee": " LET'S WORK TOGETHER —",
         "contact.name": "NAME",
         "contact.email": "EMAIL",
@@ -404,7 +384,7 @@ const translations = {
         "project1.desc": "SIPS adalah sistem informasi pengaduan sekolah yang memudahkan siswa untuk melaporkan pengaduan ke sekolah.",
         "project2.desc": "Landing page pemesanan makanan modern yang dirancang untuk bazar sekolah, menampilkan pembaruan stok real-time dan pengalaman pengguna mobile-first yang mulus.",
         "project3.desc": "Arsitektur dashboard IoT terpusat yang dirancang untuk pemantauan real-time dan otomatisasi ekosistem hunian pintar masa depan.",
-        "skills.iot": "IOT & SISTEM TERTANAM",
+        "skills.iot": "IOT",
         "contact.marquee": " LET'S WORK TOGETHER — ",
         "contact.name": "NAMA",
         "contact.email": "EMAIL",
@@ -439,11 +419,9 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
     });
 });
 
-// Load preferred language
 const savedLang = localStorage.getItem('preferred-lang') || 'en';
 setLanguage(savedLang);
 
-// Initialize AOS
 AOS.init({
     duration: 1000,
     easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
@@ -451,25 +429,21 @@ AOS.init({
     mirror: true
 });
 
-// --- HUD TIME ---
 function updateHUDTime() {
     const now = new Date();
     const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
                        now.getMinutes().toString().padStart(2, '0') + ':' + 
                        now.getSeconds().toString().padStart(2, '0');
     
-    // Update desktop HUD
     const hudTime = document.getElementById('hud-time');
     if (hudTime) hudTime.innerText = timeString;
 
-    // Update mobile HUD
     const mobileTime = document.getElementById('mobile-time');
     if (mobileTime) mobileTime.innerText = timeString;
 }
 setInterval(updateHUDTime, 1000);
 updateHUDTime();
 
-// --- HAMBURGER MOBILE MENU ---
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
 const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
@@ -488,7 +462,6 @@ mobileLinks.forEach(link => {
     });
 });
 
-// --- EMAIL JS INTEGRATION ---
 const contactForm = document.querySelector(".contact-form");
 const formStatus = document.getElementById("form-status");
 const submitBtn = document.querySelector(".submit-btn");
@@ -497,7 +470,6 @@ if (contactForm) {
     contactForm.addEventListener("submit", function(event) {
         event.preventDefault();
         
-        // Automated timestamp for {{time}} placeholder
         const mailTimeInput = document.getElementById('mail-time');
         if (mailTimeInput) {
             const now = new Date();
