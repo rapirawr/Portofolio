@@ -343,7 +343,7 @@ class ParticleSphere {
         if (!this.canvas) return;
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
-        this.count = 8000;
+        this.count = 3000;
         this.radius = 120;
         this.rotationX = 0;
         this.rotationY = 0;
