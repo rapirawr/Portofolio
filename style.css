@@ -467,30 +467,135 @@ body.loading {
 .rotating-geo {
     width: 300px;
     height: 300px;
-    animation: rotateGeo 20s linear infinite;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
 }
 
-.geo-svg {
+.sphere-3d {
     width: 100%;
     height: 100%;
-    color: rgb(156, 57, 221);
-    opacity: 1; /* Increased for neon effect */
-    filter: drop-shadow(0 0 10px rgba(156, 57, 221, 0.8)) drop-shadow(0 0 20px rgba(156, 57, 221, 0.4));
+    position: relative;
+    transform-style: preserve-3d;
+    animation: masterRotate 20s linear infinite;
+}
+
+.ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid var(--accent-primary);
+    transform: translate(-50%, -50%);
+    opacity: 0.4;
+    box-shadow: 0 0 15px rgba(107, 63, 160, 0.2);
+}
+
+.ring-x { transform: translate(-50%, -50%) rotateX(90deg); }
+.ring-y { transform: translate(-50%, -50%) rotateY(90deg); }
+.ring-z { transform: translate(-50%, -50%) rotateZ(90deg); }
+.ring-a { transform: translate(-50%, -50%) rotateX(45deg) rotateY(45deg); }
+.ring-b { transform: translate(-50%, -50%) rotateX(-45deg) rotateY(45deg); }
+
+.sphere-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, var(--accent-primary), transparent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 40px var(--accent-primary);
+    animation: corePulse 2s ease-in-out infinite;
+}
+
+.core-inner {
+    width: 100%;
+    height: 100%;
+    border: 2px solid white;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: coreFlicker 1s infinite;
+}
+
+.sphere-scan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border-top: 2px solid white;
+    transform-style: preserve-3d;
+    animation: scan3D 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes masterRotate {
+    0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(0deg); }
+}
+
+@keyframes scan3D {
+    0% { transform: scale(1.1) rotateX(90deg) translateZ(-150px); opacity: 0; }
+    50% { transform: scale(1.1) rotateX(90deg) translateZ(0px); opacity: 0.8; }
+    100% { transform: scale(1.1) rotateX(90deg) translateZ(150px); opacity: 0; }
+}
+
+@keyframes corePulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+}
+
+@keyframes coreFlicker {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.2; transform: scale(0.9); }
 }
 
 .draw-path {
     stroke-dasharray: 400;
     stroke-dashoffset: 400;
-    transition: stroke-dashoffset 2s var(--transition);
+    transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-section.visible .draw-path {
     stroke-dashoffset: 0;
 }
 
-@keyframes rotateGeo {
+@keyframes rotateClockwise {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+}
+
+@keyframes rotateCounterClockwise {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+}
+
+@keyframes pulseCore {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes flickerCore {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; filter: blur(1px); }
+    70% { opacity: 0.8; }
+}
+
+@keyframes scanMove {
+    0% { transform: translateY(-30px); opacity: 0; }
+    50% { transform: translateY(0); opacity: 0.5; }
+    100% { transform: translateY(30px); opacity: 0; }
+}
+
+@keyframes pointPulse {
+    from { transform: scale(1); opacity: 0.5; }
+    to { transform: scale(2); opacity: 1; }
 }
 
 /* --- SKILLS SECTION --- */
@@ -617,7 +722,7 @@ body.loading {
     height: 100%;
     transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform-style: preserve-3d;
-    border-radius: 15px; /* Base radius for the folder interaction */
+    border-radius: 25px; 
 }
 
 .cert-card:hover .cert-inner {
@@ -635,9 +740,9 @@ body.loading {
     border: 1px solid var(--glass-border);
     display: flex;
     flex-direction: column;
-    /* Folder Shape */
-    border-radius: 0 15px 5px 5px;
-    clip-path: polygon(0% 0%, 35% 0%, 40% 10%, 100% 10%, 100% 100%, 0% 100%);
+    /* Folder Shape - Improved with smoother curves */
+    border-radius: 25px;
+    clip-path: polygon(0% 0%, 35% 0%, 45% 12%, 100% 12%, 100% 100%, 0% 100%);
 }
 
 /* Folder Tab Text */

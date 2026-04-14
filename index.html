@@ -35,6 +35,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="asset/img/favicon.png">
     <meta name="theme-color" content="#080610">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("ZkjOcV9cVwNDbLyTY");
+       })();
+    </script>
 </head>
 <body class="loading">
     <div class="scroll-progress-container">
@@ -160,23 +167,18 @@
                 </div>
                 <div data-aos="zoom-in" class="about-visual">
                     <div class="rotating-geo">
-                        <svg viewBox="0 0 100 100" class="geo-svg">
-                            <!-- Outer Hexagon -->
-                            <path d="M50 5 L90 27.5 L90 72.5 L50 95 L10 72.5 L10 27.5 Z" class="draw-path" fill="none" stroke="currentColor" stroke-width="0.5"/>
-                            <!-- Inner Square Rotation -->
-                            <rect x="25" y="25" width="50" height="50" class="draw-path" fill="none" stroke="currentColor" stroke-width="0.3" transform="rotate(45 50 50)"/>
-                            <!-- Concentric Circles -->
-                            <circle cx="50" cy="50" r="35" class="draw-path" fill="none" stroke="currentColor" stroke-width="0.2" stroke-dasharray="1 3"/>
-                            <circle cx="50" cy="50" r="10" class="draw-path" fill="none" stroke="currentColor" stroke-width="0.8"/>
-                            <!-- Data Lines -->
-                            <line x1="50" y1="5" x2="50" y2="95" class="draw-path" stroke="currentColor" stroke-width="0.2"/>
-                            <line x1="10" y1="50" x2="90" y2="50" class="draw-path" stroke="currentColor" stroke-width="0.2"/>
-                            <!-- Small Points -->
-                            <circle cx="50" cy="5" r="1" fill="currentColor"/>
-                            <circle cx="50" cy="95" r="1" fill="currentColor"/>
-                            <circle cx="90" cy="27.5" r="1" fill="currentColor"/>
-                            <circle cx="10" cy="72.5" r="1" fill="currentColor"/>
-                        </svg>
+                        <!-- 3D CSS Sphere -->
+                        <div class="sphere-3d">
+                            <div class="ring ring-x"></div>
+                            <div class="ring ring-y"></div>
+                            <div class="ring ring-z"></div>
+                            <div class="ring ring-a"></div>
+                            <div class="ring ring-b"></div>
+                            <div class="sphere-core">
+                                <div class="core-inner"></div>
+                            </div>
+                            <div class="sphere-scan"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -426,19 +428,29 @@
             </div>
             <div class="container contact-container">
                 <form class="contact-form">
+                    <!-- Hidden fields for EmailJS template -->
+                    <input type="hidden" name="to_name" value="Rafi Abdillah F"> 
+                    <input type="hidden" name="time" id="mail-time">
+
                     <div class="input-group" data-aos="fade-up" data-aos-delay="100">
-                        <input type="text" id="name" required>
+                        <input type="text" id="name" name="from_name" required>
                         <label for="name" class="mono" data-i18n="contact.name">NAME</label>
                     </div>
                     <div class="input-group" data-aos="fade-up" data-aos-delay="200">
-                        <input type="email" id="email" required>
+                        <input type="email" id="email" name="from_email" required>
                         <label for="email" class="mono" data-i18n="contact.email">EMAIL</label>
                     </div>
+                    <!-- Added Subject field to match template -->
+                    <div class="input-group" data-aos="fade-up" data-aos-delay="250">
+                        <input type="text" id="subject" name="subject" required>
+                        <label for="subject" class="mono">SUBJECT</label>
+                    </div>
                     <div class="input-group" data-aos="fade-up" data-aos-delay="300">
-                        <textarea id="message" rows="4" required></textarea>
+                        <textarea id="message" name="message" rows="4" required></textarea>
                         <label for="message" class="mono" data-i18n="contact.message">MESSAGE</label>
                     </div>
                     <button type="submit" class="submit-btn mono" data-aos="zoom-in" data-aos-delay="400" data-i18n="contact.btn">SEND INQUIRY</button>
+                    <div id="form-status" class="mono" style="margin-top: 20px; font-size: 0.7rem; display: none; letter-spacing: 0.1em; border-left: 2px solid var(--accent-primary); padding-left: 15px;"></div>
                 </form>
             </div>
         </section>

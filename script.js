@@ -32,18 +32,6 @@ document.addEventListener('mousemove', (e) => {
         const my = (window.innerHeight / 2 - e.clientY) * 0.02;
         media.style.transform = `translate(${mx}px, ${my}px)`;
     }
-
-    // Project List Image Follow (Removed as per request to appear stationary)
-    /*
-    const projectItems = document.querySelectorAll('.project-item');
-    projectItems.forEach(item => {
-        const image = item.querySelector('.project-hover-image');
-        if (image) {
-            image.style.left = `${e.clientX}px`;
-            image.style.top = `${e.clientY}px`;
-        }
-    });
-    */
 });
 
 function animateCursor() {
@@ -402,8 +390,8 @@ const translations = {
         "nav.work": "Karya",
         "nav.contact": "Kontak",
         "hero.est": "SEJAK 2026",
-        "hero.base": "BERBASIS DI INDONESIA",
-        "hero.status": "TERBUKA UNTUK KERJA",
+        "hero.base": "BASE IN INDONESIA",
+        "hero.status": "OPEN TO WORK",
         "hero.label": "00 // WEBSITE DEVELOPER",
         "hero.tagline": "MELAMPAUI ANTARMUKA — MEMBENTUK GENERASI MASA DEPAN DUNIA DIGITAL.",
         "hero.scroll": "GULIR UNTUK MENJELAJAHI",
@@ -499,3 +487,53 @@ mobileLinks.forEach(link => {
         document.body.style.overflow = '';
     });
 });
+
+// --- EMAIL JS INTEGRATION ---
+const contactForm = document.querySelector(".contact-form");
+const formStatus = document.getElementById("form-status");
+const submitBtn = document.querySelector(".submit-btn");
+
+if (contactForm) {
+    contactForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        // Automated timestamp for {{time}} placeholder
+        const mailTimeInput = document.getElementById('mail-time');
+        if (mailTimeInput) {
+            const now = new Date();
+            mailTimeInput.value = now.toLocaleString('id-ID', { 
+                dateStyle: 'full', 
+                timeStyle: 'short' 
+            });
+        }
+
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = "SENDING...";
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = "0.5";
+
+        emailjs.sendForm('service_48ue5uq', 'template_jvgtqo4', this)
+            .then(() => {
+                formStatus.innerHTML = "SYSTEM: MESSAGE SENT SUCCESSFULLY // ACCESS GRANTED";
+                formStatus.style.display = "block";
+                formStatus.style.color = "var(--accent-primary)";
+                contactForm.reset();
+                submitBtn.innerText = "SENT";
+                
+                setTimeout(() => {
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = "1";
+                    formStatus.style.display = "none";
+                }, 4000);
+            }, (error) => {
+                console.log('FAILED...', error);
+                formStatus.innerHTML = "SYSTEM ERROR: FAILED TO DELIVER MESSAGE";
+                formStatus.style.display = "block";
+                formStatus.style.color = "#ff4d4d";
+                submitBtn.innerText = "RETRY";
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = "1";
+            });
+    });
+}
