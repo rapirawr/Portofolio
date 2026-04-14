@@ -398,6 +398,8 @@ class ParticleSphere {
         const centerX = this.canvas.width / 2;
         const centerY = this.canvas.height / 2;
 
+        const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary').trim();
+        
         this.particles.sort((a, b) => b.z - a.z);
 
         this.particles.forEach(p => {
@@ -405,13 +407,13 @@ class ParticleSphere {
             const alpha = 0.2 + 0.8 * scale;
             const size = p.size * (0.5 + 0.5 * scale);
 
-            this.ctx.fillStyle = `rgba(107, 63, 160, ${alpha})`;
+            this.ctx.fillStyle = accentColor.includes('#') ? hexToRgbA(accentColor, alpha) : accentColor;
             this.ctx.beginPath();
             this.ctx.arc(centerX + p.x, centerY + p.y, size, 0, Math.PI * 2);
             this.ctx.fill();
 
             if (p.z > 0 && Math.random() > 0.99) {
-                this.ctx.strokeStyle = `rgba(107, 63, 160, ${alpha * 0.3})`;
+                this.ctx.strokeStyle = accentColor.includes('#') ? hexToRgbA(accentColor, alpha * 0.3) : accentColor;
                 this.ctx.beginPath();
                 this.ctx.moveTo(centerX + p.x, centerY + p.y);
                 this.ctx.lineTo(centerX, centerY);
@@ -421,6 +423,20 @@ class ParticleSphere {
 
         requestAnimationFrame(() => this.animate());
     }
+}
+
+function hexToRgbA(hex, alpha) {
+    let r = 0, g = 0, b = 0;
+    if (hex.length == 4) {
+        r = "0x" + hex[1] + hex[1];
+        g = "0x" + hex[2] + hex[2];
+        b = "0x" + hex[3] + hex[3];
+    } else if (hex.length == 7) {
+        r = "0x" + hex[1] + hex[2];
+        g = "0x" + hex[3] + hex[4];
+        b = "0x" + hex[5] + hex[6];
+    }
+    return `rgba(${+r},${+g},${+b},${alpha})`;
 }
 
 new ParticleSphere('about-particle-canvas');
@@ -527,6 +543,26 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
         setLanguage(lang);
     });
 });
+
+const themeToggle = document.getElementById('theme-toggle');
+const themeBtns = document.querySelectorAll('.theme-btn');
+
+function updateTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    themeBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-theme') === theme);
+    });
+    localStorage.setItem('preferred-theme', theme);
+}
+
+themeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        updateTheme(btn.getAttribute('data-theme'));
+    });
+});
+
+const savedTheme = localStorage.getItem('preferred-theme') || 'dark';
+updateTheme(savedTheme);
 
 const savedLang = localStorage.getItem('preferred-lang') || 'en';
 setLanguage(savedLang);

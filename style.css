@@ -20,6 +20,24 @@
     --glow-soft: 0 0 20px rgba(107, 63, 160, 0.15);
 }
 
+[data-theme="light"] {
+    --bg-color: #f8f9ff;
+    --surface: #ffffff;
+    --accent-primary: #7c4dff;
+    --accent-secondary: #651fff;
+    --text-primary: #0a0a0f;
+    --text-secondary: #505060;
+    --glass: rgba(0, 0, 0, 0.05);
+    --glass-bright: rgba(0, 0, 0, 0.08);
+    --glass-border: rgba(124, 77, 255, 0.15);
+    --neon-glow: 0 10px 30px rgba(124, 77, 255, 0.1);
+    --grid-color: rgba(124, 77, 255, 0.03);
+}
+
+body {
+    transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .scroll-progress-container {
     position: fixed;
     top: 0;
@@ -1694,6 +1712,29 @@ footer {
         padding: 10vh 0;
         min-height: auto;
     }
+}
+
+[data-theme="light"] {
+    --bg-color: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a4a;
+    --glass-bg: rgba(0, 0, 0, 0.05);
+    --glass-border: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle {
+    cursor: pointer;
+    display: flex;
+    gap: 5px;
+    font-size: 0.7rem;
+}
+
+.theme-toggle .active {
+    color: var(--accent-primary);
 }
 
 @media (max-width: 480px) {
