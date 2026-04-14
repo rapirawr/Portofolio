@@ -6,14 +6,18 @@
     <title>CV - RAFI ABDILLAH F</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono&display=swap" rel="stylesheet">
-    <style>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="asset/img/favicon.png">
+<style>
         :root {
             --primary: #6B3FA0;
-            --text-main: #1a1a1a;
-            --text-sub: #4a4a4a;
-            --border: #e0e0e0;
-            --bg-light: #f9f9f9;
+            --secondary: #552E80;
+            --accent: #9d6cdb;
+            --text-main: #1A1A1A;
+            --text-sub: #52525B;
+            --border: #E4E4E7;
+            --bg-light: #F8F8FB;
+            --sidebar-bg: #FFFFFF;
         }
 
         * {
@@ -24,11 +28,11 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             color: var(--text-main);
-            line-height: 1.5;
-            background: #f0f0f0;
-            padding: 40px 0;
+            line-height: 1.6;
+            background: #f1f1f4;
+            padding: 50px 0;
         }
 
         .cv-page {
@@ -36,325 +40,407 @@
             min-height: 297mm;
             margin: 0 auto;
             background: white;
-            padding: 50px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
             position: relative;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Print optimization */
         @media print {
             body { background: white; padding: 0; }
-            .cv-page { box-shadow: none; margin: 0; width: 100%; border: none; }
+            .cv-page { box-shadow: none; margin: 0; width: 100%; }
             .no-print { display: none; }
         }
 
-        .header {
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 30px;
-            margin-bottom: 30px;
+        /* HEADER STYLES */
+        .cv-header {
+            padding: 60px 50px 40px;
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
+            align-items: center;
+            background: linear-gradient(135deg, #fff 0%, var(--bg-light) 100%);
+            border-bottom: 4px solid var(--primary);
         }
 
-        .header-left h1 {
+        .profile-wrap {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 10px 20px rgba(107, 63, 160, 0.15);
+        }
+
+        .name-meta h1 {
             font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            color: var(--primary);
-            margin-bottom: 5px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            color: var(--text-main);
+            line-height: 1;
+            margin-bottom: 8px;
         }
 
-        .header-left p {
+        .name-meta p {
             font-size: 1.1rem;
-            color: var(--text-sub);
-            font-weight: 500;
-        }
-
-        .contact-info {
-            text-align: right;
-            font-size: 0.85rem;
-            color: var(--text-sub);
-        }
-
-        .contact-info div {
-            margin-bottom: 3px;
-        }
-
-        .contact-info a {
             color: var(--primary);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .header-contact {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .contact-item {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
             text-decoration: none;
         }
 
+        .contact-item svg {
+            width: 14px;
+            height: 14px;
+            color: var(--primary);
+        }
+
+        /* BODY LAYOUT */
+        .cv-body {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 0;
+        }
+
+        .sidebar {
+            background: var(--bg-light);
+            padding: 40px 30px;
+            border-right: 1px solid var(--border);
+        }
+
+        .main-content {
+            padding: 40px 45px;
+        }
+
+        /* SECTION STYLES */
         .section {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .section-title {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .summary {
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .summary-text {
             font-size: 0.95rem;
             color: var(--text-sub);
             text-align: justify;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .skill-group {
-            margin-bottom: 15px;
-        }
-
-        .skill-group h4 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            color: var(--text-main);
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tag {
-            background: var(--bg-light);
-            border: 1px solid var(--border);
-            padding: 4px 10px;
-            font-size: 0.75rem;
-            border-radius: 4px;
-            color: var(--text-sub);
-        }
-
-        .experience-item {
             margin-bottom: 20px;
+        }
+
+        /* EXPERIENCE & EDUCATION */
+        .exp-item {
+            margin-bottom: 25px;
+            position: relative;
         }
 
         .exp-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 5px;
+            align-items: baseline;
+            margin-bottom: 4px;
         }
 
-        .exp-header h3 {
-            font-size: 1rem;
+        .exp-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .exp-date {
+            font-size: 0.8rem;
             font-weight: 600;
-        }
-
-        .exp-header span {
-            font-size: 0.85rem;
             color: var(--primary);
-            font-weight: 600;
         }
 
         .exp-sub {
             font-size: 0.85rem;
+            font-weight: 600;
             color: var(--text-sub);
-            font-style: italic;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
-        .exp-desc {
+        .exp-list {
+            padding-left: 18px;
             font-size: 0.85rem;
             color: var(--text-sub);
-            padding-left: 15px;
-            border-left: 2px solid var(--bg-light);
         }
 
-        .project-item {
+        .exp-list li {
+            margin-bottom: 5px;
+        }
+
+        /* SKILLS TAGS */
+        .skill-group {
+            margin-bottom: 20px;
+        }
+
+        .skill-group-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .tags-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-tag {
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 4px 10px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-sub);
+        }
+
+        /* PROJECTS */
+        .project-card {
             margin-bottom: 15px;
         }
 
-        .project-item h4 {
+        .project-card h4 {
             font-size: 0.9rem;
+            font-weight: 700;
             margin-bottom: 4px;
+            color: var(--text-main);
         }
 
-        .project-item p {
+        .project-card p {
             font-size: 0.8rem;
             color: var(--text-sub);
         }
 
-        .footer-note {
-            position: absolute;
-            bottom: 30px;
-            left: 50px;
-            font-size: 0.7rem;
-            color: #ccc;
-        }
-
+        /* BUTTONS */
         .print-btn {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            padding: 15px 25px;
+            bottom: 40px;
+            right: 40px;
             background: var(--primary);
             color: white;
             border: none;
-            border-radius: 50px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.9rem;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(107, 63, 160, 0.4);
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            z-index: 100;
-            transition: 0.3s;
+            box-shadow: 0 10px 25px rgba(107, 63, 160, 0.3);
+            transition: all 0.3s;
+            z-index: 1000;
         }
 
         .print-btn:hover {
-            transform: scale(1.05);
-            background: #552E80;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(107, 63, 160, 0.4);
+        }
+
+        .footer-info {
+            padding: 20px 50px;
+            background: var(--bg-light);
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.65rem;
+            color: #A1A1AA;
+            font-family: 'JetBrains Mono', monospace;
         }
 
     </style>
 </head>
 <body>
 
-    <button class="print-btn no-print" onclick="window.print()">Cetak PDF</button>
+    <button class="print-btn no-print" onclick="window.print()">
+        DOWNLOAD CV (PDF)
+    </button>
 
     <div class="cv-page">
-        <header class="header">
-            <div class="header-left">
-                <h1>RAFI ABDILLAH F</h1>
-                <p>Digital Architect & Fullstack Developer</p>
+        <header class="cv-header">
+            <div class="profile-wrap">
+                <img src="asset/img/hero.jpg" alt="Rafi Abdillah F" class="profile-photo">
+                <div class="name-meta">
+                    <h1>RAFI ABDILLAH F</h1>
+                    <p>Software Engineer & UI/UX Expert</p>
+                </div>
             </div>
-            <div class="contact-info">
-                <div>Bondowoso, Jawa Timur, Indonesia</div>
-                <div>rafiabdillah.work@gmail.com</div>
-                <div><a href="https://www.linkedin.com/in/rafi-abdillah-f-9517a1329/">linkedin.com/in/rafi-abdillah</a></div>
-                <div><a href="https://github.com/rapirawr">github.com/rapirawr</a></div>
-                <div><a href="https://rapirawr.github.io/Portofolio/">rapirawr.github.io/Portofolio</a></div>
+            <div class="header-contact">
+                <a href="mailto:rafiabdillah.work@gmail.com" class="contact-item">
+                    rafiabdillah.work@gmail.com
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+                </a>
+                <span class="contact-item">
+                    Bondowoso, Jawa Timur, ID
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </span>
+                <a href="https://github.com/rapirawr" class="contact-item">
+                    github.com/rapirawr
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
+                <a href="https://rapirawr.github.io/Portofolio/" class="contact-item">
+                    portfolio.rafiabdillah.site
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </a>
             </div>
         </header>
 
-        <section class="section">
-            <h2 class="section-title">Professional Summary</h2>
-            <p class="summary">
-                Siswa Rekayasa Perangkat Lunak di SMKN 1 Bondowoso yang berfokus pada pengembangan aplikasi web Fullstack dan desain antarmuka digital berperforma tinggi. Memiliki dasar yang kuat dalam ekosistem Laravel dan arsitektur web modern, serta dedikasi tinggi dalam menciptakan solusi digital yang scalable dan estetik. Berpengalaman dalam mengerjakan proyek sistem informasi sekolah dan platform E-commerce skala kecil.
-            </p>
-        </section>
-
-        <div class="grid-2">
-            <div class="col-left">
+        <div class="cv-body">
+            <aside class="sidebar">
                 <section class="section">
-                    <h2 class="section-title">Technical Skills</h2>
+                    <h2 class="section-title">Expertise</h2>
                     
                     <div class="skill-group">
-                        <h4>Frontend Core</h4>
-                        <div class="skill-tags">
-                            <span class="tag">HTML5</span>
-                            <span class="tag">CSS3</span>
-                            <span class="tag">JavaScript (ES6+)</span>
+                        <h4 class="skill-group-title">Frontend</h4>
+                        <div class="tags-wrap">
+                            <span class="skill-tag">HTML5/CSS3</span>
+                            <span class="skill-tag">JS ES6+</span>
+                            <span class="skill-tag">Tailwind</span>
                         </div>
                     </div>
 
                     <div class="skill-group">
-                        <h4>Backend & DB</h4>
-                        <div class="skill-tags">
-                            <span class="tag">Laravel</span>
-                            <span class="tag">PHP</span>
-                            <span class="tag">MySQL</span>
+                        <h4 class="skill-group-title">Backend</h4>
+                        <div class="tags-wrap">
+                            <span class="skill-tag">Laravel</span>
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">MySQL</span>
                         </div>
                     </div>
 
                     <div class="skill-group">
-                        <h4>Design & 3D</h4>
-                        <div class="skill-tags">
-                            <span class="tag">Figma</span>
-                            <span class="tag">Blender 3D</span>
-                            <span class="tag">UI/UX Design</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-group">
-                        <h4>Tools & Systems</h4>
-                        <div class="skill-tags">
-                            <span class="tag">Git/GitHub</span>
-                            <span class="tag">Linux/Bash</span>
-                            <span class="tag">Python</span>
-                            <span class="tag">ESP32 (IoT)</span>
+                        <h4 class="skill-group-title">Design</h4>
+                        <div class="tags-wrap">
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">UI/UX</span>
+                            <span class="skill-tag">Blender</span>
                         </div>
                     </div>
                 </section>
 
                 <section class="section">
                     <h2 class="section-title">Education</h2>
-                    <div class="experience-item">
-                        <div class="exp-header">
-                            <h3>Rekayasa Perangkat Lunak</h3>
-                            <span>2024 — Sekarang</span>
-                        </div>
-                        <p class="exp-sub">SMKN 1 Bondowoso</p>
-                    </div>
-                </section>
-            </div>
-
-            <div class="col-right">
-                <section class="section">
-                    <h2 class="section-title">Experience</h2>
-                    
-                    <div class="experience-item">
-                        <div class="exp-header">
-                            <h3>Fullstack Developer</h3>
-                            <span>Freelance</span>
-                        </div>
-                        <p class="exp-sub">Independent Projects</p>
-                        <ul class="exp-desc">
-                            <li>Merancang dan membangun aplikasi web kustom untuk klien lokal.</li>
-                            <li>Mengimplementasikan struktur database relasional menggunakan MySQL.</li>
-                            <li>Fokus pada performa dan integrasi API Laravel.</li>
-                        </ul>
-                    </div>
-
-                    <div class="experience-item">
-                        <div class="exp-header">
-                            <h3>Lead Developer</h3>
-                            <span>2026</span>
-                        </div>
-                        <p class="exp-sub">Project SIPS (School Information System)</p>
-                        <ul class="exp-desc">
-                            <li>Membangun platform pengaduan sekolah tingkat enterprise.</li>
-                            <li>Mengoptimalkan sistem pelaporan untuk traffic tinggi siswa.</li>
-                        </ul>
+                    <div class="exp-item">
+                        <div class="exp-title">Software Engineering</div>
+                        <div class="exp-sub">SMKN 1 Bondowoso</div>
+                        <div class="exp-date">2024 — Present</div>
                     </div>
                 </section>
 
                 <section class="section">
-                    <h2 class="section-title">Featured Projects</h2>
-                    
-                    <div class="project-item">
-                        <h4>HAJIKU APP</h4>
-                        <p>Platform e-commerce kuliner dengan sinkronisasi inventaris real-time untuk bazar sekolah.</p>
-                    </div>
-
-                    <div class="project-item">
-                        <h4>CASIVO CORE</h4>
-                        <p>Dashboard terpusat untuk kontrol IoT dan pemantauan sensor rumah pintar.</p>
-                    </div>
-
-                    <div class="project-item">
-                        <h4>CONVERTIFLY</h4>
-                        <p>Tool konversi file berbasis cloud yang responsif dan efisien.</p>
+                    <h2 class="section-title">Strengths</h2>
+                    <div class="tags-wrap">
+                        <span class="skill-tag">Architecture</span>
+                        <span class="skill-tag">Efficiency</span>
+                        <span class="skill-tag">Visuals</span>
+                        <span class="skill-tag">Logic</span>
                     </div>
                 </section>
-            </div>
+            </aside>
+
+            <main class="main-content">
+                <section class="section">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="summary-text">
+                        Digital Architect dan Fullstack Developer yang berfokus pada pembangunan sistem web berperforma tinggi. Memiliki keahlian mendalam dalam ekosistem Laravel dan desain antarmuka modern. Berdedikasi untuk menciptakan solusi digital yang scalable, aman, dan memiliki estetika visual yang premium. Berpengalaman memimpin pengembangan sistem informasi skala sekolah dan platform E-commerce.
+                    </p>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Professional Experience</h2>
+                    
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <h3 class="exp-title">Fullstack Developer</h3>
+                            <span class="exp-date">2025 — Present</span>
+                        </div>
+                        <div class="exp-sub">Independent Digital Projects</div>
+                        <ul class="exp-list">
+                            <li>Mengembangkan arsitektur aplikasi web kustom menggunakan PHP dan Laravel.</li>
+                            <li>Mengoptimalkan database relasional untuk performa pencarian data yang cepat.</li>
+                            <li>Memastikan keamanan sistem dan integrasi API yang mulus.</li>
+                        </ul>
+                    </div>
+
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <h3 class="exp-title">Senior Web Developer</h3>
+                            <span class="exp-date">2026</span>
+                        </div>
+                        <div class="exp-sub">Project SIPS (Sistem Informasi Pengaduan Sekolah)</div>
+                        <ul class="exp-list">
+                            <li>Membangun infrastruktur pelaporan sekolah berbasis cloud.</li>
+                            <li>Mengurangi latensi sistem hingga 40% melalui optimasi query.</li>
+                            <li>Menerapkan antarmuka dashboard yang intuitif untuk administrator.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Key Projects</h2>
+                    
+                    <div class="project-card">
+                        <h4>HAJIKU APP Ecosystem</h4>
+                        <p>Platform pengadaan food & beverage real-time dengan sistem Point of Sale terintegrasi.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <h4>CASIVO IoT Core</h4>
+                        <p>Dashboard Digital Twin untuk monitoring sensor cerdas dan otomasi infrastruktur.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <h4>CONVERTIFLY Utility</h4>
+                        <p>Software-as-a-Service (SaaS) untuk pengelolaan konversi berbagai format dokumen secara massal.</p>
+                    </div>
+                </section>
+            </main>
         </div>
 
-        <div class="footer-note">Generated via Rafi Abdillah Portfolio System - V.2026</div>
+        <footer class="footer-info">
+            V.2026 // SYSTEM INTEGRATED // RAFI ABDILLAH F
+        </footer>
     </div>
 
 </body>
