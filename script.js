@@ -147,9 +147,18 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         document.body.classList.remove('loading');
         document.body.classList.add('loaded');
-        fx.setText(originalText);
-    }, 500);
+        if (fx) fx.setText(originalText);
+    }, 200);
 });
+
+// Fallback loader removal for safety on slow connections
+setTimeout(() => {
+    if (document.body.classList.contains('loading')) {
+        document.body.classList.remove('loading');
+        document.body.classList.add('loaded');
+        if (fx) fx.setText(originalText);
+    }
+}, 3000);
 
 const observerOptions = {
     threshold: 0.2
