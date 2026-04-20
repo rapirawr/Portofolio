@@ -532,7 +532,7 @@ const translations = {
         "nav.experience": "Pengalaman",
         "nav.skills": "Keahlian",
         "nav.work": "Proyek",
-        "nav.contact": "Hubungi",
+        "nav.contact": "Kontak ",
         "hero.est": "SEJAK 2026",
         "hero.base": "BERBASIS DI INDONESIA",
         "hero.status": "TERSEDIA UNTUK PEKERJAAN",
@@ -691,3 +691,61 @@ if ('serviceWorker' in navigator) {
             .catch(err => console.log('Service Worker Registration Failed:', err));
     });
 }
+
+// CERTIFICATE MODAL LOGIC
+const certModal = document.getElementById('cert-modal');
+const modalImg = document.getElementById('modal-img');
+const modalTitle = document.getElementById('modal-title');
+const closeBtn = document.querySelector('.close-modal');
+const modalOverlay = document.querySelector('.modal-overlay');
+
+document.querySelectorAll('.cert-card').forEach(card => {
+    card.addEventListener('click', () => {
+        const imgSrc = card.querySelector('.cert-back img').src;
+        const title = card.querySelector('.cert-content h3').innerText;
+        
+        modalImg.src = imgSrc;
+        modalTitle.innerText = `VIEWING: ${title.toUpperCase()}`;
+        certModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+function closeCertModal() {
+    certModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+closeBtn?.addEventListener('click', closeCertModal);
+modalOverlay?.addEventListener('click', closeCertModal);
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && certModal.classList.contains('active')) {
+        closeCertModal();
+    }
+});
+
+// Update interactives to include cert-card for cursor effect
+const modalInteractives = document.querySelectorAll('.cert-card, .close-modal, .modal-overlay');
+modalInteractives.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        follower.style.width = '80px';
+        follower.style.height = '80px';
+        follower.style.background = 'rgba(107, 63, 160, 0.1)';
+        
+        if (el.classList.contains('cert-card')) {
+            follower.innerHTML = '<span style="font-size: 10px;">VIEW</span>';
+        } else if (el.classList.contains('close-modal')) {
+            follower.innerHTML = '<span style="font-size: 10px;">CLOSE</span>';
+        } else if (el.classList.contains('modal-overlay')) {
+            follower.innerHTML = '<span style="font-size: 10px;">BACK</span>';
+        }
+    });
+    el.addEventListener('mouseleave', () => {
+        follower.style.width = '40px';
+        follower.style.height = '40px';
+        follower.style.background = 'transparent';
+        follower.innerHTML = '';
+    });
+});
