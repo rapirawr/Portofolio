@@ -4,8 +4,8 @@
   "description": "Digital Architect & Fullstack Developer Portfolio",
   "start_url": "/Portofolio/",
   "display": "standalone",
-  "background_color": "#080610",
-  "theme_color": "#6B3FA0",
+  "background_color": "#FFFBF7",
+  "theme_color": "#7FD4C4",
   "orientation": "portrait",
   "icons": [
     {

@@ -64,7 +64,7 @@ interactives.forEach(el => {
     el.addEventListener('mouseenter', () => {
         follower.style.width = '80px';
         follower.style.height = '80px';
-        follower.style.background = 'rgba(107, 63, 160, 0.1)';
+        follower.style.background = 'rgba(127, 212, 196, 0.1)';
         
         if (el.classList.contains('project-item')) {
             follower.innerHTML = '<span>VIEW</span>';
@@ -337,7 +337,7 @@ class Particle {
         }
     }
     draw() {
-        ctx.fillStyle = `rgba(107, 63, 160, ${this.opacity})`;
+        ctx.fillStyle = `rgba(127, 212, 196, ${this.opacity})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -368,7 +368,7 @@ class ParticleSphere {
         if (!this.canvas) return;
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
-        this.count = 3000;
+        this.count = 50;
         this.radius = 120;
         this.rotationX = 0;
         this.rotationY = 0;
@@ -380,7 +380,7 @@ class ParticleSphere {
     init() {
         this.canvas.width = 350;
         this.canvas.height = 350;
-        const count = window.innerWidth < 768 ? 500 : 1000; // Reduced further for lightness
+        const count = window.innerWidth < 768 ? 1000 : 2500; // Denser sphere
         for (let i = 0; i < count; i++) {
             const phi = Math.acos(-1 + (2 * i) / count);
             const theta = Math.sqrt(count * Math.PI) * phi;
@@ -389,12 +389,12 @@ class ParticleSphere {
                 x: this.radius * noise * Math.cos(theta) * Math.sin(phi),
                 y: this.radius * noise * Math.sin(theta) * Math.sin(phi),
                 z: this.radius * noise * Math.cos(phi),
-                size: Math.random() * 0.8 + 0.2
+                size: Math.random() * 1.8 + 0.8 // Increased size
             });
         }
         // Cache the color
-        this.accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary').trim();
-        this.rgbColor = hexToRgb(this.accentColor);
+        this.sphereColor = getComputedStyle(document.documentElement).getPropertyValue('--sphere-color').trim() || '#7FD4C4';
+        this.rgbColor = hexToRgb(this.sphereColor);
     }
 
     rotateX(angle) {
@@ -705,8 +705,7 @@ if (contactForm) {
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js')
-            .then(reg => console.log('Service Worker Registered'))
-            .catch(err => console.log('Service Worker Registration Failed:', err));
+            .catch(err => console.error('Service Worker Registration Failed:', err));
     });
 }
 
@@ -744,19 +743,19 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Update interactives to include cert-card for cursor effect
-const modalInteractives = document.querySelectorAll('.cert-card, .close-modal, .modal-overlay');
+// Update interactives to include cert-card and project-item for cursor effect
+const modalInteractives = document.querySelectorAll('.cert-card, .project-item, .close-modal, .modal-overlay, .p-modal-close, .p-modal-overlay');
 modalInteractives.forEach(el => {
     el.addEventListener('mouseenter', () => {
         follower.style.width = '80px';
         follower.style.height = '80px';
-        follower.style.background = 'rgba(107, 63, 160, 0.1)';
+        follower.style.background = 'rgba(127, 212, 196, 0.1)';
         
-        if (el.classList.contains('cert-card')) {
+        if (el.classList.contains('cert-card') || el.classList.contains('project-item')) {
             follower.innerHTML = '<span style="font-size: 10px;">VIEW</span>';
-        } else if (el.classList.contains('close-modal')) {
+        } else if (el.classList.contains('close-modal') || el.classList.contains('p-modal-close')) {
             follower.innerHTML = '<span style="font-size: 10px;">CLOSE</span>';
-        } else if (el.classList.contains('modal-overlay')) {
+        } else if (el.classList.contains('modal-overlay') || el.classList.contains('p-modal-overlay')) {
             follower.innerHTML = '<span style="font-size: 10px;">BACK</span>';
         }
     });
@@ -766,4 +765,89 @@ modalInteractives.forEach(el => {
         follower.style.background = 'transparent';
         follower.innerHTML = '';
     });
+});
+// PROJECT CAROUSEL DRAG LOGIC
+const carousel = document.getElementById('project-carousel');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+if (carousel) {
+    carousel.addEventListener('mousedown', (e) => {
+        isDown = true;
+        carousel.parentElement.classList.add('active');
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+        isDown = false;
+        carousel.parentElement.classList.remove('active');
+    });
+
+    carousel.addEventListener('mouseup', () => {
+        isDown = false;
+        carousel.parentElement.classList.remove('active');
+    });
+
+    carousel.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 2; // scroll-fast
+        carousel.scrollLeft = scrollLeft - walk;
+    });
+}
+
+// PROJECT MODAL LOGIC
+const projectModal = document.getElementById('project-modal');
+const pModalClose = document.querySelector('.p-modal-close');
+const pModalOverlay = document.querySelector('.p-modal-overlay');
+
+document.querySelectorAll('.project-item').forEach(item => {
+    item.addEventListener('click', () => {
+        const title = item.getAttribute('data-title');
+        const desc = item.getAttribute('data-desc');
+        const gallery = item.getAttribute('data-gallery').split(',');
+        const link = item.getAttribute('data-link');
+
+        document.getElementById('modal-project-title').innerText = title;
+        document.getElementById('modal-project-desc').innerText = desc;
+        
+        const galleryContainer = document.getElementById('modal-project-gallery');
+        galleryContainer.innerHTML = '';
+        gallery.forEach(imgSrc => {
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            img.alt = title;
+            galleryContainer.appendChild(img);
+        });
+
+        const linkBtn = document.getElementById('modal-project-link');
+        if (link && link !== '#') {
+            linkBtn.href = link;
+            linkBtn.style.display = 'flex';
+        } else {
+            linkBtn.style.display = 'none';
+        }
+
+        projectModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+function closeProjectModal() {
+    projectModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+pModalClose?.addEventListener('click', closeProjectModal);
+pModalOverlay?.addEventListener('click', closeProjectModal);
+
+// Sync with escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (projectModal.classList.contains('active')) closeProjectModal();
+        if (certModal.classList.contains('active')) closeCertModal();
+    }
 });
