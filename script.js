@@ -59,7 +59,7 @@ function animateCursor() {
 }
 animateCursor();
 
-const interactives = document.querySelectorAll('a, button, .project-card, .tag, input, textarea, .skill-box');
+const interactives = document.querySelectorAll('a, button, .project-card, .tag, input, textarea, .skill-box, .chat-bubble');
 interactives.forEach(el => {
     el.addEventListener('mouseenter', () => {
         follower.style.width = '80px';
@@ -531,7 +531,9 @@ const translations = {
         "contact.name": "FULL NAME",
         "contact.email": "EMAIL ADDRESS",
         "contact.message": "INQUIRY DETAILS",
-        "contact.btn": "TRANSMIT MESSAGE"
+        "contact.btn": "TRANSMIT MESSAGE",
+        "hero.bubble1.tag": "msg form som1",
+        "hero.bubble1.text": "'let it flow aja pii, life must go on, yang datang pergi yang hilang diganti'",
     },
     id: {
         "nav.start": "Beranda",
@@ -542,7 +544,7 @@ const translations = {
         "nav.contact": "Kontak ",
         "hero.est": "SEJAK 2026",
         "hero.base": "BERBASIS DI INDONESIA",
-        "hero.status": "TERSEDIA UNTUK PEKERJAAN",
+        "hero.status": "OPEN FOR WORK",
         "hero.label": "00 // ARSITEK DIGITAL & FULLSTACK DEVELOPER",
         "hero.tagline": "MENGEMBANGKAN PENGALAMAN DIGITAL BERKUALITAS TINGGI MELALUI KODE DAN DESAIN.",
         "hero.cta.work": "LIHAT KARYA",
@@ -574,9 +576,11 @@ const translations = {
         "contact.name": "NAMA LENGKAP",
         "contact.email": "ALAMAT EMAIL",
         "contact.message": "DETAIL PERTANYAAN",
-        "contact.btn": "KIRIM PESAN"
+        "contact.btn": "KIRIM PESAN",
+        "hero.bubble1.tag": "msg form som1",
+        "hero.bubble1.text": "'let it flow aja pii, life must go on, yang datang pergi yang hilang diganti'"
     }
-};
+    }
 
 function setLanguage(lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
