@@ -521,10 +521,26 @@ const translations = {
         "exp3.desc": "Started my academic journey and developed fundamental skills at SD Negeri Dabasah 4 Bondowoso.",
         "nav.credentials": "Certificates & Charters",
         "credentials.title": "03 // CREDENTIALS",
-        "project1.desc": "A secure, enterprise-grade school complaint infrastructure designed for high-traffic environments and seamless data management.",
-        "project2.desc": "High-performance food procurement platform featuring real-time inventory synchronization and a responsive mobile architecture.",
-        "project3.desc": "A unified digital twin dashboard for smart home automation, integrating various sensor arrays into a cohesive visual interface.",
-        "project5.desc": "A modern Point of Sale system designed for efficient inventory management and real-time transaction processing.",
+        "project1.title": "KAZE POS",
+        "project1.category": "01 // POS SYSTEM",
+        "project1.desc": "A premium Point of Sale system built for high-performance retail environments. Features real-time inventory tracking, multi-outlet management, and a sleek architecture.",
+        "project1.preview": "Modern inventory & transaction management.",
+        "project2.title": "SIPS ENGINE",
+        "project2.category": "02 // INFRASTRUCTURE",
+        "project2.desc": "An enterprise-grade complaint infrastructure. Designed to handle large volumes of data with institutional security protocols and automated reporting systems.",
+        "project2.preview": "Secure school management system.",
+        "project3.title": "HAJIKU APP",
+        "project3.category": "03 // E-COMMERCE",
+        "project3.desc": "A food procurement ecosystem optimized for speed. Features real-time price comparisons, automated ordering, and a seamless mobile-first user experience.",
+        "project3.preview": "Real-time food procurement platform.",
+        "project4.title": "CASIVO HOME",
+        "project4.category": "04 // IOT DASHBOARD",
+        "project4.desc": "The ultimate smart home dashboard. Centralizes all IoT devices into one beautiful, intuitive interface with automated scene control and energy monitoring.",
+        "project4.preview": "Unified smart home automation.",
+        "project5.title": "CONVERTIFLY",
+        "project5.category": "05 // AI IMAGE SAAS",
+        "project5.desc": "An advanced browser-based image processing suite featuring AI background removal, high-performance compression, and multi-format conversion. Engineered for total privacy with zero server-side storage and unlimited processing capabilities.",
+        "project5.preview": "Fast and secure file conversion.",
         "skills.iot": "SYSTEMS & IOT",
         "skills.linux": "INFRASTRUCTURE",
         "contact.marquee": " LET'S START A CONVERSATION —",
@@ -566,10 +582,26 @@ const translations = {
         "exp3.desc": "Memulai perjalanan akademik dan mengembangkan keterampilan dasar di SD Negeri Dabasah 4 Bondowoso.",
         "nav.credentials": "Sertifikat & Penghargaan",
         "credentials.title": "03 // SERTIFIKASI",
-        "project1.desc": "Infrastruktur pengaduan sekolah tingkat enterprise yang aman, dirancang untuk traffic tinggi dan manajemen data yang mulus.",
-        "project2.desc": "Platform pengadaan makanan berperforma tinggi dengan sinkronisasi inventaris real-time dan arsitektur mobile yang responsif.",
-        "project3.desc": "Dashboard digital twin terpadu untuk otomasi rumah pintar, mengintegrasikan berbagai array sensor ke dalam antarmuka visual yang kohesif.",
-        "project5.desc": "Sistem Point of Sale modern yang dirancang untuk manajemen inventaris yang efisien dan pemrosesan transaksi real-time.",
+        "project1.title": "KAZE POS",
+        "project1.category": "01 // SISTEM KASIR",
+        "project1.desc": "Sistem Point of Sale premium yang dibangun untuk lingkungan ritel berperforma tinggi. Menampilkan pelacakan inventaris real-time, manajemen multi-outlet, dan arsitektur yang ramping.",
+        "project1.preview": "Manajemen inventaris & transaksi modern.",
+        "project2.title": "SIPS ENGINE",
+        "project2.category": "02 // INFRASTRUKTUR",
+        "project2.desc": "Infrastruktur pengaduan tingkat enterprise. Dirancang untuk menangani volume data besar dengan protokol keamanan institusional dan sistem pelaporan otomatis.",
+        "project2.preview": "Sistem manajemen sekolah yang aman.",
+        "project3.title": "HAJIKU APP",
+        "project3.category": "03 // E-COMMERCE",
+        "project3.desc": "Ekosistem pengadaan makanan yang dioptimalkan untuk kecepatan. Menampilkan perbandingan harga real-time, pemesanan otomatis, dan pengalaman pengguna mobile-first yang mulus.",
+        "project3.preview": "Platform pengadaan makanan real-time.",
+        "project4.title": "CASIVO HOME",
+        "project4.category": "04 // DASHBOARD IOT",
+        "project4.desc": "Dashboard rumah pintar terbaik. Memusatkan semua perangkat IoT ke dalam satu antarmuka yang indah dan intuitif dengan kontrol skenario otomatis dan pemantauan energi.",
+        "project4.preview": "Otomasi rumah pintar terpadu.",
+        "project5.title": "CONVERTIFLY",
+        "project5.category": "05 // SAAS GAMBAR AI",
+        "project5.desc": "Suite pemrosesan gambar berbasis browser canggih dengan penghapusan latar belakang bertenaga AI, kompresi performa tinggi, dan konversi multi-format. Dirancang untuk privasi total tanpa penyimpanan di sisi server.",
+        "project5.preview": "Konversi file yang cepat dan aman.",
         "skills.iot": "SISTEM & IOT",
         "skills.linux": "INFRASTRUKTUR",
         "contact.marquee": " MARI MULAI PERCAKAPAN — ",
@@ -590,6 +622,19 @@ function setLanguage(lang) {
                 el.innerText = translations[lang][key].repeat(4);
             } else {
                 el.innerText = translations[lang][key];
+            }
+        }
+
+        // Special handling for project attributes (desc, title, category)
+        if (key.startsWith('project') && !key.includes('.')) {
+            if (translations[lang][key + '.title']) {
+                el.setAttribute('data-title', translations[lang][key + '.title']);
+            }
+            if (translations[lang][key + '.desc']) {
+                el.setAttribute('data-desc', translations[lang][key + '.desc']);
+            }
+            if (translations[lang][key + '.category']) {
+                el.setAttribute('data-category', translations[lang][key + '.category']);
             }
         }
     });
@@ -739,6 +784,7 @@ modalOverlay?.addEventListener('click', closeCertModal);
 // Close on Escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && certModal.classList.contains('active')) {
+        
         closeCertModal();
     }
 });
@@ -808,11 +854,15 @@ document.querySelectorAll('.project-item').forEach(item => {
     item.addEventListener('click', () => {
         const title = item.getAttribute('data-title');
         const desc = item.getAttribute('data-desc');
+        const category = item.getAttribute('data-category');
+        const tech = item.getAttribute('data-tech');
         const gallery = item.getAttribute('data-gallery').split(',');
         const link = item.getAttribute('data-link');
 
         document.getElementById('modal-project-title').innerText = title;
         document.getElementById('modal-project-desc').innerText = desc;
+        document.getElementById('modal-project-category').innerText = category || 'CASE STUDY';
+        document.getElementById('modal-project-tech').innerText = tech || 'N/A';
         
         const galleryContainer = document.getElementById('modal-project-gallery');
         galleryContainer.innerHTML = '';
@@ -826,9 +876,9 @@ document.querySelectorAll('.project-item').forEach(item => {
         const linkBtn = document.getElementById('modal-project-link');
         if (link && link !== '#') {
             linkBtn.href = link;
-            linkBtn.style.display = 'flex';
+            linkBtn.parentElement.style.display = 'block';
         } else {
-            linkBtn.style.display = 'none';
+            linkBtn.parentElement.style.display = 'none';
         }
 
         projectModal.classList.add('active');
