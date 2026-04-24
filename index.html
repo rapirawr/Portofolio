@@ -23,28 +23,29 @@
     <meta name="twitter:url" content="https://closetome.vercel.app/">
     <meta name="twitter:title" content="RAFI ABDILLAH F // Fullstack Developer & Designer">
     <meta name="twitter:description" content="Explore the high-fidelity portfolio of Rafi Abdillah F. Specialized in crafting premium digital experiences.">
-    <meta name="twitter:image" content="https://github.com/rapirawr/Portofolio/blob/main/asset/img/hero.jpg?raw=true">
+    <meta name="twitter:image" content="https://github.com/rapirawr/Portofolio/blob/main/assets/images/hero.jpg?raw=true">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="asset/img/favicon.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <meta name="theme-color" content="#FFFBF7">
     <link rel="manifest" href="manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="RAFI F">
-    <link rel="apple-touch-icon" href="asset/img/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/favicon.png">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
        (function(){
           emailjs.init("ZkjOcV9cVwNDbLyTY");
        })();
     </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="loading">
     <div class="page-loader">
@@ -85,13 +86,12 @@
         <div class="nav-container">
             <div class="logo">PORTFOLIO</div>
             <ul class="nav-links">
-                <li><a href="#hero" data-i18n="nav.start">Home</a></li>
-                <li><a href="#about" data-i18n="nav.about">About</a></li>
-                <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
-                <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
-                <li><a href="#certificates" data-i18n="nav.credentials">Credentials</a></li>
-                <li><a href="#projects" data-i18n="nav.work">Work</a></li>
-                <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+                <li><a href="#hero" class="nav-item"><i data-lucide="home" class="nav-icon"></i> <span data-i18n="nav.start">START</span></a></li>
+                <li><a href="#about" class="nav-item"><i data-lucide="user" class="nav-icon"></i> <span data-i18n="nav.about">ABOUT</span></a></li>
+                <li><a href="#experience" class="nav-item"><i data-lucide="briefcase" class="nav-icon"></i> <span data-i18n="nav.experience">EXPERIENCE</span></a></li>
+                <li><a href="#skills" class="nav-item"><i data-lucide="cpu" class="nav-icon"></i> <span data-i18n="nav.skills">MASTERY</span></a></li>
+                <li><a href="#projects" class="nav-item"><i data-lucide="layers" class="nav-icon"></i> <span data-i18n="nav.work">PROJECTS</span></a></li>
+                <li><a href="#contact" class="nav-item"><i data-lucide="send" class="nav-icon"></i> <span data-i18n="nav.contact">CONTACT</span></a></li>
             </ul>
             <div class="nav-right">
 
@@ -150,12 +150,20 @@
                 <span data-aos="fade-down" data-aos-delay="200" data-i18n="hero.base">BASED IN INDONESIA</span>
                 <span data-aos="fade-down" data-aos-delay="300" data-i18n="hero.status">OPEN FOR WORK</span>
             </div>
-            <div class="hero-content">
+            <div class="hero-geo-bg" data-aos="fade-in" data-aos-duration="2000">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+                    <path class="geo-path" d="M0,50 Q25,0 50,50 T100,50" fill="none" stroke="rgba(127, 212, 196, 0.2)" stroke-width="0.5" />
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(127, 212, 196, 0.1)" stroke-width="0.2" />
+                    <line x1="0" y1="0" x2="100" y2="100" stroke="rgba(127, 212, 196, 0.05)" stroke-width="0.1" />
+                    <line x1="100" y1="0" x2="0" y2="100" stroke="rgba(127, 212, 196, 0.05)" stroke-width="0.1" />
+                </svg>
+            </div>
+            <div class="hero-content centered">
                 <div class="hero-main-text">
-                    <div class="label-wrapper" data-aos="fade-right">
+                    <div class="label-wrapper" data-aos="fade-up">
                         <span class="label mono" data-i18n="hero.label">00 // DIGITAL ARCHITECT & FULLSTACK DEVELOPER</span>
                     </div>
-                    <h1 id="hero-name" class="scramble" data-aos="fade-up" data-aos-delay="400">RAFI ABDILLAH</h1>
+                    <h1 id="hero-name" class="scramble" data-aos="fade-up" data-aos-delay="400">RAFI ABDILLAH F</h1>
                     <div class="hero-tagline-container" data-aos="fade-up" data-aos-delay="600">
                         <p class="tagline clip-reveal" data-i18n="hero.tagline">ENGINEERING HIGH-FIDELITY DIGITAL EXPERIENCES THROUGH CODE AND DESIGN.</p>
                         <div class="hero-cta-group">
@@ -172,22 +180,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="hero-media-wrap" data-aos="zoom-in" data-aos-delay="800">
-                    <div class="hero-bubbles-container">
-                        <div class="chat-bubble bubble-1 mono" data-aos="fade-left" data-aos-delay="1200">
-                            <span class="bubble-tag" data-i18n="hero.bubble1.tag">system // msg</span>
-                            <p data-i18n="hero.bubble1.text">let it flow aja pii, life must go on, yang datang pergi yang hilang diganti</p>
-                            <div class="bubble-arrow"></div>
-                        </div>
-                    </div>
-                    <div class="hero-image-glitch">
-                        <img src="asset/img/hero.jpg" alt="Profile" class="hero-profile" fetchpriority="high" width="400" height="500">
-                        <div class="image-mask"></div>
-                    </div>
-                    <div class="media-details mono" data-aos="fade-left" data-aos-delay="1000">
-                        <span>PORTRAIT V.2026</span>
-                    </div>
-                </div>
             </div>
             <div class="scroll-wrapper">
                 <div class="scroll-text mono" data-i18n="hero.scroll">SCROLL TO DISCOVER</div>
@@ -200,26 +192,50 @@
             <div class="container about-layout">
                 <div class="about-text">
                     <h2 class="label mono" data-aos="fade-right">01 // ABOUT</h2>
-                    <p class="display-text" data-i18n="about.text" data-aos="fade-right" data-aos-delay="200">I am a Fullstack Developer dedicated to building scalable, high-performance web applications with refined aesthetics.</p>
+                    <p class="display-text" data-i18n="about.text" data-aos="fade-right" data-aos-delay="200">
+                        <span class="drop-cap">I</span> am a <span class="highlight">Fullstack Developer</span> dedicated to building <span class="text-accent">scalable</span>, high-performance web applications with <span class="serif-italic">refined aesthetics</span>.
+                    </p>
                     <div class="stats">
-                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="stat-item interactive-stat" data-aos="zoom-in" data-aos-delay="300">
+                            <i data-lucide="calendar" class="stat-icon"></i>
                             <span class="stat-num" data-target="3">0</span>
                             <span class="stat-label mono" data-i18n="about.exp">Years Exp</span>
+                            <div class="stat-hover-decor"></div>
                         </div>
-                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="500">
+                        <div class="stat-item interactive-stat" data-aos="zoom-in" data-aos-delay="500">
+                            <i data-lucide="code-2" class="stat-icon"></i>
                             <span class="stat-num" data-target="15">0</span>
                             <span class="stat-label mono" data-i18n="about.projects">Projects</span>
+                            <div class="stat-hover-decor"></div>
                         </div>
-                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="700">
+                        <div class="stat-item interactive-stat" data-aos="zoom-in" data-aos-delay="700">
+                            <i data-lucide="award" class="stat-icon"></i>
                             <span class="stat-num" data-target="10">0</span>
                             <span class="stat-label mono" data-i18n="about.awards">Credentials</span>
+                            <div class="stat-hover-decor"></div>
                         </div>
                     </div>
                 </div>
                 <div data-aos="zoom-in" class="about-visual">
-                    <div class="particle-sphere-wrap">
-                        <canvas id="about-particle-canvas"></canvas>
-                        <div class="sphere-scanner"></div>
+                    <div class="about-photo-wrap tilt-element">
+                        <div class="photo-frame">
+                            <img src="assets/images/hero.jpg" alt="Rafi Abdillah F" class="about-img">
+                            <div class="frame-decor tl"></div>
+                            <div class="frame-decor tr"></div>
+                            <div class="frame-decor bl"></div>
+                            <div class="frame-decor br"></div>
+                            
+                            <div class="photo-overlay-hud mono">
+                                <div class="hud-tag top-left">SCAN_ACTIVE</div>
+                                <div class="hud-tag bottom-right">ID_VERIFIED</div>
+                            </div>
+                        </div>
+                        <div class="photo-glitch-overlay"></div>
+                        
+                        <!-- Floating Tech Bits -->
+                        <div class="floating-bit b1 mono">[0101]</div>
+                        <div class="floating-bit b2 mono">[ARCH_V2]</div>
+                        <div class="floating-bit b3 mono">[CORE]</div>
                     </div>
                 </div>
             </div>
@@ -381,7 +397,7 @@
                                 <div class="cert-glow"></div>
                             </div>
                             <div class="cert-back">
-                                <img src="asset/img/award/Innotech.jpeg" alt="Piagam Innotech" loading="lazy" width="300" height="200">
+                                <img src="assets/images/awardsInnotech.jpeg" alt="Piagam Innotech" loading="lazy" width="300" height="200">
                             </div>
                         </div>
                     </div>
@@ -398,7 +414,7 @@
                                 <div class="cert-glow"></div>
                             </div>
                             <div class="cert-back">
-                                <img src="asset/img/award/UIIX ISAC.jpg" alt="Sertifikat ISAC" loading="lazy" width="300" height="200">
+                                <img src="assets/images/awards/UIIX ISAC.jpg" alt="Sertifikat ISAC" loading="lazy" width="300" height="200">
                             </div>
                         </div>
                     </div>
@@ -415,7 +431,7 @@
                                 <div class="cert-glow"></div>
                             </div>
                             <div class="cert-back">
-                                <img src="asset/img/award/SIC6.jpg" alt="Sertifikat SIC" loading="lazy" width="300" height="200">
+                                <img src="assets/images/awards/SIC6.jpg" alt="Sertifikat SIC" loading="lazy" width="300" height="200">
                             </div>
                         </div>
                     </div>
@@ -432,7 +448,7 @@
                                 <div class="cert-glow"></div>
                             </div>
                             <div class="cert-back">
-                                <img src="asset/img/award/Latika Python.jpg" alt="Sertifikat Latika Python" loading="lazy" width="300" height="200">
+                                <img src="assets/images/awards/Latika Python.jpg" alt="Sertifikat Latika Python" loading="lazy" width="300" height="200">
                             </div>
                         </div>
                     </div>
@@ -449,7 +465,7 @@
                                 <div class="cert-glow"></div>
                             </div>
                             <div class="cert-back">
-                                <img src="asset/img/award/Latika.jpg" alt="Sertifikat Latika" loading="lazy" width="300" height="200">
+                                <img src="assets/images/awards/Latika.jpg" alt="Sertifikat Latika" loading="lazy" width="300" height="200">
                             </div>
                         </div>
                     </div>
@@ -466,7 +482,7 @@
                                 <div class="cert-glow"></div>
                             </div>
                             <div class="cert-back">
-                                <img src="asset/img/award/mahavation.png" alt="Sertifikat Mahavation" loading="lazy" width="300" height="200">
+                                <img src="assets/images/awards/mahavation.png" alt="Sertifikat Mahavation" loading="lazy" width="300" height="200">
                             </div>
                         </div>
                     </div>
@@ -494,10 +510,10 @@
                              data-category="01 // POS SYSTEM"
                              data-tech="React / Node.js / PostgreSQL / Tailwind"
                              data-desc="A premium Point of Sale system built for high-performance retail environments. Features real-time inventory tracking, multi-outlet management, and a sleek offline-first architecture."
-                             data-gallery="asset/img/project/kaze/kaze.png,asset/img/project/kaze/kaze1.png,asset/img/project/kaze/kaze2.png"
+                             data-gallery="assets/images/projects/kaze/kaze.png,assets/images/projects/kaze/kaze1.png,assets/images/projects/kaze/kaze2.png"
                              data-link="https://web-kaze.vercel.app">
                             <div class="project-card-image">
-                                <img src="asset/img/project/kaze/kaze.png" alt="Kaze POS">
+                                <img src="assets/images/projects/kaze/kaze.png" alt="Kaze POS">
                             </div>
                             <div class="project-card-content">
                                 <span class="mono" data-i18n="project1.category">01 // POS SYSTEM</span>
@@ -513,10 +529,10 @@
                              data-category="02 // INFRASTRUCTURE"
                              data-tech="Laravel / Bootstrap / MySQL / PHP"
                              data-desc="An enterprise-grade complaint infrastructure. Designed to handle large volumes of data with institutional security protocols and automated reporting systems."
-                             data-gallery="asset/img/project/sips/sips.png,asset/img/project/sips/sips1.png"
+                             data-gallery="assets/images/projects/sips/sips.png,assets/images/projects/sips/sips1.png"
                              data-link="#">
                             <div class="project-card-image">
-                                <img src="asset/img/project/sips/sips.png" alt="SIPS Engine">
+                                <img src="assets/images/projects/sips/sips.png" alt="SIPS Engine">
                             </div>
                             <div class="project-card-content">
                                 <span class="mono" data-i18n="project2.category">02 // INFRASTRUCTURE</span>
@@ -532,10 +548,10 @@
                              data-category="03 // E-COMMERCE"
                              data-tech="HTML / CSS / Javascrip"
                              data-desc="A food procurement ecosystem optimized for speed. Features real-time price comparisons, automated ordering, and a seamless mobile-first user experience."
-                             data-gallery="asset/img/project/hajiku/hajiku.png,asset/img/project/hajiku/hajiku1.png"
+                             data-gallery="assets/images/projects/hajiku/hajiku.png,assets/images/projects/hajiku/hajiku1.png"
                              data-link="https://hajiku.vercel.app/">
                             <div class="project-card-image">
-                                <img src="asset/img/project/hajiku/hajiku.png" alt="Hajiku ">
+                                <img src="assets/images/projects/hajiku/hajiku.png" alt="Hajiku ">
                             </div>
                             <div class="project-card-content">
                                 <span class="mono" data-i18n="project3.category">03 // E-COMMERCE</span>
@@ -551,10 +567,10 @@
                              data-category="04 // IOT DASHBOARD"
                              data-tech="React / ESP32 / MQTT / CSS3"
                              data-desc="The ultimate smart home dashboard. Centralizes all IoT devices into one beautiful, intuitive interface with automated scene control and energy monitoring."
-                             data-gallery="asset/img/project/casivo/casivo.png,asset/img/project/casivo/casivo1.png"
+                             data-gallery="assets/images/projects/casivo/casivo.png,assets/images/projects/casivo/casivo1.png"
                              data-link="#">
                             <div class="project-card-image">
-                                <img src="asset/img/project/casivo/casivo.png" alt="Casivo Home">
+                                <img src="assets/images/projects/casivo/casivo.png" alt="Casivo Home">
                             </div>
                             <div class="project-card-content">
                                 <span class="mono" data-i18n="project4.category">04 // IOT DASHBOARD</span>
@@ -570,10 +586,10 @@
                              data-category="05 // AI IMAGE SAAS"
                              data-tech="Next.js / WebAssembly / AI / TypeScript"
                              data-desc="An advanced browser-based image processing suite featuring AI background removal, high-performance compression, and multi-format conversion. Engineered for total privacy with zero server-side storage and unlimited processing capabilities."
-                             data-gallery="asset/img/project/convertifly/convertifly.png,asset/img/project/convertifly/convertifly1.png, asset/img/project/convertifly/convertifly2.png,asset/img/project/convertifly/convertifly3.png"
+                             data-gallery="assets/images/projects/convertifly/convertifly.png,assets/images/projects/convertifly/convertifly1.png, assets/images/projects/convertifly/convertifly2.png,assets/images/projects/convertifly/convertifly3.png"
                              data-link="https://convertifly-xyz.vercel.app/">
                             <div class="project-card-image">
-                                <img src="asset/img/project/convertifly/convertifly.png" alt="Convertifly">
+                                <img src="assets/images/projects/convertifly/convertifly.png" alt="Convertifly">
                             </div>
                             <div class="project-card-content">
                                 <span class="mono" data-i18n="project5.category">05 // AI IMAGE SAAS</span>
@@ -716,6 +732,6 @@
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

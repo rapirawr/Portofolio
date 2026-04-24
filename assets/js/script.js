@@ -6,6 +6,13 @@ let cursorX = 0, cursorY = 0;
 let followerX = 0, followerY = 0;
 
 let lastMouseMove = 0;
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Lucide Icons
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+});
+
 document.addEventListener('mousemove', (e) => {
     const now = performance.now();
     if (now - lastMouseMove < 16) return; // ~60fps throttle
@@ -29,12 +36,6 @@ document.addEventListener('mousemove', (e) => {
         title.style.transform = `perspective(1000px) rotateY(${tx}deg) rotateX(${-ty}deg)`;
     }
 
-    const media = document.querySelector('.hero-image-glitch');
-    if (media) {
-        const mx = (window.innerWidth / 2 - e.clientX) * 0.01;
-        const my = (window.innerHeight / 2 - e.clientY) * 0.01;
-        media.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
-    }
 
     const grid = document.querySelector('.bg-grid');
     if (grid) {
@@ -264,24 +265,26 @@ window.addEventListener('scroll', () => {
     }
 });
 
-const cards = document.querySelectorAll('.tilt');
-cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
+const tiltElements = document.querySelectorAll('.tilt, .tilt-element');
+tiltElements.forEach(el => {
+    const frame = el.querySelector('.photo-frame') || el;
+    
+    el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
         
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
+        const rotateX = (y - centerY) / 15;
+        const rotateY = (centerX - x) / 15;
         
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        frame.style.transform = `perspective(1500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
     
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+    el.addEventListener('mouseleave', () => {
+        frame.style.transform = `perspective(1500px) rotateX(0deg) rotateY(0deg)`;
     });
 });
 
@@ -471,7 +474,6 @@ function hexToRgb(hex) {
     return { r, g, b };
 }
 
-new ParticleSphere('about-particle-canvas');
 
 document.querySelectorAll('.submit-btn, .nav-links a, .logo').forEach(btn => {
     btn.addEventListener('mousemove', (e) => {
@@ -505,7 +507,7 @@ const translations = {
         "hero.cta.work": "VIEW PROJECTS",
         "hero.cta.cv": "VIEW CV",
         "hero.scroll": "SCROLL TO DISCOVER",
-        "about.text": "I am a Fullstack Developer dedicated to building scalable, high-performance web applications with refined aesthetics.",
+        "about.text": '<span class="drop-cap">I</span> am a <span class="highlight">Fullstack Developer</span> dedicated to building <span class="text-accent">scalable</span>, high-performance web applications with <span class="serif-italic">refined aesthetics</span>.',
         "about.exp": "Years Exp",
         "about.projects": "Completed Projects",
         "about.awards": "Credentials",
@@ -566,7 +568,7 @@ const translations = {
         "hero.cta.work": "LIHAT KARYA",
         "hero.cta.cv": "LIHAT CV",
         "hero.scroll": "SCROLL UNTUK MENJELAJAHI",
-        "about.text": "Saya adalah Fullstack Developer yang berdedikasi untuk membangun aplikasi web berperforma tinggi dan skalabel dengan estetika yang halus.",
+        "about.text": '<span class="drop-cap">S</span>aya adalah <span class="highlight">Fullstack Developer</span> yang berdedikasi untuk membangun aplikasi web <span class="text-accent">skalabel</span> berperforma tinggi dengan <span class="serif-italic">estetika halus</span>.',
         "about.exp": "Tahun Pengalaman",
         "about.projects": "Proyek Selesai",
         "about.awards": "Sertifikasi",
@@ -621,7 +623,7 @@ function setLanguage(lang) {
             if (key === 'contact.marquee') {
                 el.innerText = translations[lang][key].repeat(4);
             } else {
-                el.innerText = translations[lang][key];
+                el.innerHTML = translations[lang][key];
             }
         }
 
