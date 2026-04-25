@@ -610,30 +610,88 @@
                     <span data-i18n="contact.marquee">LET'S WORK TOGETHER — LET'S WORK TOGETHER — LET'S WORK TOGETHER — LET'S WORK TOGETHER — </span>
                 </div>
             </div>
-            <div class="container contact-container">
-                <form class="contact-form">
-                    <input type="hidden" name="to_name" value="Rafi Abdillah F"> 
-                    <input type="hidden" name="time" id="mail-time">
+            
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info" data-aos="fade-right">
+                        <div class="contact-header">
+                            <h2 class="label mono">05 // CONTACT</h2>
+                            <h3 class="display-title" data-i18n="contact.title">LET'S BUILD SOMETHING EXTRAORDINARY.</h3>
+                        </div>
+                        
+                        <div class="contact-methods mono">
+                            <div class="method-item" data-aos="fade-up" data-aos-delay="100">
+                                <span class="method-label">LOCAL_TIME</span>
+                                <span class="method-value" id="contact-time">00:00:00 GMT+7</span>
+                            </div>
+                            <div class="method-item" data-aos="fade-up" data-aos-delay="200">
+                                <span class="method-label">AVAILABILITY</span>
+                                <span class="method-value status-available">AVAILABLE_FOR_PROJECTS</span>
+                            </div>
+                            <div class="method-item" data-aos="fade-up" data-aos-delay="300">
+                                <span class="method-label">ENCRYPTED_MAIL</span>
+                                <a href="mailto:rabdillahf09@gmail.com" class="method-value link">RAFIABDILLAHF09@GMAIL.COM</a>
+                            </div>
+                        </div>
 
-                    <div class="input-group" data-aos="fade-up" data-aos-delay="100">
-                        <input type="text" id="name" name="from_name" required>
-                        <label for="name" class="mono" data-i18n="contact.name">NAME</label>
+                        <div class="contact-socials-hud" data-aos="fade-up" data-aos-delay="400">
+                            <a href="https://instagram.com/rapikerenbgt" target="_blank" class="hud-social-link">INSTAGRAM</a>
+                            <a href="https://github.com/rapirawr" target="_blank" class="hud-social-link">GITHUB</a>
+                            <a href="https://www.linkedin.com/in/rafi-abdillah-f-9517a1329/" target="_blank" class="hud-social-link">LINKEDIN</a>
+                        </div>
                     </div>
-                    <div class="input-group" data-aos="fade-up" data-aos-delay="200">
-                        <input type="email" id="email" name="from_email" required>
-                        <label for="email" class="mono" data-i18n="contact.email">EMAIL</label>
+
+                    <div class="contact-form-wrapper" data-aos="fade-left">
+                        <div class="form-container-premium">
+                            <div class="form-header-hud mono">
+                                <span>SECURE_CONNECTION: ESTABLISHED</span>
+                                <div class="pulse-dot"></div>
+                            </div>
+                            
+                            <form class="contact-form">
+                                <input type="hidden" name="to_name" value="Rafi Abdillah F"> 
+                                <input type="hidden" name="time" id="mail-time">
+
+                                <div class="input-group">
+                                    <input type="text" id="name" name="from_name" required placeholder=" ">
+                                    <label for="name" class="mono" data-i18n="contact.name">NAME</label>
+                                    <div class="input-focus-line"></div>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <input type="email" id="email" name="from_email" required placeholder=" ">
+                                    <label for="email" class="mono" data-i18n="contact.email">EMAIL</label>
+                                    <div class="input-focus-line"></div>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <input type="text" id="subject" name="subject" required placeholder=" ">
+                                    <label for="subject" class="mono">SUBJECT</label>
+                                    <div class="input-focus-line"></div>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <textarea id="message" name="message" rows="4" required placeholder=" "></textarea>
+                                    <label for="message" class="mono" data-i18n="contact.message">MESSAGE</label>
+                                    <div class="input-focus-line"></div>
+                                </div>
+                                
+                                <button type="submit" class="submit-btn-premium mono">
+                                    <span class="btn-text" data-i18n="contact.btn">TRANSMIT INQUIRY</span>
+                                    <span class="btn-icon"><i data-lucide="arrow-right"></i></span>
+                                    <div class="btn-shimmer"></div>
+                                </button>
+                                
+                                <div id="form-status" class="mono"></div>
+                            </form>
+                            
+                            <div class="form-footer-hud mono">
+                                <span>PROTOCOL_V.4.0</span>
+                                <span>CRC_CHECK: OK</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="input-group" data-aos="fade-up" data-aos-delay="250">
-                        <input type="text" id="subject" name="subject" required>
-                        <label for="subject" class="mono">SUBJECT</label>
-                    </div>
-                    <div class="input-group" data-aos="fade-up" data-aos-delay="300">
-                        <textarea id="message" name="message" rows="4" required></textarea>
-                        <label for="message" class="mono" data-i18n="contact.message">MESSAGE</label>
-                    </div>
-                    <button type="submit" class="submit-btn mono" data-aos="zoom-in" data-aos-delay="400" data-i18n="contact.btn">SEND INQUIRY</button>
-                    <div id="form-status" class="mono" style="margin-top: 20px; font-size: 0.7rem; display: none; letter-spacing: 0.1em; border-left: 2px solid var(--accent-primary); padding-left: 15px;"></div>
-                </form>
+                </div>
             </div>
         </section>
     </main>

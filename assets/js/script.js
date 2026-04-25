@@ -288,7 +288,7 @@ tiltElements.forEach(el => {
     });
 });
 
-document.querySelectorAll('.submit-btn').forEach(btn => {
+document.querySelectorAll('.submit-btn, .submit-btn-premium').forEach(btn => {
     btn.addEventListener('click', function(e) {
         let x = e.clientX - e.target.getBoundingClientRect().left;
         let y = e.clientY - e.target.getBoundingClientRect().top;
@@ -475,7 +475,7 @@ function hexToRgb(hex) {
 }
 
 
-document.querySelectorAll('.submit-btn, .nav-links a, .logo').forEach(btn => {
+document.querySelectorAll('.submit-btn, .submit-btn-premium, .nav-links a, .logo').forEach(btn => {
     btn.addEventListener('mousemove', (e) => {
         const rect = btn.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
@@ -545,11 +545,12 @@ const translations = {
         "project5.preview": "Fast and secure file conversion.",
         "skills.iot": "SYSTEMS & IOT",
         "skills.linux": "INFRASTRUCTURE",
-        "contact.marquee": " LET'S START A CONVERSATION —",
+        "contact.marquee": " LET'S START A CONVERSATION — ",
+        "contact.title": "LET'S BUILD SOMETHING EXTRAORDINARY.",
         "contact.name": "FULL NAME",
         "contact.email": "EMAIL ADDRESS",
         "contact.message": "INQUIRY DETAILS",
-        "contact.btn": "TRANSMIT MESSAGE",
+        "contact.btn": "TRANSMIT INQUIRY",
         "hero.bubble1.tag": "msg form som1",
         "hero.bubble1.text": "'let it flow aja pii, life must go on, yang datang pergi yang hilang diganti'",
     },
@@ -607,10 +608,11 @@ const translations = {
         "skills.iot": "SISTEM & IOT",
         "skills.linux": "INFRASTRUKTUR",
         "contact.marquee": " MARI MULAI PERCAKAPAN — ",
+        "contact.title": "MARI BANGUN SESUATU YANG LUAR BIASA.",
         "contact.name": "NAMA LENGKAP",
         "contact.email": "ALAMAT EMAIL",
         "contact.message": "DETAIL PERTANYAAN",
-        "contact.btn": "KIRIM PESAN",
+        "contact.btn": "KIRIM PERMINTAAN",
         "hero.bubble1.tag": "msg form som1",
         "hero.bubble1.text": "'let it flow aja pii, life must go on, yang datang pergi yang hilang diganti'"
     }
@@ -678,6 +680,9 @@ function updateHUDTime() {
 
     const mobileTime = document.getElementById('mobile-time');
     if (mobileTime) mobileTime.innerText = timeString;
+
+    const contactTime = document.getElementById('contact-time');
+    if (contactTime) contactTime.innerText = timeString + " GMT+7";
 }
 setInterval(updateHUDTime, 1000);
 updateHUDTime();
@@ -702,7 +707,7 @@ mobileLinks.forEach(link => {
 
 const contactForm = document.querySelector(".contact-form");
 const formStatus = document.getElementById("form-status");
-const submitBtn = document.querySelector(".submit-btn");
+const submitBtn = document.querySelector(".submit-btn-premium");
 
 if (contactForm) {
     contactForm.addEventListener("submit", function(event) {
@@ -717,8 +722,9 @@ if (contactForm) {
             });
         }
 
-        const originalBtnText = submitBtn.innerText;
-        submitBtn.innerText = "SENDING...";
+        const btnText = submitBtn.querySelector('.btn-text');
+        const originalBtnText = btnText.innerText;
+        btnText.innerText = "TRANSMITTING...";
         submitBtn.disabled = true;
         submitBtn.style.opacity = "0.5";
 
@@ -728,10 +734,10 @@ if (contactForm) {
                 formStatus.style.display = "block";
                 formStatus.style.color = "var(--accent-primary)";
                 contactForm.reset();
-                submitBtn.innerText = "SENT";
+                btnText.innerText = "SUCCESS";
                 
                 setTimeout(() => {
-                    submitBtn.innerText = originalBtnText;
+                    btnText.innerText = originalBtnText;
                     submitBtn.disabled = false;
                     submitBtn.style.opacity = "1";
                     formStatus.style.display = "none";
@@ -741,7 +747,7 @@ if (contactForm) {
                 formStatus.innerHTML = "SYSTEM ERROR: FAILED TO DELIVER MESSAGE";
                 formStatus.style.display = "block";
                 formStatus.style.color = "#ff4d4d";
-                submitBtn.innerText = "RETRY";
+                btnText.innerText = "RETRY_TRANSMISSION";
                 submitBtn.disabled = false;
                 submitBtn.style.opacity = "1";
             });
