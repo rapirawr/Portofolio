@@ -553,6 +553,31 @@ const translations = {
         "contact.btn": "TRANSMIT INQUIRY",
         "hero.bubble1.tag": "msg form som1",
         "hero.bubble1.text": "'let it flow aja pii, life must go on, yang datang pergi yang hilang diganti'",
+        "modal.close": "CLOSE",
+        "modal.desc": "DESCRIPTION //",
+        "modal.tech": "TECH_STACK",
+        "modal.status": "STATUS",
+        "modal.launch": "LAUNCH_PROJECT",
+        "messages.label": "06 // MESSAGES",
+        "messages.subtitle": "Words from someone that make me more enthusiastic and develop.",
+        "messages.q1.text": "The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle.",
+        "messages.q1.author": "Steve Jobs",
+        "messages.q1.origin": "Stanford Commencement, 2005",
+        "messages.q2.text": "First, solve the problem. Then, write the code.",
+        "messages.q2.author": "John Johnson",
+        "messages.q2.origin": "Software Engineering Wisdom",
+        "messages.q3.text": "It does not matter how slowly you go as long as you do not stop.",
+        "messages.q3.author": "Confucius",
+        "messages.q3.origin": "Ancient Philosophy",
+        "messages.q4.text": "The best error message is the one that never shows up.",
+        "messages.q4.author": "Thomas Fuchs",
+        "messages.q4.origin": "UX Philosophy",
+        "messages.q5.text": "Stay hungry, stay foolish. Your time is limited, don't waste it living someone else's life.",
+        "messages.q5.author": "Steve Jobs",
+        "messages.q5.origin": "Stanford Commencement, 2005",
+        "messages.q6.text": "Simplicity is the ultimate sophistication.",
+        "messages.q6.author": "Leonardo da Vinci",
+        "messages.q6.origin": "Renaissance Wisdom",
     },
     id: {
         "nav.start": "Beranda",
@@ -614,9 +639,34 @@ const translations = {
         "contact.message": "DETAIL PERTANYAAN",
         "contact.btn": "KIRIM PERMINTAAN",
         "hero.bubble1.tag": "msg form som1",
-        "hero.bubble1.text": "'let it flow aja pii, life must go on, yang datang pergi yang hilang diganti'"
+        "hero.bubble1.text": "'let it flow aja pii, life must go on, yang datang pergi yang hilang diganti'",
+        "modal.close": "TUTUP",
+        "modal.desc": "DESKRIPSI //",
+        "modal.tech": "TEKNOLOGI",
+        "modal.status": "STATUS",
+        "modal.launch": "BUKA_PROYEK",
+        "messages.label": "06 // PESAN",
+        "messages.subtitle": "Kata kata dari seseorang yang membuat aku lebih semangat dan berkembang.",
+        "messages.q1.text": "Satu-satunya cara untuk melakukan pekerjaan hebat adalah dengan mencintai apa yang Anda lakukan. Jika Anda belum menemukannya, teruslah mencari. Jangan menyerah.",
+        "messages.q1.author": "Steve Jobs",
+        "messages.q1.origin": "Stanford Commencement, 2005",
+        "messages.q2.text": "Pertama, selesaikan masalahnya. Baru kemudian, tulis kodenya.",
+        "messages.q2.author": "John Johnson",
+        "messages.q2.origin": "Kebijaksanaan Rekayasa Perangkat Lunak",
+        "messages.q3.text": "Tidak peduli seberapa lambat Anda berjalan selama Anda tidak berhenti.",
+        "messages.q3.author": "Konfusius",
+        "messages.q3.origin": "Filsafat Kuno",
+        "messages.q4.text": "Pesan kesalahan terbaik adalah yang tidak pernah muncul.",
+        "messages.q4.author": "Thomas Fuchs",
+        "messages.q4.origin": "Filosofi UX",
+        "messages.q5.text": "Tetap lapar, tetap bodoh. Waktu Anda terbatas, jangan sia-siakan dengan menjalani hidup orang lain.",
+        "messages.q5.author": "Steve Jobs",
+        "messages.q5.origin": "Stanford Commencement, 2005",
+        "messages.q6.text": "Kesederhanaan adalah kecanggihan tertinggi.",
+        "messages.q6.author": "Leonardo da Vinci",
+        "messages.q6.origin": "Kebijaksanaan Renaisans",
     }
-    }
+}
 
 function setLanguage(lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -648,6 +698,11 @@ function setLanguage(lang) {
     });
 
     localStorage.setItem('preferred-lang', lang);
+    
+    // Refresh AOS to recalculate positions after content change
+    if (typeof AOS !== 'undefined') {
+        AOS.refresh();
+    }
 }
 
 document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -798,7 +853,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Update interactives to include cert-card and project-item for cursor effect
-const modalInteractives = document.querySelectorAll('.cert-card, .project-item, .close-modal, .modal-overlay, .p-modal-close, .p-modal-overlay');
+const modalInteractives = document.querySelectorAll('.cert-card, .project-item, .close-modal, .modal-overlay, .p-modal-close-btn, .p-modal-overlay');
 modalInteractives.forEach(el => {
     el.addEventListener('mouseenter', () => {
         follower.style.width = '80px';
@@ -807,7 +862,7 @@ modalInteractives.forEach(el => {
         
         if (el.classList.contains('cert-card') || el.classList.contains('project-item')) {
             follower.innerHTML = '<span style="font-size: 10px;">VIEW</span>';
-        } else if (el.classList.contains('close-modal') || el.classList.contains('p-modal-close')) {
+        } else if (el.classList.contains('close-modal') || el.classList.contains('p-modal-close-btn')) {
             follower.innerHTML = '<span style="font-size: 10px;">CLOSE</span>';
         } else if (el.classList.contains('modal-overlay') || el.classList.contains('p-modal-overlay')) {
             follower.innerHTML = '<span style="font-size: 10px;">BACK</span>';
@@ -855,10 +910,10 @@ if (carousel) {
 
 // PROJECT MODAL LOGIC
 const projectModal = document.getElementById('project-modal');
-const pModalClose = document.querySelector('.p-modal-close');
+const pModalClose = document.querySelector('.p-modal-close-btn');
 const pModalOverlay = document.querySelector('.p-modal-overlay');
 
-document.querySelectorAll('.project-item').forEach(item => {
+document.querySelectorAll('.project-item').forEach((item, index) => {
     item.addEventListener('click', () => {
         const title = item.getAttribute('data-title');
         const desc = item.getAttribute('data-desc');
@@ -867,26 +922,53 @@ document.querySelectorAll('.project-item').forEach(item => {
         const gallery = item.getAttribute('data-gallery').split(',');
         const link = item.getAttribute('data-link');
 
+        // Populate Content
         document.getElementById('modal-project-title').innerText = title;
         document.getElementById('modal-project-desc').innerText = desc;
-        document.getElementById('modal-project-category').innerText = category || 'CASE STUDY';
+        document.getElementById('modal-project-category-breadcrumb').innerText = category ? category.split(' // ')[1] || category : 'CASE_STUDY';
         document.getElementById('modal-project-tech').innerText = tech || 'N/A';
+        document.getElementById('modal-project-index').innerText = (index + 1).toString().padStart(2, '0');
         
+        // Populate Tags
+        const tagsContainer = document.getElementById('modal-project-tech-tags');
+        tagsContainer.innerHTML = '';
+        if (tech) {
+            tech.split(' / ').forEach(t => {
+                const tag = document.createElement('span');
+                tag.className = 'tag';
+                tag.innerText = t;
+                tagsContainer.appendChild(tag);
+            });
+        }
+
+        // Populate Gallery
         const galleryContainer = document.getElementById('modal-project-gallery');
         galleryContainer.innerHTML = '';
         gallery.forEach(imgSrc => {
             const img = document.createElement('img');
             img.src = imgSrc;
             img.alt = title;
+            img.loading = "lazy";
             galleryContainer.appendChild(img);
         });
+        
+        const galleryCount = document.getElementById('gallery-count');
+        if (galleryCount) {
+            galleryCount.innerText = `${gallery.length.toString().padStart(2, '0')}_IMAGES`;
+        }
 
+        // Populate Link
         const linkBtn = document.getElementById('modal-project-link');
         if (link && link !== '#') {
             linkBtn.href = link;
-            linkBtn.parentElement.style.display = 'block';
+            linkBtn.style.display = 'inline-flex';
         } else {
-            linkBtn.parentElement.style.display = 'none';
+            linkBtn.style.display = 'none';
+        }
+
+        // Re-init Lucide for new icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
         }
 
         projectModal.classList.add('active');
@@ -939,4 +1021,99 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+});
+
+// ==========================================
+// MESSAGES CAROUSEL LOGIC
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('messages-track');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    const dotsContainer = document.getElementById('carousel-dots');
+    
+    if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
+
+    const cards = Array.from(track.children);
+    let currentIndex = 0;
+
+    // Helper to get number of visible cards based on screen width
+    function getVisibleCardsCount() {
+        if (window.innerWidth <= 768) return 1;
+        if (window.innerWidth <= 1200) return 2;
+        return 3;
+    }
+
+    // Helper to get max index
+    function getMaxIndex() {
+        const visible = getVisibleCardsCount();
+        return Math.max(0, cards.length - visible);
+    }
+
+    // Create dots
+    function createDots() {
+        dotsContainer.innerHTML = '';
+        const max = getMaxIndex();
+        for (let i = 0; i <= max; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === currentIndex) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function updateCarousel() {
+        const gap = 24;
+        const cardWidth = cards[0].offsetWidth;
+        const offset = currentIndex * (cardWidth + gap);
+        track.style.transform = `translateX(-${offset}px)`;
+
+        // Update dots
+        const dots = dotsContainer.querySelectorAll('.dot');
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+
+        // Update buttons state
+        prevBtn.style.opacity = currentIndex === 0 ? '0.3' : '1';
+        prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
+        
+        const max = getMaxIndex();
+        nextBtn.style.opacity = currentIndex >= max ? '0.3' : '1';
+        nextBtn.style.pointerEvents = currentIndex >= max ? 'none' : 'auto';
+    }
+
+    function goToSlide(index) {
+        const max = getMaxIndex();
+        currentIndex = Math.min(Math.max(0, index), max);
+        updateCarousel();
+    }
+
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) goToSlide(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+        const max = getMaxIndex();
+        if (currentIndex < max) goToSlide(currentIndex + 1);
+    });
+
+    // Handle resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            const max = getMaxIndex();
+            if (currentIndex > max) currentIndex = max;
+            createDots();
+            updateCarousel();
+        }, 100);
+    });
+
+    // Initial setup
+    setTimeout(() => {
+        createDots();
+        updateCarousel();
+    }, 500); // Small delay to ensure layout is ready
 });

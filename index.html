@@ -27,7 +27,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="assets/css/style.css">
@@ -80,7 +80,7 @@
         <div class="corner bl"></div>
         <div class="corner br"></div>
     </div>
-    <div class="dynamic-scanline"></div>
+    <!-- <div class="dynamic-scanline"></div> -->
 
     <nav id="navbar">
         <div class="nav-container">
@@ -126,14 +126,14 @@
         <div class="mobile-menu-footer mono">
             <div class="mobile-socials">
                 <a href="https://www.linkedin.com/in/rafi-abdillah-f-9517a1329/" target="_blank" aria-label="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#C4A4E0" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#4e9bef" viewBox="0 0 16 16">
                     <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
                     </svg>                 </a>
                 <a href="https://instagram.com/rapikerenbgt" target="_blank" aria-label="Instagram">
-                    <img src="https://cdn.simpleicons.org/instagram/F0E0FF" alt="Instagram" width="18" height="18" loading="lazy">
+                    <img src="https://cdn.simpleicons.org/instagram/4e9bef" alt="Instagram" width="18" height="18" loading="lazy">
                 </a>
                 <a href="https://github.com/rapirawr" target="_blank" aria-label="GitHub">
-                    <img src="https://cdn.simpleicons.org/github/F0E0FF" alt="GitHub" width="18" height="18" loading="lazy">
+                    <img src="https://cdn.simpleicons.org/github/4e9bef" alt="GitHub" width="18" height="18" loading="lazy">
                 </a>    
             </div>
             <div class="mobile-hud-details">
@@ -152,10 +152,10 @@
             </div>
             <div class="hero-geo-bg" data-aos="fade-in" data-aos-duration="2000">
                 <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-                    <path class="geo-path" d="M0,50 Q25,0 50,50 T100,50" fill="none" stroke="rgba(212, 175, 55, 0.2)" stroke-width="0.5" />
-                    <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(212, 175, 55, 0.1)" stroke-width="0.2" />
-                    <line x1="0" y1="0" x2="100" y2="100" stroke="rgba(212, 175, 55, 0.05)" stroke-width="0.1" />
-                    <line x1="100" y1="0" x2="0" y2="100" stroke="rgba(212, 175, 55, 0.05)" stroke-width="0.1" />
+                    <path class="geo-path" d="M0,50 Q25,0 50,50 T100,50" fill="none" stroke="#4e9bef" stroke-opacity="0.3" stroke-width="0.5" />
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#4e9bef" stroke-opacity="0.15" stroke-width="0.2" />
+                    <line x1="0" y1="0" x2="100" y2="100" stroke="#4e9bef" stroke-opacity="0.1" stroke-width="0.1" />
+                    <line x1="100" y1="0" x2="0" y2="100" stroke="#4e9bef" stroke-opacity="0.1" stroke-width="0.1" />
                 </svg>
             </div>
             <div class="hero-content centered">
@@ -163,18 +163,14 @@
                     <div class="label-wrapper" data-aos="fade-up">
                         <span class="label mono" data-i18n="hero.label">00 // DIGITAL ARCHITECT & FULLSTACK DEVELOPER</span>
                     </div>
-                    <h1 id="hero-name" class="scramble" data-aos="fade-up" data-aos-delay="400">RAFI ABDILLAH F</h1>
+                    <h1 id="hero-name" class="scramble" data-aos-delay="400">RAFI ABDILLAH F</h1>
                     <div class="hero-tagline-container" data-aos="fade-up" data-aos-delay="600">
                         <p class="tagline clip-reveal" data-i18n="hero.tagline">ENGINEERING HIGH-FIDELITY DIGITAL EXPERIENCES THROUGH CODE AND DESIGN.</p>
                         <div class="hero-cta-group">
-                            <a href="#projects" class="primary-btn mono">
-                                <span class="btn-decor tl-decor"></span>
-                                <span class="btn-decor br-decor"></span>
+                            <a href="#projects" class="glowbutton">
                                 <span data-i18n="hero.cta.work">VIEW PROJECTS</span>
                             </a>
-                            <a href="cv" target="_blank" class="secondary-btn mono">
-                                <span class="btn-decor tl-decor"></span>
-                                <span class="btn-decor br-decor"></span>
+                            <a href="cv" target="_blank" class="glowbutton">
                                 <span data-i18n="hero.cta.cv">CV</span>
                             </a>
                         </div>
@@ -188,9 +184,9 @@
             <div class="glow-focal"></div>
         </section>
 
-        <section id="about" class="section reveal-section" data-aos="fade-up">
+        <section id="about" class="section reveal-section " data-aos="fade-up">
             <div class="container about-layout">
-                <div class="about-text">
+                <div class="about-text ">
                     <h2 class="label mono" data-aos="fade-right">01 // ABOUT</h2>
                     <p class="display-text" data-i18n="about.text" data-aos="fade-right" data-aos-delay="200">
                         <span class="drop-cap">I</span> am a <span class="highlight">Fullstack Developer</span> dedicated to building <span class="text-accent">scalable</span>, high-performance web applications with <span class="serif-italic">refined aesthetics</span>.
@@ -216,10 +212,10 @@
                         </div>
                     </div>
                 </div>
-                <div data-aos="zoom-in" class="about-visual">
+                <div data-aos="zoom-in" class="about-visual ">
                     <div class="about-photo-wrap tilt-element">
                         <div class="photo-frame">
-                            <img src="assets/images/hero.jpg" alt="Rafi Abdillah F" class="about-img">
+                            <img src="assets/images/hero.webp" alt="Rafi Abdillah F" class="about-img">
                             <div class="frame-decor tl"></div>
                             <div class="frame-decor tr"></div>
                             <div class="frame-decor bl"></div>
@@ -296,7 +292,7 @@
                                     <h3>FRONTEND CORE</h3>
                                     <p class="mono">REACT / CSS / JS</p>
                                 </div>
-                                <div class="skill-progress"><div class="bar" style="width: 98%;"></div></div>
+                                <div class="skill-progress"><div class="bar" style="width: 100%;"></div></div>
                             </div>
                             <div class="skill-box alternate">
                                 <div class="skill-img-icon"><i data-lucide="pen-tool"></i></div>
@@ -304,7 +300,7 @@
                                     <h3>FIGMA</h3>
                                     <p class="mono">Prototyping / UX</p>
                                 </div>
-                                <div class="skill-progress"><div class="bar" style="width: 95%;"></div></div>
+                                <div class="skill-progress"><div class="bar" style="width: 100%;"></div></div>
                             </div>
                             <div class="skill-box">
                                 <div class="skill-img-icon"><i data-lucide="box"></i></div>
@@ -312,7 +308,7 @@
                                     <h3>BLENDER</h3>
                                     <p class="mono">3D Modeling</p>
                                 </div>
-                                <div class="skill-progress"><div class="bar" style="width: 85%;"></div></div>
+                                <div class="skill-progress"><div class="bar" style="width: 100%;"></div></div>
                             </div>
                         </div>
                     </div>
@@ -327,7 +323,7 @@
                                     <h3>LARAVEL & PYTHON</h3>
                                     <p class="mono">MVC / API / Scripts</p>
                                 </div>
-                                <div class="skill-progress"><div class="bar" style="width: 90%;"></div></div>
+                                <div class="skill-progress"><div class="bar" style="width: 100%;"></div></div>
                             </div>
                             <div class="skill-box">
                                 <div class="skill-img-icon"><i data-lucide="database"></i></div>
@@ -335,7 +331,7 @@
                                     <h3>MYSQL</h3>
                                     <p class="mono">Relational Design</p>
                                 </div>
-                                <div class="skill-progress"><div class="bar" style="width: 95%;"></div></div>
+                                <div class="skill-progress"><div class="bar" style="width: 100%;"></div></div>
                             </div>
                             <div class="skill-box alternate">
                                 <div class="skill-img-icon"><i data-lucide="terminal"></i></div>
@@ -343,7 +339,7 @@
                                     <h3>LINUX</h3>
                                     <p class="mono">Bash / Server Mgmt</p>
                                 </div>
-                                <div class="skill-progress"><div class="bar" style="width: 80%;"></div></div>
+                                <div class="skill-progress"><div class="bar" style="width: 100%;"></div></div>
                             </div>
                         </div>
                     </div>
@@ -358,7 +354,7 @@
                                     <h3>FLUTTER</h3>
                                     <p class="mono">Cross-Platform UI</p>
                                 </div>
-                                <div class="skill-progress"><div class="bar" style="width: 85%;"></div></div>
+                                <div class="skill-progress"><div class="bar" style="width: 100%;"></div></div>
                             </div>
                             <div class="skill-box alternate">
                                 <div class="skill-img-icon"><i data-lucide="cpu"></i></div>
@@ -366,7 +362,7 @@
                                     <h3>IOT & EMBEDDED</h3>
                                     <p class="mono">ESP32 / Sensors</p>
                                 </div>
-                                <div class="skill-progress"><div class="bar" style="width: 95%;"></div></div>
+                                <div class="skill-progress"><div class="bar" style="width: 100%;"></div></div>
                             </div>
                         </div>
                     </div>
@@ -603,6 +599,134 @@
             </div>
         </section>
 
+        <!-- ========================= MESSAGES SECTION ========================= -->
+        <section id="messages" class="section reveal-section" data-aos="fade-up">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <h2 class="label mono" data-i18n="messages.label">06 // MESSAGES</h2>
+                    <div class="tech-stats mono">
+                        <span>[ARCHIVE: PERSONAL_LOG]</span>
+                        <span>[TYPE: GROWTH]</span>
+                    </div>
+                </div>
+                <p class="messages-subtitle" data-aos="fade-up" data-aos-delay="100" data-i18n="messages.subtitle">Words that stayed with me — from mentors, books, and moments of clarity that shaped how I think and build.</p>
+
+                <div class="messages-carousel-container" data-aos="fade-up" data-aos-delay="200">
+                    <div class="messages-carousel" id="messages-carousel">
+                        <div class="messages-track" id="messages-track">
+                            <!-- Message 1 -->
+                            <div class="message-card message-card--featured ">
+                                <div class="message-card__glow"></div>
+                                <div class="message-card__quote-mark">"</div>
+                                <blockquote class="message-card__text">
+                                    First, solve the problem. Then, write the code.
+                                </blockquote>
+                                <div class="message-card__footer">
+                                    <div class="message-card__source">
+                                        <span class="message-card__author">John Johnson</span>
+                                        <span class="message-card__origin mono">Software Engineering Wisdom</span>
+                                    </div>
+                                    <div class="message-card__index mono">001</div>
+                                </div>
+                            </div>
+
+                            <!-- Message 2 -->
+                            <div class="message-card message-card--neon">
+                                <div class="message-card__glow"></div>
+                                <div class="message-card__quote-mark">"</div>
+                                <blockquote class="message-card__text">
+                                    So, as long as u can do everything you love, usahain ya pi
+                                </blockquote>
+                                <div class="message-card__footer">
+                                    <div class="message-card__source">
+                                        <span class="message-card__author">A</span>
+                                        <span class="message-card__origin mono">Bandung, 2026</span>
+                                    </div>
+                                    <div class="message-card__index mono">002</div>
+                                </div>
+                            </div>
+
+                            <!-- Message 3 -->
+                            <div class="message-card message-card--neon ">
+                                <div class="message-card__glow"></div>
+                                <div class="message-card__quote-mark">"</div>
+                                <blockquote class="message-card__text">
+                                    let it flow aja pii, life must go on, yang datang pergi yang hilang diganti
+                                </blockquote>
+                                <div class="message-card__footer">
+                                    <div class="message-card__source">
+                                        <span class="message-card__author">A</span>
+                                        <span class="message-card__origin mono">Bandung, 2026</span>
+                                    </div>
+                                    <div class="message-card__index mono">003</div>
+                                </div>
+                            </div>
+
+                            <!-- Message 4 -->
+                            <div class="message-card">
+                                <div class="message-card__glow"></div>
+                                <div class="message-card__quote-mark">"</div>
+                                <blockquote class="message-card__text">
+                                    kaka lakuin hobi kaka aja, gpercaya anak rpl
+                                </blockquote>
+                                <div class="message-card__footer">
+                                    <div class="message-card__source">
+                                        <span class="message-card__author">S</span>
+                                        <span class="message-card__origin mono">Bondowoso, 2026</span>
+                                    </div>
+                                    <div class="message-card__index mono">004</div>
+                                </div>
+                            </div>
+
+                            <!-- Message 5 -->
+                            <div class="message-card message-card--accent message-card--neon">
+                                <div class="message-card__glow"></div>
+                                <div class="message-card__quote-mark">"</div>
+                                <blockquote class="message-card__text">
+                                    Kamu ini ketua kelas ga berguna!
+                                </blockquote>
+                                <div class="message-card__footer">
+                                    <div class="message-card__source">
+                                        <span class="message-card__author">Ex. Kaproli</span>
+                                        <span class="message-card__origin mono">Bondowoso, 2025</span>
+                                    </div>
+                                    <div class="message-card__index mono">005</div>
+                                </div>
+                            </div>
+
+                            <!-- Message 6 -->
+                            <div class="message-card">
+                                <div class="message-card__glow"></div>
+                                <div class="message-card__quote-mark">"</div>
+                                <blockquote class="message-card__text">
+                                    Simplicity is the ultimate sophistication.
+                                </blockquote>
+                                <div class="message-card__footer">
+                                    <div class="message-card__source">
+                                        <span class="message-card__author">Leonardo da Vinci</span>
+                                        <span class="message-card__origin mono">Renaissance Wisdom</span>
+                                    </div>
+                                    <div class="message-card__index mono">006</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-controls">
+                        <button class="carousel-btn prev" id="carousel-prev" aria-label="Previous message">
+                            <i data-lucide="chevron-left"></i>
+                        </button>
+                        <div class="carousel-dots" id="carousel-dots"></div>
+                        <button class="carousel-btn next" id="carousel-next" aria-label="Next message">
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+            </div>
+        </section>
+
 
         <section id="contact" class="section reveal-section" data-aos="fade-up">
             <div class="marquee">
@@ -631,7 +755,7 @@
                             </div>
                             <div class="method-item" data-aos="fade-up" data-aos-delay="300">
                                 <span class="method-label">ENCRYPTED_MAIL</span>
-                                <a href="mailto:rabdillahf09@gmail.com" class="method-value link">RAFIABDILLAHF09@GMAIL.COM</a>
+                                <a href="mailto:rabdillahf09@gmail.com" class="method-value link">RABDILLAHF09@GMAIL.COM</a>
                             </div>
                         </div>
 
@@ -702,15 +826,15 @@
             <span>© 2026 RAFI ABDILLAH F</span>
             <div class="socials">
                 <a href="https://www.linkedin.com/in/rafi-abdillah-f-9517a1329/" target="_blank" aria-label="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#D4AF37" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#4e9bef" viewBox="0 0 16 16">
                     <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
                     </svg>          
                 </a>
                 <a href="https://github.com/rapirawr" target="_blank" aria-label="GitHub">
-                    <img src="https://cdn.simpleicons.org/github/D4AF37" alt="GitHub" width="16" height="16" loading="lazy">
+                    <img src="https://cdn.simpleicons.org/github/4e9bef" alt="GitHub" width="16" height="16" loading="lazy">
                 </a>
                 <a href="https://instagram.com/rapikerenbgt" target="_blank" aria-label="Instagram">
-                    <img src="https://cdn.simpleicons.org/instagram/D4AF37" alt="Instagram" width="16" height="16" loading="lazy">
+                    <img src="https://cdn.simpleicons.org/instagram/4e9bef" alt="Instagram" width="16" height="16" loading="lazy">
                 </a>
             </div>
         </div>
@@ -743,47 +867,72 @@
     <div id="project-modal" class="project-modal">
         <div class="p-modal-overlay"></div>
         <div class="p-modal-container">
-            <!-- DECORATIONS -->
-            <div class="p-modal-decor tl mono">PRJ_FILE // ACC_01</div>
-            <div class="p-modal-decor br mono">2026 // RAFI_F</div>
+            <!-- HUD DECORATIONS -->
+            <div class="p-modal-hud-edge top"></div>
+            <div class="p-modal-hud-edge bottom"></div>
+            <div class="p-modal-side-label left mono">PROJECT_SPECIFICATION_V4.0</div>
+            <div class="p-modal-side-label right mono">AUTHENTIC_CREDENTIALS</div>
 
-            <div class="p-modal-close-wrap">
-                <div class="p-modal-close">&times;</div>
-            </div>
-
-            <div class="p-modal-body">
-                <div class="p-modal-visuals">
-                    <div class="p-modal-gallery" id="modal-project-gallery">
-                        <!-- Images will be injected here -->
+            <div class="p-modal-header-nav">
+                <div class="p-modal-breadcrumb mono">
+                    <span class="root">WORKSPACE</span>
+                    <span class="sep">/</span>
+                    <span class="category" id="modal-project-category-breadcrumb">CASE_STUDY</span>
+                </div>
+                <div class="p-modal-close-btn" aria-label="Close modal">
+                    <span class="close-text mono" data-i18n="modal.close">CLOSE</span>
+                    <div class="close-icon-wrap">
+                        <span class="line"></span>
+                        <span class="line"></span>
                     </div>
                 </div>
-                
-                <div class="p-modal-info">
-                    <div class="p-modal-header">
-                        <span class="p-modal-tag mono" id="modal-project-category">CASE_STUDY // 01</span>
-                        <h2 id="modal-project-title">Project Name</h2>
+            </div>
+
+            <div class="p-modal-main">
+                <div class="p-modal-content-left">
+                    <div class="p-modal-title-area">
+                        <span class="p-modal-number mono" id="modal-project-index">01</span>
+                        <h2 id="modal-project-title" class="display-title">Project Name</h2>
+                        <div class="p-modal-tags" id="modal-project-tech-tags">
+                            <!-- Tags will be injected here -->
+                        </div>
                     </div>
                     
-                    <div class="p-modal-content">
+                    <div class="p-modal-description-wrap">
+                        <div class="desc-label mono" data-i18n="modal.desc">DESCRIPTION //</div>
                         <p class="p-modal-desc" id="modal-project-desc">Project description goes here.</p>
-                        
-                        <div class="p-modal-meta mono">
-                            <div class="meta-item">
-                                <span class="label">STATUS</span>
-                                <span class="value">DEPLOYED</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="label">ENGINE</span>
-                                <span class="value" id="modal-project-tech">React / Node.js</span>
-                            </div>
-                        </div>
+                    </div>
 
-                        <div class="p-modal-actions">
-                            <a href="#" target="_blank" class="p-modal-btn primary" id="modal-project-link">
-                                <span>LAUNCH PROJECT</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                            </a>
+                    <div class="p-modal-meta-grid">
+                        <div class="meta-box">
+                            <span class="meta-label mono" data-i18n="modal.tech">TECH_STACK</span>
+                            <span class="meta-value" id="modal-project-tech">React / Node.js</span>
                         </div>
+                        <div class="meta-box">
+                            <span class="meta-label mono" data-i18n="modal.status">STATUS</span>
+                            <span class="meta-value">LIVE_PRODUCTION</span>
+                        </div>
+                    </div>
+
+                    <div class="p-modal-footer-actions">
+                        <a href="#" target="_blank" class="p-launch-btn" id="modal-project-link">
+                            <span class="btn-shine"></span>
+                            <span class="btn-label mono" data-i18n="modal.launch">LAUNCH_PROJECT</span>
+                            <i data-lucide="external-link"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="p-modal-content-right">
+                    <div class="p-modal-gallery-container">
+                        <div class="gallery-hud mono">
+                            <span>GALLERY_STREAM</span>
+                            <span id="gallery-count">03_IMAGES</span>
+                        </div>
+                        <div class="p-modal-gallery" id="modal-project-gallery">
+                            <!-- Images will be injected here -->
+                        </div>
+                        <div class="gallery-nav-hint mono">SCROLL_TO_EXPLORE</div>
                     </div>
                 </div>
             </div>
