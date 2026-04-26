@@ -46,24 +46,26 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="loading">
-    <div class="page-loader">
-        <div class="loader">
-            <span><span></span><span></span><span></span><span></span></span>
-            <div class="base">
-                <span></span>
-                <div class="face"></div>
+    <div class="page-loader" id="page-loader">
+        <div class="loader-content" id="loader-content">
+            <div class="greeting-container" id="greeting-container" style="display: none;">
+                <span class="greeting-dot"></span>
+                <span class="greeting-text" id="greeting-text">Hello</span>
+            </div>
+            <div class="enter-screen" id="enter-screen">
+                <button class="enter-btn mono" id="enter-btn">
+                    <span class="enter-btn-text">LAUNCH PROJECT</span>
+                    <span class="enter-btn-glitch"></span>
+                </button>
             </div>
         </div>
-        <div class="longfazers">
-            <span></span><span></span><span></span><span></span>
-        </div>
-        <p class="loader-wait-text mono" id="loader-wait-text">PLEASE WAIT A WHILE</p>
     </div>
 
     <div class="scroll-progress-container">
         <div class="scroll-progress-bar" id="scroll-bar"></div>
     </div>
     <div class="noise-overlay"></div>
+    <div class="mouse-glow" id="mouse-glow"></div>
     <div class="bg-grid"></div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
@@ -80,9 +82,28 @@
     </div>
     <!-- <div class="dynamic-scanline"></div> -->
 
+    <!-- AMBIENT AUDIO CONTROL -->
+    <div class="ambient-control" id="ambient-control">
+        <div class="ambient-visualizer">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <button class="ambient-toggle" id="ambient-toggle" aria-label="Toggle background music">
+            <i data-lucide="music"></i>
+            <span class="mono">AMBIENT: <span id="ambient-status">OFF</span></span>
+        </button>
+        <audio id="ambient-loop" loop preload="auto">
+            <source src="assets/audio/ambient.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
     <nav id="navbar">
         <div class="nav-container">
-            <div class="logo">PORTFOLIO</div>
+            <a href="#hero" class="logo">
+                <img src="assets/images/logo.png" alt="Logo">
+            </a>
             <ul class="nav-links">
                 <li><a href="#hero" class="nav-item"><i data-lucide="home" class="nav-icon"></i> <span data-i18n="nav.start">START</span></a></li>
                 <li><a href="#about" class="nav-item"><i data-lucide="user" class="nav-icon"></i> <span data-i18n="nav.about">ABOUT</span></a></li>
@@ -894,7 +915,7 @@
                 </div>
             </div>
 
-            <div class="p-modal-main">
+            <div class="p-modal-main" data-lenis-prevent>
                 <div class="p-modal-content-left">
                     <div class="p-modal-title-area">
                         <span class="p-modal-number mono" id="modal-project-index">01</span>
@@ -935,7 +956,7 @@
                             <span>GALLERY_STREAM</span>
                             <span id="gallery-count">03_IMAGES</span>
                         </div>
-                        <div class="p-modal-gallery" id="modal-project-gallery">
+                        <div class="p-modal-gallery" id="modal-project-gallery" data-lenis-prevent>
                             <!-- Images will be injected here -->
                         </div>
                         <div class="gallery-nav-hint mono">SCROLL_TO_EXPLORE</div>

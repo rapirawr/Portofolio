@@ -27,6 +27,41 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// SFX SYSTEM
+const sfx = {
+    click: new Audio('https://www.myinstants.com/media/sounds/switch-sound.mp3'),
+    hover: new Audio('https://www.rasya-zildan.my.id/audios/transitionSound.mp3'),
+    typing: new Audio('https://www.myinstants.com/media/sounds/sfx-futuristic-typing.mp3')
+};
+
+// Configure volumes
+sfx.click.volume = 0.3;
+sfx.hover.volume = 0.1;
+sfx.typing.volume = 0.15;
+
+let soundEnabled = true;
+
+function playSound(name) {
+    if (soundEnabled && sfx[name]) {
+        sfx[name].currentTime = 0;
+        sfx[name].play().catch(e => console.log("Audio blocked by browser policy"));
+    }
+}
+
+// Sound Toggle Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const soundToggle = document.getElementById('sound-toggle');
+    const soundStatus = document.getElementById('sound-status');
+    if (soundToggle) {
+        soundToggle.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            soundStatus.textContent = soundEnabled ? 'ON' : 'OFF';
+            soundToggle.style.opacity = soundEnabled ? '1' : '0.5';
+            playSound('click');
+        });
+    }
+});
+
 const cursor = document.getElementById('cursor');
 const follower = document.getElementById('cursor-follower');
 
@@ -117,7 +152,7 @@ class TextScramble {
     setText(newText) {
         const oldText = this.el.innerText;
         const length = Math.max(oldText.length, newText.length);
-        const promise = new Promise((resolve) => (this.resolve = resolve));
+        const promise = new Promise((resolve) => this.resolve = resolve);
         this.queue = [];
         for (let i = 0; i < length; i++) {
             const from = oldText[i] || '';
@@ -129,6 +164,7 @@ class TextScramble {
         cancelAnimationFrame(this.frameRequest);
         this.frame = 0;
         this.update();
+        playSound('typing');
         return promise;
     }
     update() {
@@ -166,29 +202,130 @@ const el = document.querySelector('.scramble');
 const fx = new TextScramble(el);
 let originalText = el.innerText;
 
-const loaderWaitText = document.getElementById('loader-wait-text');
-setTimeout(() => {
-    if (document.body.classList.contains('loading')) {
-        loaderWaitText.classList.add('visible');
+
+// Loader Greeting Sequence
+const greetings = [
+    "Halo",
+    "Bonjour",
+    "Hola",
+    "Ciao",
+    "Olá",
+    "안녕하세요",
+    "こんにちは",
+    "Hello"
+];
+
+let currentGreetingIndex = 0;
+const greetingText = document.getElementById('greeting-text');
+
+// GFX INTERAKTIF: Mouse-Glow Movement
+const mouseGlow = document.getElementById('mouse-glow');
+document.addEventListener('mousemove', (e) => {
+    if (mouseGlow) {
+        gsap.to(mouseGlow, {
+            left: e.clientX,
+            top: e.clientY,
+            duration: 1.5,
+            ease: "power2.out"
+        });
     }
 });
 
+// GFX INTERAKTIF: Magnetic Cursor Effects
+const magneticElements = document.querySelectorAll('.glowbutton, .nav-item, .hud-social-link, .p-launch-btn, .skill-box, .stat-item, .clickable');
+
+magneticElements.forEach(el => {
+    el.addEventListener('mouseenter', () => playSound('hover'));
+    el.addEventListener('click', () => playSound('click'));
+    
+    el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const deltaX = e.clientX - centerX;
+        const deltaY = e.clientY - centerY;
+        
+        gsap.to(el, {
+            x: deltaX * 0.35,
+            y: deltaY * 0.35,
+            duration: 0.4,
+            ease: "power2.out"
+        });
+        
+        // Enhance spotlight if near button
+        if (mouseGlow) {
+            gsap.to(mouseGlow, {
+                width: 800,
+                height: 800,
+                duration: 0.5
+            });
+        }
+    });
+    
+    el.addEventListener('mouseleave', () => {
+        gsap.to(el, {
+            x: 0,
+            y: 0,
+            duration: 0.7,
+            ease: "elastic.out(1, 0.3)"
+        });
+        
+        if (mouseGlow) {
+            gsap.to(mouseGlow, {
+                width: 600,
+                height: 600,
+                duration: 0.5
+            });
+        }
+    });
+});
+
+// Update the current greeting sequence dismissal
+function updateGreeting() {
+    if (currentGreetingIndex < greetings.length) {
+        greetingText.textContent = greetings[currentGreetingIndex];
+        currentGreetingIndex++;
+        setTimeout(updateGreeting, 150); // Fast cycle
+    } else {
+        // Final greeting stay a bit longer then slide up
+        setTimeout(() => {
+            document.body.classList.remove('loading');
+            document.body.classList.add('loaded');
+            
+            // Trigger Hero Scramble
+            if (typeof fx !== 'undefined' && typeof originalText !== 'undefined') {
+                setTimeout(() => fx.setText(originalText), 500);
+            }
+            
+            // Trigger initial glow show
+            if (mouseGlow) {
+                gsap.to(mouseGlow, { opacity: 1, duration: 2 });
+            }
+        }, 1200);
+    }
+}
+
+// Start sequence when page is ready AND user clicks enter (to unlock audio)
 window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.body.classList.remove('loading');
-        document.body.classList.add('loaded');
-        if (fx) fx.setText(originalText);
-    }, 200);
+    const enterBtn = document.getElementById('enter-btn');
+    const enterScreen = document.getElementById('enter-screen');
+    const greetingContainer = document.getElementById('greeting-container');
+    
+    if (enterBtn) {
+        enterBtn.addEventListener('click', () => {
+            playSound('click');
+            enterScreen.style.display = 'none';
+            greetingContainer.style.display = 'flex';
+            updateGreeting();
+        });
+    } else {
+        // Fallback if no button
+        updateGreeting();
+    }
 });
 
-// Fallback loader removal for safety on slow connections
-setTimeout(() => {
-    if (document.body.classList.contains('loading')) {
-        document.body.classList.remove('loading');
-        document.body.classList.add('loaded');
-        if (fx) fx.setText(originalText);
-    }
-}, 3000);
+
 
 const observerOptions = {
     threshold: 0.2
@@ -850,12 +987,14 @@ document.querySelectorAll('.cert-card').forEach(card => {
         modalTitle.innerText = `VIEWING: ${title.toUpperCase()}`;
         certModal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        if (typeof lenis !== 'undefined') lenis.stop();
     });
 });
 
 function closeCertModal() {
     certModal.classList.remove('active');
     document.body.style.overflow = '';
+    if (typeof lenis !== 'undefined') lenis.start();
 }
 
 closeBtn?.addEventListener('click', closeCertModal);
@@ -990,12 +1129,14 @@ document.querySelectorAll('.project-item').forEach((item, index) => {
 
         projectModal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        if (typeof lenis !== 'undefined') lenis.stop();
     });
 });
 
 function closeProjectModal() {
     projectModal.classList.remove('active');
     document.body.style.overflow = '';
+    if (typeof lenis !== 'undefined') lenis.start();
 }
 
 pModalClose?.addEventListener('click', closeProjectModal);
@@ -1132,5 +1273,110 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         createDots();
         updateCarousel();
-    }, 500); // Small delay to ensure layout is ready
+    }, 500);
 });
+
+/* ========================= AMBIENT SOUND LOGIC ========================= */
+const initAmbientSound = () => {
+    const ambientToggle = document.getElementById('ambient-toggle');
+    const ambientLoop = document.getElementById('ambient-loop');
+    const ambientControl = document.getElementById('ambient-control');
+    const ambientStatus = document.getElementById('ambient-status');
+    const visualizerBars = document.querySelectorAll('.ambient-visualizer .bar');
+    
+    if (!ambientToggle || !ambientLoop || !ambientControl || !ambientStatus) {
+        console.error('Ambient sound elements not found.');
+        return;
+    }
+
+    let isAmbientPlaying = false;
+    let audioCtx = null;
+    let analyser = null;
+    let source = null;
+    let dataArray = null;
+    let animFrameId = null;
+    ambientLoop.volume = 0.5;
+
+    // Initialize Web Audio API context & analyser (once)
+    function initAudioContext() {
+        if (audioCtx) return; // already initialized
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 64; // small FFT for few bars
+        analyser.smoothingTimeConstant = 0.8;
+        source = audioCtx.createMediaElementSource(ambientLoop);
+        source.connect(analyser);
+        analyser.connect(audioCtx.destination);
+        dataArray = new Uint8Array(analyser.frequencyBinCount);
+    }
+
+    // Animate bars based on real frequency data
+    function animateVisualizer() {
+        if (!isAmbientPlaying || !analyser) return;
+
+        analyser.getByteFrequencyData(dataArray);
+
+        // Pick frequency bands spread across the spectrum for each bar
+        const bandIndices = [1, 3, 5, 8];
+        visualizerBars.forEach((bar, i) => {
+            const value = dataArray[bandIndices[i]] || 0;
+            const scale = Math.max(0.15, value / 255); // min 15% height
+            bar.style.transform = `scaleY(${scale})`;
+        });
+
+        animFrameId = requestAnimationFrame(animateVisualizer);
+    }
+
+    function stopVisualizer() {
+        if (animFrameId) {
+            cancelAnimationFrame(animFrameId);
+            animFrameId = null;
+        }
+        // Reset bars to idle
+        visualizerBars.forEach(bar => {
+            bar.style.transform = 'scaleY(0.15)';
+        });
+    }
+
+    ambientToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (!isAmbientPlaying) {
+            // Init audio context on first user gesture
+            initAudioContext();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            isAmbientPlaying = true;
+            ambientControl.classList.add('playing');
+            ambientStatus.textContent = 'ON';
+            if (typeof playSound === 'function') playSound('click');
+            
+            let playPromise = ambientLoop.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    animateVisualizer(); // start synced visualizer
+                }).catch(error => {
+                    console.error('Audio playback failed:', error);
+                    isAmbientPlaying = false;
+                    ambientControl.classList.remove('playing');
+                    ambientStatus.textContent = 'ERR';
+                    stopVisualizer();
+                });
+            }
+        } else {
+            ambientLoop.pause();
+            isAmbientPlaying = false;
+            ambientControl.classList.remove('playing');
+            ambientStatus.textContent = 'OFF';
+            stopVisualizer();
+            if (typeof playSound === 'function') playSound('click');
+        }
+    });
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAmbientSound);
+} else {
+    initAmbientSound();
+}
