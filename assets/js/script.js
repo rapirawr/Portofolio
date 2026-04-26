@@ -1,3 +1,32 @@
+// Initialize Lenis for Momentum Scrolling
+const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    momentum: true,
+    lerp: 0.1
+});
+
+// Sync Lenis with GSAP ScrollTrigger
+lenis.on('scroll', ScrollTrigger.update);
+
+gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+});
+
+gsap.ticker.lagSmoothing(0);
+
+// Handle smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== "#") {
+            e.preventDefault();
+            lenis.scrollTo(href);
+        }
+    });
+});
+
 const cursor = document.getElementById('cursor');
 const follower = document.getElementById('cursor-follower');
 
@@ -244,19 +273,7 @@ window.addEventListener('scroll', () => {
                 }
             }
 
-            const isMobile = window.innerWidth <= 768;
-            if (!isMobile) { // Disable skew on mobile for perf
-                const skewFactor = 0.05;
-                const maxSkew = 3;
-                const skew = (currentScroll - lastScroll) * skewFactor;
-                const clampedSkew = Math.max(-maxSkew, Math.min(maxSkew, skew));
-                
-                // Only skew the main container to avoid multiple layout shifts
-                const main = document.querySelector('main');
-                if (main) {
-                    main.style.transform = `skewY(${clampedSkew}deg)`;
-                }
-            }
+
 
             lastScroll = currentScroll;
             scrollTicking = false;
@@ -527,11 +544,11 @@ const translations = {
         "project1.category": "01 // POS SYSTEM",
         "project1.desc": "A premium Point of Sale system built for high-performance retail environments. Features real-time inventory tracking, multi-outlet management, and a sleek architecture.",
         "project1.preview": "Modern inventory & transaction management.",
-        "project2.title": "SIPS ENGINE",
+        "project2.title": "SIPS ",
         "project2.category": "02 // INFRASTRUCTURE",
         "project2.desc": "An enterprise-grade complaint infrastructure. Designed to handle large volumes of data with institutional security protocols and automated reporting systems.",
         "project2.preview": "Secure school management system.",
-        "project3.title": "HAJIKU APP",
+        "project3.title": "HAJIKU ",
         "project3.category": "03 // E-COMMERCE",
         "project3.desc": "A food procurement ecosystem optimized for speed. Features real-time price comparisons, automated ordering, and a seamless mobile-first user experience.",
         "project3.preview": "Real-time food procurement platform.",
@@ -614,11 +631,11 @@ const translations = {
         "project1.category": "01 // SISTEM KASIR",
         "project1.desc": "Sistem Point of Sale premium yang dibangun untuk lingkungan ritel berperforma tinggi. Menampilkan pelacakan inventaris real-time, manajemen multi-outlet, dan arsitektur yang ramping.",
         "project1.preview": "Manajemen inventaris & transaksi modern.",
-        "project2.title": "SIPS ENGINE",
+        "project2.title": "SIPS",
         "project2.category": "02 // INFRASTRUKTUR",
         "project2.desc": "Infrastruktur pengaduan tingkat enterprise. Dirancang untuk menangani volume data besar dengan protokol keamanan institusional dan sistem pelaporan otomatis.",
         "project2.preview": "Sistem manajemen sekolah yang aman.",
-        "project3.title": "HAJIKU APP",
+        "project3.title": "HAJIKU",
         "project3.category": "03 // E-COMMERCE",
         "project3.desc": "Ekosistem pengadaan makanan yang dioptimalkan untuk kecepatan. Menampilkan perbandingan harga real-time, pemesanan otomatis, dan pengalaman pengguna mobile-first yang mulus.",
         "project3.preview": "Platform pengadaan makanan real-time.",

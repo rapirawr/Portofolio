@@ -1,6 +1,6 @@
 :root {
     /* Background layers */
-    --bg-color: #0f0d07;
+    --bg-color: #0b0c12;
     --bg-surface: #0D0F1A;
 
     /* Glass surfaces */
@@ -15,8 +15,8 @@
     /* Accent — Indigo/Cyan system */
     --accent-primary: #7EB8F7 ; 
     --accent-secondary: #5A9FE8;
-    --accent-peach: #7EB8F7;
-    --accent-gold: #7EB8F7;
+    --accent-bright: #7EB8F7;
+    --accent-soft: #7EB8F7;
     --accent-glow: rgba(126, 184, 247, 0.20);
     --accent-teal: #4FD1C5;
 
@@ -63,7 +63,7 @@ body {
 
 .scroll-progress-bar {
     height: 100%;
-    background: linear-gradient(to right, var(--accent-peach), var(--accent-secondary));
+    background: linear-gradient(to right, var(--accent-bright), var(--accent-secondary));
     width: 0%;
     box-shadow: 0 0 15px var(--accent-secondary);
     transition: width 0.1s ease-out;
@@ -211,7 +211,7 @@ body {
 }
 
 html {
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */ /* Disabled for Lenis */
     background-color: var(--bg-color);
     overflow-x: hidden;
     width: 100%;
@@ -1777,7 +1777,7 @@ a, button {
 .submit-btn-premium:hover {
     background: var(--accent-primary);
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 20px 40px rgba(126, 184, 247, 0.3);
 }
 
 .submit-btn-premium:hover .btn-icon {
@@ -2919,7 +2919,7 @@ footer {
 
 .p-launch-btn:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 20px 40px rgba(126, 184, 247, 0.2);
 }
 
 .p-launch-btn .btn-label {
@@ -3316,14 +3316,14 @@ footer {
         clip-path: none;
         order: 2;
         border-radius: 12px;
-        box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15);
+        box-shadow: 0 15px 35px rgba(126, 184, 247, 0.15);
     }
 
     .project-back img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2));
+        filter: drop-shadow(0 0 10px rgba(126, 184, 247, 0.2));
     }
 
     .back-label {
@@ -3781,7 +3781,7 @@ body.loaded .page-loader {
 .skill-box:hover {
     border-color: var(--accent-primary);
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1), inset 0 0 20px rgba(212, 175, 55, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1), inset 0 0 20px rgba(126, 184, 247, 0.1);
 }
 
 /* PREMIUM CYBER-HUD BUTTONS */
@@ -3926,7 +3926,7 @@ body.loaded .page-loader {
     padding: 3px 8px;
     border-radius: 20px;
     color: var(--text-secondary);
-    background: rgba(212, 175, 55, 0.05);
+    background: rgba(126, 184, 247, 0.05);
 }
 
 /* CERTIFICATE MODAL STYLES */
@@ -3970,7 +3970,7 @@ body.loaded .page-loader {
     overflow: hidden;
     transform: scale(0.9) translateY(20px);
     transition: transform 0.6s var(--transition-slow);
-    box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 0 50px rgba(126, 184, 247, 0.2);
 }
 
 .cert-modal.active .modal-container {
@@ -3979,7 +3979,7 @@ body.loaded .page-loader {
 
 .modal-header {
     padding: 15px 25px;
-    background: rgba(212, 175, 55, 0.1);
+    background: rgba(126, 184, 247, 0.1);
     border-bottom: 1px solid var(--glass-border);
     display: flex;
     justify-content: space-between;
@@ -4010,7 +4010,7 @@ body.loaded .page-loader {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(126, 184, 247, 0.05) 0%, transparent 70%);
 }
 
 .modal-body img {
