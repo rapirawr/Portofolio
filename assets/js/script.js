@@ -501,7 +501,7 @@ const translations = {
         "nav.contact": "Contact",
         "hero.est": "EST 2026",
         "hero.base": "BASED IN INDONESIA",
-        "hero.status": "AVAILABLE FOR HIRE",
+        "hero.status": "OPEN FOR WORK",
         "hero.label": "00 // DIGITAL ARCHITECT & FULLSTACK DEVELOPER",
         "hero.tagline": "ENGINEERING HIGH-FIDELITY DIGITAL EXPERIENCES THROUGH CODE AND DESIGN.",
         "hero.cta.work": "VIEW PROJECTS",
