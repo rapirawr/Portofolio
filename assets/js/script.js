@@ -909,3 +909,34 @@ document.addEventListener('keydown', (e) => {
         if (certModal.classList.contains('active')) closeCertModal();
     }
 });
+
+// ==========================================
+// LOAD MORE PROJECTS LOGIC
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const projectItems = document.querySelectorAll('.project-item');
+    const loadMoreContainer = document.getElementById('projects-load-more-container');
+    const loadMoreBtn = document.getElementById('load-more-projects-btn');
+    const PROJECTS_INITIAL_LIMIT = 4; 
+    
+    if (projectItems.length > PROJECTS_INITIAL_LIMIT && loadMoreContainer && loadMoreBtn) {
+        loadMoreContainer.style.display = 'block';
+        
+        projectItems.forEach((item, index) => {
+            if (index >= PROJECTS_INITIAL_LIMIT) {
+                item.style.display = 'none';
+            }
+        });
+
+        loadMoreBtn.addEventListener('click', () => {
+            projectItems.forEach(item => {
+                item.style.display = 'block';
+            });
+            loadMoreContainer.style.display = 'none';
+            
+            if (typeof AOS !== 'undefined') {
+                setTimeout(() => AOS.refresh(), 100);
+            }
+        });
+    }
+});
