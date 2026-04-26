@@ -28,7 +28,7 @@
     /* Typography */
     --sans-font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --mono-font: 'JetBrains Mono', 'Courier New', monospace;
-    --display-font: 'Syne', sans-serif;
+    --display-font: 'Bricolage Grotesque', sans-serif;
 
     /* Transitions */
     --transition-slow: cubic-bezier(0.16, 1, 0.3, 1);
@@ -534,6 +534,7 @@ body.loading {
 
 .hero-content h1 {
     font-family: var(--display-font);
+    font-weight: 800;
     font-size: clamp(3rem, 10vw, 9rem);
     line-height: 0.85;
     background: linear-gradient(160deg, #FFFFFF 0%, var(--accent-primary) 100%);
@@ -542,7 +543,8 @@ body.loading {
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 0 40px rgba(126, 184, 247, 0.12));
     transition: transform 0.2s var(--transition-fast);
-    letter-spacing: -2px;
+    letter-spacing: -0.04em;
+    font-variation-settings: "wdth" 100, "wght" 800;
 }
 
 .hero-tagline-container {
