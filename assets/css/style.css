@@ -2841,6 +2841,8 @@ body.loaded .mouse-glow {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    z-index: 5;
 }
 
 .p-modal-title-area {
@@ -2929,17 +2931,20 @@ body.loaded .mouse-glow {
     padding: 22px 45px;
     background: var(--accent-primary);
     color: var(--bg-color);
-    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
     display: inline-flex;
     align-items: center;
     gap: 20px;
     border-radius: 4px;
     overflow: hidden;
     transition: all 0.4s var(--transition);
+
+    z-index: 5;
 }
 
 .p-launch-btn:hover {
-    transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(126, 184, 247, 0.2);
 }
 
@@ -3080,7 +3085,7 @@ body.loaded .mouse-glow {
         overflow-y: visible;
     }
 
-    .p-modal-info {
+    .p-modal-content-left {
         padding: 40px 25px 60px;
         order: 2;
         border-left: none;
@@ -3088,7 +3093,7 @@ body.loaded .mouse-glow {
         overflow-y: visible;
     }
 
-    .p-modal-info h2 { font-size: 2.8rem; }
+    .p-modal-content-left h2 { font-size: 2.8rem; }
     
     .p-modal-close-wrap {
         top: 15px;

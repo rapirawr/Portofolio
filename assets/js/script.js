@@ -232,7 +232,7 @@ document.addEventListener('mousemove', (e) => {
 });
 
 // GFX INTERAKTIF: Magnetic Cursor Effects
-const magneticElements = document.querySelectorAll('.glowbutton, .nav-item, .hud-social-link, .p-launch-btn, .skill-box, .stat-item, .clickable');
+const magneticElements = document.querySelectorAll('.glowbutton, .nav-item, .hud-social-link, .skill-box, .stat-item, .clickable');
 
 magneticElements.forEach(el => {
     el.addEventListener('mouseenter', () => playSound('hover'));
@@ -679,7 +679,7 @@ const translations = {
         "credentials.title": "03 // CREDENTIALS",
         "project1.title": "KAZE POS",
         "project1.category": "01 // POS SYSTEM",
-        "project1.desc": "A premium Point of Sale system built for high-performance retail environments. Features real-time inventory tracking, multi-outlet management, and a sleek architecture.",
+        "project1.desc": "A  Point of Sale system built for high-performance retail environments. Features real-time inventory tracking, multi-outlet management, and a sleek architecture.",
         "project1.preview": "Modern inventory & transaction management.",
         "project2.title": "SIPS ",
         "project2.category": "02 // INFRASTRUCTURE",
@@ -766,7 +766,7 @@ const translations = {
         "credentials.title": "03 // SERTIFIKASI",
         "project1.title": "KAZE POS",
         "project1.category": "01 // SISTEM KASIR",
-        "project1.desc": "Sistem Point of Sale premium yang dibangun untuk lingkungan ritel berperforma tinggi. Menampilkan pelacakan inventaris real-time, manajemen multi-outlet, dan arsitektur yang ramping.",
+        "project1.desc": "Sistem Point of Sale yang dibangun untuk lingkungan ritel berperforma tinggi. Menampilkan pelacakan inventaris real-time, manajemen multi-outlet, dan arsitektur yang ramping.",
         "project1.preview": "Manajemen inventaris & transaksi modern.",
         "project2.title": "SIPS",
         "project2.category": "02 // INFRASTRUKTUR",
@@ -1116,10 +1116,12 @@ document.querySelectorAll('.project-item').forEach((item, index) => {
         // Populate Link
         const linkBtn = document.getElementById('modal-project-link');
         if (link && link !== '#') {
-            linkBtn.href = link;
+            linkBtn.dataset.link = link;
             linkBtn.style.display = 'inline-flex';
+            linkBtn.onclick = () => window.open(link, '_blank', 'noopener,noreferrer');
         } else {
             linkBtn.style.display = 'none';
+            linkBtn.onclick = null;
         }
 
         // Re-init Lucide for new icons
