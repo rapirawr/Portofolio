@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credentials Archive | RAFI ABDILLAH F</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .page-header {
+            padding: 150px 0 50px;
+            text-align: center;
+        }
+        
+        .nav-links li a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body class="loading">
+    <div class="page-loader" id="page-loader">
+        <div class="loader-content" id="loader-content">
+            <div class="greeting-container" id="greeting-container" style="display: none;">
+                <span class="greeting-dot"></span>
+                <span class="greeting-text" id="greeting-text">Loading</span>
+            </div>
+            <div class="enter-screen" id="enter-screen">
+                <button class="enter-btn mono" id="enter-btn">
+                    <span class="enter-btn-text">ACCESS CREDENTIALS</span>
+                    <span class="enter-btn-glitch"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="scroll-bar"></div>
+    </div>
+    <div class="noise-overlay"></div>
+    <div class="mouse-glow" id="mouse-glow"></div>
+    <div class="bg-grid"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <canvas id="particles-canvas"></canvas>
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursor-follower"></div>
+    
+    <div class="hud-corners">
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+    </div>
+
+    <nav id="navbar" class="nav-scrolled">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-item"><i data-lucide="arrow-left" class="nav-icon"></i> <span>RETURN HOME</span></a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="lang-switcher mono">
+                    <span class="lang-btn active" data-lang="en">EN</span>
+                    <span class="divider">/</span>
+                    <span class="lang-btn" data-lang="id">ID</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="certificates-archive" class="section reveal-section" data-aos="fade-up">
+            <div class="page-header">
+                <div class="container">
+                    <div class="label-wrapper" data-aos="fade-up">
+                        <span class="label mono">ARCHIVE // ALL CREDENTIALS</span>
+                    </div>
+                    <h1 class="display-title scramble" style="margin-top: 20px; font-size: clamp(3rem, 6vw, 5rem);">CREDENTIALS</h1>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="section-title-wrap">
+                    <h2 class="label mono" data-aos="fade-right">VERIFIED ACHIEVEMENTS</h2>
+                    <div class="tech-stats mono">
+                        <span>[TOTAL: 10]</span>
+                        <span>[STATUS: VERIFIED]</span>
+                    </div>
+                </div>
+                
+                <div class="cert-grid">
+                    <div class="cert-card" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="cert-inner">
+                            <div class="cert-front">
+                                <div class="cert-status mono">PIAGAM PENGHARGAAN</div>
+                                <div class="cert-content">
+                                    <span class="cert-issuer mono">INNOTECH COMPETITION</span>
+                                    <h3>Innovation & Technology Award</h3>
+                                    <p class="mono">ACHIEVEMENT // 2025</p>
+                                </div>
+                                <div class="cert-glow"></div>
+                            </div>
+                            <div class="cert-back">
+                                <img src="assets/images/awards/Innotech.jpeg" alt="Piagam Innotech" loading="lazy" width="300" height="200">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="cert-inner">
+                            <div class="cert-front">
+                                <div class="cert-status mono">COMPETITION</div>
+                                <div class="cert-content">
+                                    <span class="cert-issuer mono">ISAC COMMUNITY</span>
+                                    <h3>UI/UX Design Excellence</h3>
+                                    <p class="mono">VERIFIED // 2025</p>
+                                </div>
+                                <div class="cert-glow"></div>
+                            </div>
+                            <div class="cert-back">
+                                <img src="assets/images/awards/UIIX ISAC.jpg" alt="Sertifikat ISAC" loading="lazy" width="300" height="200">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="cert-inner">
+                            <div class="cert-front">
+                                <div class="cert-status mono">PROGRAM</div>
+                                <div class="cert-content">
+                                    <span class="cert-issuer mono">SAMSUNG INNOVATION CAMPUS</span>
+                                    <h3>SIC Batch 6 Completion</h3>
+                                    <p class="mono">CERTIFIED // 2024</p>
+                                </div>
+                                <div class="cert-glow"></div>
+                            </div>
+                            <div class="cert-back">
+                                <img src="assets/images/awards/SIC6.jpg" alt="Sertifikat SIC" loading="lazy" width="300" height="200">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="cert-inner">
+                            <div class="cert-front">
+                                <div class="cert-status mono">TECHNICAL</div>
+                                <div class="cert-content">
+                                    <span class="cert-issuer mono">LATIKA ACADEMY</span>
+                                    <h3>Python Programming Mastery</h3>
+                                    <p class="mono">ISSUED // 2025</p>
+                                </div>
+                                <div class="cert-glow"></div>
+                            </div>
+                            <div class="cert-back">
+                                <img src="assets/images/awards/Latika Python.jpg" alt="Sertifikat Latika Python" loading="lazy" width="300" height="200">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-aos="zoom-in" data-aos-delay="500">
+                        <div class="cert-inner">
+                            <div class="cert-front">
+                                <div class="cert-status mono">VERIFIED</div>
+                                <div class="cert-content">
+                                    <span class="cert-issuer mono">LATIKA COMPETITION</span>
+                                    <h3>Core Tech Fundamentals</h3>
+                                    <p class="mono">VERIFIED // 2025</p>
+                                </div>
+                                <div class="cert-glow"></div>
+                            </div>
+                            <div class="cert-back">
+                                <img src="assets/images/awards/Latika.jpg" alt="Sertifikat Latika" loading="lazy" width="300" height="200">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-aos="zoom-in" data-aos-delay="600">
+                        <div class="cert-inner">
+                            <div class="cert-front">
+                                <div class="cert-status mono">VERIFIED</div>
+                                <div class="cert-content">
+                                    <span class="cert-issuer mono">MAHAVATION 2025</span>
+                                    <h3>IoT Innovation</h3>
+                                    <p class="mono">VERIFIED // 2025</p>
+                                </div>
+                                <div class="cert-glow"></div>
+                            </div>
+                            <div class="cert-back">
+                                <img src="assets/images/awards/mahavation.png" alt="Sertifikat Mahavation" loading="lazy" width="300" height="200">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-aos="zoom-in" data-aos-delay="700">
+                        <div class="cert-inner">
+                            <div class="cert-front">
+                                <div class="cert-status mono">VERIFIED</div>
+                                <div class="cert-content">
+                                    <span class="cert-issuer mono">ANTHROPIC</span>
+                                    <h3>Claude 101</h3>
+                                    <p class="mono">VERIFIED // 2026</p>
+                                </div>
+                                <div class="cert-glow"></div>
+                            </div>
+                            <div class="cert-back">
+                                <img src="assets/images/awards/claude101.jpg" alt="Sertifikat Claude 101" loading="lazy" width="300" height="200">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-aos="zoom-in" data-aos-delay="800">
+                        <div class="cert-inner">
+                            <div class="cert-front">
+                                <div class="cert-status mono">VERIFIED</div>
+                                <div class="cert-content">
+                                    <span class="cert-issuer mono">ANTHROPIC</span>
+                                    <h3>Claude Code</h3>
+                                    <p class="mono">VERIFIED // 2026</p>
+                                </div>
+                                <div class="cert-glow"></div>
+                            </div>
+                            <div class="cert-back">
+                                <img src="assets/images/awards/Claude Code.jpg" alt="Sertifikat Claude Code" loading="lazy" width="300" height="200">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-aos="zoom-in" data-aos-delay="900">
+                        <div class="cert-inner">
+                            <div class="cert-front">
+                                <div class="cert-status mono">VERIFIED</div>
+                                <div class="cert-content">
+                                    <span class="cert-issuer mono">ANTHROPIC</span>
+                                    <h3>Claude Code in Action</h3>
+                                    <p class="mono">VERIFIED // 2026</p>
+                                </div>
+                                <div class="cert-glow"></div>
+                            </div>
+                            <div class="cert-back">
+                                <img src="assets/images/awards/claudecodeinaction.jpg" alt="Sertifikat Claude Code in Action" loading="lazy" width="300" height="200">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" data-aos="zoom-in" data-aos-delay="1000">
+                        <div class="cert-inner">
+                            <div class="cert-front">
+                                <div class="cert-status mono">VERIFIED</div>
+                                <div class="cert-content">
+                                    <span class="cert-issuer mono">ANTHROPIC</span>
+                                    <h3>Claude Cowork</h3>
+                                    <p class="mono">VERIFIED // 2026</p>
+                                </div>
+                                <div class="cert-glow"></div>
+                            </div>
+                            <div class="cert-back">
+                                <img src="assets/images/awards/claudecowork.jpg" alt="Sertifikat Claude Cowork" loading="lazy" width="300" height="200">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content mono">
+            <span>© 2026 RAFI ABDILLAH F</span>
+            <div class="socials">
+                <a href="https://github.com/rapirawr" target="_blank" aria-label="GitHub">
+                    <img src="https://cdn.simpleicons.org/github/4e9bef" alt="GitHub" width="16" height="16" loading="lazy">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CERTIFICATE MODAL -->
+    <div id="cert-modal" class="cert-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="modal-header mono">
+                <span id="modal-title">CERTIFICATE_VIEWER</span>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img id="modal-img" src="" alt="Certificate Image">
+            </div>
+            <div class="modal-footer mono">
+                <span class="status-indicator">SYSTEM: HIGH_FIDELITY_RENDER</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- AMBIENT AUDIO CONTROL -->
+    <div class="ambient-control" id="ambient-control">
+        <div class="ambient-visualizer">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <button class="ambient-toggle" id="ambient-toggle" aria-label="Toggle background music">
+            <i data-lucide="music"></i>
+            <span class="mono">AMBIENT: <span id="ambient-status">OFF</span></span>
+        </button>
+        <audio id="ambient-loop" loop preload="auto">
+            <source src="assets/audio/ambient.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div class="hud-overlay mono">
+        <div class="hud-item">SYS: ACTIVE</div>
+        <div class="hud-item" id="hud-time">00:00:00</div>
+        <div class="hud-item">LOC: INDONESIA</div>
+    </div>
+
+    <!-- PROJECT MODAL -->
+    <div id="project-modal" class="project-modal">
+        <div class="p-modal-overlay"></div>
+        <div class="p-modal-container">
+            <div class="p-modal-hud-edge top"></div>
+            <div class="p-modal-hud-edge bottom"></div>
+            <div class="p-modal-side-label left mono">PROJECT_SPECIFICATION_V4.0</div>
+            <div class="p-modal-side-label right mono">AUTHENTIC_CREDENTIALS</div>
+            <div class="p-modal-header-nav">
+                <div class="p-modal-breadcrumb mono">
+                    <span class="root">WORKSPACE</span>
+                    <span class="sep">/</span>
+                    <span class="category" id="modal-project-category-breadcrumb">CASE_STUDY</span>
+                </div>
+                <div class="p-modal-close-btn" aria-label="Close modal">
+                    <span class="close-text mono">CLOSE</span>
+                    <div class="close-icon-wrap">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="p-modal-main">
+                <div class="p-modal-content-left">
+                    <div class="p-modal-title-area">
+                        <span class="p-modal-number mono" id="modal-project-index">01</span>
+                        <h2 id="modal-project-title" class="display-title">Project Name</h2>
+                        <div class="p-modal-tags" id="modal-project-tech-tags"></div>
+                    </div>
+                    <div class="p-modal-description-wrap">
+                        <div class="desc-label mono">DESCRIPTION //</div>
+                        <p class="p-modal-desc" id="modal-project-desc">Project description</p>
+                    </div>
+                    <div class="p-modal-meta-grid">
+                        <div class="meta-box">
+                            <span class="meta-label mono">TECH_STACK</span>
+                            <span class="meta-value" id="modal-project-tech"></span>
+                        </div>
+                        <div class="meta-box">
+                            <span class="meta-label mono">STATUS</span>
+                            <span class="meta-value">PRODUCTION</span>
+                        </div>
+                    </div>
+                    <div class="p-modal-footer-actions">
+                        <button type="button" class="p-launch-btn" id="modal-project-link">
+                            <span class="btn-label mono">LAUNCH_PROJECT</span>
+                            <i data-lucide="rocket"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-modal-content-right">
+                    <div class="p-modal-gallery-container">
+                        <div class="gallery-hud mono">
+                            <span>GALLERY_STREAM</span>
+                            <span id="gallery-count">00_IMAGES</span>
+                        </div>
+                        <div class="p-modal-gallery" id="modal-project-gallery"></div>
+                        <div class="gallery-nav-hint mono">SCROLL_TO_EXPLORE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
