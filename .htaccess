@@ -7,6 +7,9 @@ RewriteEngine On
 # Map /homepage to index.html
 RewriteRule ^homepage/?$ index.html [NC,L]
 
+# Map /certificates to certificates.html
+RewriteRule ^certificates/?$ certificates.html [NC,L]
+
 # General rule to serve .html files without extension
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
